@@ -255,7 +255,7 @@
     </node>
   </node>
   <node concept="2n4O$4" id="6$03NoGlHrB">
-    <property role="TrG5h" value="product set" />
+    <property role="TrG5h" value="productSet" />
     <property role="15lxNE" value="Product set" />
     <node concept="2n4X5o" id="6$03NoGlUcX" role="2n4XjE">
       <property role="2n72Ru" value="false" />

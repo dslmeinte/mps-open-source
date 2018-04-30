@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:4cf1f458-9a9a-4956-895f-adddafcf92d7(main@generator)">
+<model ref="r:2950ac8d-2b56-43b1-89fa-efff36b574c0(main@generator)">
   <persistence version="9" />
   <languages>
     <devkit ref="a2eb3a43-fcc2-4200-80dc-c60110c4862d(jetbrains.mps.devkit.templates)" />
