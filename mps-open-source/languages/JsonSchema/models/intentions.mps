@@ -71,8 +71,8 @@
     </language>
   </registry>
   <node concept="2S6QgY" id="2hQb6UNrbVg">
-    <property role="TrG5h" value="toggleRequiredForProperty" />
-    <ref role="2ZfgGC" to="64hz:2hQb6UNpvxZ" resolve="JsonPropertyDef" />
+    <property role="TrG5h" value="toggleRequiredForRegularProperty" />
+    <ref role="2ZfgGC" to="64hz:2hQb6UNpvxZ" resolve="JsonRegularProperty" />
     <node concept="2S6ZIM" id="2hQb6UNrbVh" role="2ZfVej">
       <node concept="3clFbS" id="2hQb6UNrbVi" role="2VODD2">
         <node concept="3clFbF" id="2hQb6UNrjmf" role="3cqZAp">

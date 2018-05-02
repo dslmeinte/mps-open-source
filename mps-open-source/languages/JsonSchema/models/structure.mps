@@ -10,9 +10,12 @@
   </imports>
   <registry>
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
+      <concept id="1224240836180" name="jetbrains.mps.lang.structure.structure.DeprecatedNodeAnnotation" flags="ig" index="asaX9" />
+      <concept id="7862711839422615209" name="jetbrains.mps.lang.structure.structure.DocumentedNodeAnnotation" flags="ng" index="t5JxF">
+        <property id="7862711839422615217" name="text" index="t5JxN" />
+      </concept>
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
         <property id="6714410169261853888" name="conceptId" index="EcuMT" />
-        <property id="4628067390765907488" name="conceptShortDescription" index="R4oN_" />
         <property id="5092175715804935370" name="conceptAlias" index="34LRSv" />
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
         <child id="1071489727084" name="propertyDeclaration" index="1TKVEl" />
@@ -41,6 +44,9 @@
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
+      <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
+        <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
+      </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
       </concept>
@@ -48,7 +54,7 @@
   </registry>
   <node concept="1TIwiD" id="2hQb6UNpmlE">
     <property role="EcuMT" value="2627336286585054570" />
-    <property role="TrG5h" value="JsonSchemaDef" />
+    <property role="TrG5h" value="JsonSchema" />
     <property role="19KtqR" value="true" />
     <property role="34LRSv" value="schema" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
@@ -85,7 +91,7 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="definitions" />
       <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="2hQb6UNpvOL" resolve="JsonDefinitionDef" />
+      <ref role="20lvS9" node="2hQb6UNpvOL" resolve="JsonDefinition" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvxW">
@@ -108,13 +114,15 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="properties" />
       <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="2hQb6UNpvxZ" resolve="JsonPropertyDef" />
+      <ref role="20lvS9" node="4$rLBnuqZXj" resolve="JsonProperty" />
     </node>
     <node concept="1TJgyj" id="6$03NoGjaAa" role="1TKVEi">
       <property role="IQ2ns" value="7566064099328305546" />
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="patternProperties" />
-      <ref role="20lvS9" node="6$03NoGja_c" resolve="JsonPatternProperties" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="6$03NoGja_c" resolve="JsonPatternProperty" />
+      <node concept="asaX9" id="4$rLBnur06G" role="lGtFl" />
     </node>
     <node concept="PrWs8" id="6$03NoGlHrE" role="PzmwI">
       <ref role="PrY4T" node="6$03NoGlHrD" resolve="JsonTypeDefinition" />
@@ -122,10 +130,13 @@
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvxZ">
     <property role="EcuMT" value="2627336286585092223" />
-    <property role="TrG5h" value="JsonPropertyDef" />
-    <property role="34LRSv" value="prop" />
+    <property role="TrG5h" value="JsonRegularProperty" />
+    <property role="34LRSv" value="property" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="PrWs8" id="2hQb6UNpvy0" role="PzmwI">
+    <node concept="PrWs8" id="4$rLBnurgKr" role="PzmwI">
+      <ref role="PrY4T" node="4$rLBnuqZXj" resolve="JsonProperty" />
+    </node>
+    <node concept="PrWs8" id="4$rLBnut0nA" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
     <node concept="1TJgyi" id="2hQb6UNpvy2" role="1TKVEl">
@@ -137,13 +148,6 @@
       <property role="IQ2nx" value="7566064099329218709" />
       <property role="TrG5h" value="description" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
-    </node>
-    <node concept="1TJgyj" id="2hQb6UNpw9T" role="1TKVEi">
-      <property role="IQ2ns" value="2627336286585094777" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="type" />
-      <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonType" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvy8">
@@ -172,7 +176,7 @@
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvOL">
     <property role="EcuMT" value="2627336286585093425" />
-    <property role="TrG5h" value="JsonDefinitionDef" />
+    <property role="TrG5h" value="JsonDefinition" />
     <property role="34LRSv" value="def" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2hQb6UNpvOM" role="PzmwI">
@@ -184,7 +188,7 @@
     <node concept="1TJgyj" id="2hQb6UNpvOO" role="1TKVEi">
       <property role="IQ2ns" value="2627336286585093428" />
       <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="definition" />
+      <property role="20kJfa" value="def" />
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="2hQb6UNpvxW" resolve="JsonObjectDef" />
     </node>
@@ -336,7 +340,6 @@
   <node concept="1TIwiD" id="2hQb6UNyLAf">
     <property role="EcuMT" value="2627336286587525519" />
     <property role="TrG5h" value="JsonReferableRef" />
-    <property role="R4oN_" value="(no alias to make ref a smart reference)" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2hQb6UNyLAg" role="PzmwI">
       <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
@@ -348,22 +351,22 @@
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="2hQb6UNyLA0" resolve="JsonReferable" />
     </node>
+    <node concept="t5JxF" id="6z3ZIK8Qy1P" role="lGtFl">
+      <property role="t5JxN" value="Note: leave alias unset to make ref a smart reference!" />
+    </node>
   </node>
   <node concept="1TIwiD" id="6$03NoGja_c">
     <property role="EcuMT" value="7566064099328305484" />
-    <property role="TrG5h" value="JsonPatternProperties" />
+    <property role="TrG5h" value="JsonPatternProperty" />
+    <property role="34LRSv" value="pattern" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyi" id="6$03NoGja_d" role="1TKVEl">
       <property role="IQ2nx" value="7566064099328305485" />
       <property role="TrG5h" value="pattern" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
-    <node concept="1TJgyj" id="6$03NoGja_f" role="1TKVEi">
-      <property role="IQ2ns" value="7566064099328305487" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="type" />
-      <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonType" />
+    <node concept="PrWs8" id="4$rLBnurgKp" role="PzmwI">
+      <ref role="PrY4T" node="4$rLBnuqZXj" resolve="JsonProperty" />
     </node>
   </node>
   <node concept="PlHQZ" id="6$03NoGlHrD">
@@ -399,6 +402,17 @@
       <property role="IQ2nx" value="7566064099329444901" />
       <property role="TrG5h" value="refUri" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="PlHQZ" id="4$rLBnuqZXj">
+    <property role="EcuMT" value="5268022398685019987" />
+    <property role="TrG5h" value="JsonProperty" />
+    <node concept="1TJgyj" id="4$rLBnuqZXm" role="1TKVEi">
+      <property role="IQ2ns" value="5268022398685019990" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="type" />
+      <property role="20lbJX" value="1" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonType" />
     </node>
   </node>
 </model>

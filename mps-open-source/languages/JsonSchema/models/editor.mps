@@ -119,7 +119,7 @@
     </language>
   </registry>
   <node concept="24kQdi" id="2hQb6UNpwwA">
-    <ref role="1XX52x" to="64hz:2hQb6UNpmlE" resolve="JsonSchemaDef" />
+    <ref role="1XX52x" to="64hz:2hQb6UNpmlE" resolve="JsonSchema" />
     <node concept="3EZMnI" id="2hQb6UNpwwC" role="2wV5jI">
       <node concept="3EZMnI" id="2hQb6UNpwwJ" role="3EZMnx">
         <node concept="VPM3Z" id="2hQb6UNpwwL" role="3F10Kt">
@@ -287,18 +287,6 @@
             <ref role="1NtTu8" to="64hz:2hQb6UNpvy6" resolve="properties" />
             <node concept="2iRkQZ" id="6$03NoGmsaG" role="2czzBx" />
           </node>
-          <node concept="3EZMnI" id="6$03NoGjG3e" role="3EZMnx">
-            <node concept="VPM3Z" id="6$03NoGjG3f" role="3F10Kt">
-              <property role="VOm3f" value="false" />
-            </node>
-            <node concept="3F0ifn" id="6$03NoGjG3g" role="3EZMnx">
-              <property role="3F0ifm" value="pattern properties:" />
-            </node>
-            <node concept="3F1sOY" id="6$03NoGjG3h" role="3EZMnx">
-              <ref role="1NtTu8" to="64hz:6$03NoGjaAa" resolve="patternProperties" />
-            </node>
-            <node concept="2iRfu4" id="6$03NoGjG3i" role="2iSdaV" />
-          </node>
           <node concept="2iRkQZ" id="2hQb6UNpGyz" role="2iSdaV" />
         </node>
         <node concept="l2Vlx" id="2hQb6UNpGyi" role="2iSdaV" />
@@ -340,7 +328,7 @@
     </node>
   </node>
   <node concept="24kQdi" id="2hQb6UNpJqh">
-    <ref role="1XX52x" to="64hz:2hQb6UNpvOL" resolve="JsonDefinitionDef" />
+    <ref role="1XX52x" to="64hz:2hQb6UNpvOL" resolve="JsonDefinition" />
     <node concept="3EZMnI" id="2hQb6UNyswT" role="2wV5jI">
       <node concept="3EZMnI" id="2hQb6UNpJqj" role="3EZMnx">
         <node concept="3F0A7n" id="2hQb6UNpJqq" role="3EZMnx">
@@ -351,7 +339,7 @@
           <property role="3F0ifm" value="=" />
         </node>
         <node concept="3F1sOY" id="2hQb6UNpJqC" role="3EZMnx">
-          <ref role="1NtTu8" to="64hz:2hQb6UNpvOO" resolve="definition" />
+          <ref role="1NtTu8" to="64hz:2hQb6UNpvOO" resolve="def" />
         </node>
         <node concept="2iRfu4" id="2hQb6UNpJqm" role="2iSdaV" />
       </node>
@@ -367,7 +355,7 @@
     </node>
   </node>
   <node concept="24kQdi" id="2hQb6UNpMRv">
-    <ref role="1XX52x" to="64hz:2hQb6UNpvxZ" resolve="JsonPropertyDef" />
+    <ref role="1XX52x" to="64hz:2hQb6UNpvxZ" resolve="JsonRegularProperty" />
     <node concept="3EZMnI" id="2hQb6UNpMRx" role="2wV5jI">
       <node concept="3F0ifn" id="2hQb6UNpMRC" role="3EZMnx">
         <property role="3F0ifm" value="required" />
@@ -397,13 +385,13 @@
         <property role="3F0ifm" value=":" />
       </node>
       <node concept="3F1sOY" id="2hQb6UNpPfJ" role="3EZMnx">
-        <ref role="1NtTu8" to="64hz:2hQb6UNpw9T" resolve="type" />
+        <ref role="1NtTu8" to="64hz:4$rLBnuqZXm" resolve="type" />
       </node>
       <node concept="2iRfu4" id="2hQb6UNpMR$" role="2iSdaV" />
     </node>
     <node concept="3EZMnI" id="6$03NoGksJG" role="6VMZX">
       <node concept="3F0ifn" id="6$03NoGksTe" role="3EZMnx">
-        <property role="3F0ifm" value="Defines a property of a JSON object, with non-variable/-patterned name and a type." />
+        <property role="3F0ifm" value="Defines a (regular) property of a JSON object, with non-variable/-patterned name and a type." />
         <ref role="1k5W1q" node="6$03NoGkgKX" resolve="Documentation" />
       </node>
       <node concept="3F0ifn" id="6$03NoGksTk" role="3EZMnx" />
@@ -790,8 +778,11 @@
     </node>
   </node>
   <node concept="24kQdi" id="6$03NoGja_h">
-    <ref role="1XX52x" to="64hz:6$03NoGja_c" resolve="JsonPatternProperties" />
+    <ref role="1XX52x" to="64hz:6$03NoGja_c" resolve="JsonPatternProperty" />
     <node concept="3EZMnI" id="6$03NoGja_v" role="2wV5jI">
+      <node concept="3F0ifn" id="4$rLBnuqZNV" role="3EZMnx">
+        <property role="3F0ifm" value="pattern" />
+      </node>
       <node concept="3F0A7n" id="6$03NoGja_G" role="3EZMnx">
         <ref role="1NtTu8" to="64hz:6$03NoGja_d" resolve="pattern" />
         <ref role="1k5W1q" node="2hQb6UNwKXk" resolve="Pattern" />
@@ -800,7 +791,7 @@
         <property role="3F0ifm" value=":" />
       </node>
       <node concept="3F1sOY" id="6$03NoGjaA4" role="3EZMnx">
-        <ref role="1NtTu8" to="64hz:6$03NoGja_f" resolve="type" />
+        <ref role="1NtTu8" to="64hz:4$rLBnuqZXm" resolve="type" />
       </node>
       <node concept="2iRfu4" id="6$03NoGja_y" role="2iSdaV" />
     </node>
