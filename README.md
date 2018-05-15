@@ -30,3 +30,10 @@ Somewhat in order of rather shallowly descending importance:
 * Implement being able to validate a JSON model (e.g. in the mbeddr JSON language) with a JSON Schema model.
 * Implement constraints/validations in the language, such as name validity.
 
+
+### Links
+
+* The [specification](http://json-schema.org/specification.html) - **draft-07**
+* The corresponding ![meta-schema](json-schema/meta-schema.json)
+* Corresponding to models under Examples: [productSet](http://json-schema.org/example1.html), [entry, mainEntry](http://json-schema.org/example2.html)
+

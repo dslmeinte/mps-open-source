@@ -143,7 +143,9 @@
       </concept>
     </language>
     <language id="b5c0bb04-c583-4b2a-a66e-1eab92d33c68" name="com.mbeddr.mpsutil.json">
-      <concept id="4342692121161029323" name="com.mbeddr.mpsutil.json.structure.String" flags="ng" index="3YX86M" />
+      <concept id="4342692121161029323" name="com.mbeddr.mpsutil.json.structure.String" flags="ng" index="3YX86M">
+        <property id="4342692121161029326" name="value" index="3YX86R" />
+      </concept>
       <concept id="4342692121161028983" name="com.mbeddr.mpsutil.json.structure.Variable" flags="ng" index="3YX88e">
         <child id="4342692121161029096" name="value" index="3YX8ah" />
       </concept>
@@ -251,6 +253,16 @@
                       </node>
                     </node>
                     <node concept="17RvpY" id="6z3ZIK8PFpe" role="2OqNvi" />
+                  </node>
+                </node>
+                <node concept="2n63Yl" id="5uyaFvvC8Ai" role="3cqZAp">
+                  <node concept="2c44tf" id="5uyaFvvCa5t" role="2n6tg2">
+                    <node concept="3YX88e" id="5uyaFvvCawI" role="2c44tc">
+                      <property role="TrG5h" value="$schema" />
+                      <node concept="3YX86M" id="5uyaFvvCaRa" role="3YX8ah">
+                        <property role="3YX86R" value="http://json-schema.org/draft-07/schema#" />
+                      </node>
+                    </node>
                   </node>
                 </node>
                 <node concept="3clFbJ" id="6z3ZIK8PFpf" role="3cqZAp">
