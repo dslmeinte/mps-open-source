@@ -10,12 +10,13 @@
   </imports>
   <registry>
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
-      <concept id="1224240836180" name="jetbrains.mps.lang.structure.structure.DeprecatedNodeAnnotation" flags="ig" index="asaX9" />
       <concept id="7862711839422615209" name="jetbrains.mps.lang.structure.structure.DocumentedNodeAnnotation" flags="ng" index="t5JxF">
         <property id="7862711839422615217" name="text" index="t5JxN" />
       </concept>
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
         <property id="6714410169261853888" name="conceptId" index="EcuMT" />
+        <property id="4628067390765956807" name="final" index="R5$K2" />
+        <property id="4628067390765956802" name="abstract" index="R5$K7" />
         <property id="5092175715804935370" name="conceptAlias" index="34LRSv" />
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
         <child id="1071489727084" name="propertyDeclaration" index="1TKVEl" />
@@ -84,7 +85,7 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="contents" />
       <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="6$03NoGlHrD" resolve="JsonTypeDefinition" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
     <node concept="1TJgyj" id="2hQb6UNpvOI" role="1TKVEi">
       <property role="IQ2ns" value="2627336286585093422" />
@@ -99,11 +100,6 @@
     <property role="TrG5h" value="JsonObjectDef" />
     <property role="34LRSv" value="object" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyi" id="2hQb6UNpvxX" role="1TKVEl">
-      <property role="IQ2nx" value="2627336286585092221" />
-      <property role="TrG5h" value="additionalProperties" />
-      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
-    </node>
     <node concept="1TJgyi" id="6$03NoGmek3" role="1TKVEl">
       <property role="IQ2nx" value="7566064099329107203" />
       <property role="TrG5h" value="title" />
@@ -116,16 +112,14 @@
       <property role="20lbJX" value="0..n" />
       <ref role="20lvS9" node="4$rLBnuqZXj" resolve="JsonProperty" />
     </node>
-    <node concept="1TJgyj" id="6$03NoGjaAa" role="1TKVEi">
-      <property role="IQ2ns" value="7566064099328305546" />
+    <node concept="1TJgyj" id="6qrN1nFkMB" role="1TKVEi">
+      <property role="IQ2ns" value="115526993871457447" />
       <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="patternProperties" />
-      <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="6$03NoGja_c" resolve="JsonPatternProperty" />
-      <node concept="asaX9" id="4$rLBnur06G" role="lGtFl" />
+      <property role="20kJfa" value="additionalPropertiesType" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
-    <node concept="PrWs8" id="6$03NoGlHrE" role="PzmwI">
-      <ref role="PrY4T" node="6$03NoGlHrD" resolve="JsonTypeDefinition" />
+    <node concept="PrWs8" id="5uyaFvvDpC8" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvxZ">
@@ -163,7 +157,7 @@
       <ref role="20lvS9" node="2hQb6UNpvyb" resolve="JsonEnumerationValue" />
     </node>
     <node concept="PrWs8" id="2hQb6UNqjdN" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvyb">
@@ -190,7 +184,7 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="def" />
       <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="2hQb6UNpvxW" resolve="JsonObjectDef" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvOQ">
@@ -213,31 +207,24 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="itemsType" />
       <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
-    <node concept="PrWs8" id="6$03NoGlHrJ" role="PzmwI">
-      <ref role="PrY4T" node="6$03NoGlHrD" resolve="JsonTypeDefinition" />
+    <node concept="PrWs8" id="5uyaFvvDpC5" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNpvOR">
     <property role="EcuMT" value="2627336286585093431" />
-    <property role="TrG5h" value="JsonSumType" />
+    <property role="TrG5h" value="JsonOneOf" />
     <property role="34LRSv" value="oneOf" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyj" id="2hQb6UNpvOX" role="1TKVEi">
-      <property role="IQ2ns" value="2627336286585093437" />
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="types" />
-      <property role="20lbJX" value="1..n" />
-      <ref role="20lvS9" node="2hQb6UNyLAf" resolve="JsonReferableRef" />
-    </node>
+    <ref role="1TJDcQ" node="5uyaFvvEFAb" resolve="JsonSumType" />
     <node concept="PrWs8" id="2hQb6UNqiS9" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="PlHQZ" id="2hQb6UNqiS8">
     <property role="EcuMT" value="2627336286585302536" />
-    <property role="TrG5h" value="JsonType" />
+    <property role="TrG5h" value="JsonTypeLiteral" />
   </node>
   <node concept="1TIwiD" id="2hQb6UNqEnT">
     <property role="EcuMT" value="2627336286585398777" />
@@ -245,7 +232,7 @@
     <property role="34LRSv" value="string" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2hQb6UNqEnU" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
     <node concept="1TJgyi" id="2hQb6UNrqds" role="1TKVEl">
       <property role="IQ2nx" value="2627336286585594716" />
@@ -265,7 +252,7 @@
     <property role="34LRSv" value="boolean" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2hQb6UNqEo2" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNrK1K">
@@ -300,7 +287,7 @@
       <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
     <node concept="PrWs8" id="2hQb6UNsQom" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="2hQb6UNsfOc">
@@ -342,7 +329,7 @@
     <property role="TrG5h" value="JsonReferableRef" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="2hQb6UNyLAg" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
     <node concept="1TJgyj" id="2hQb6UNyLAi" role="1TKVEi">
       <property role="IQ2ns" value="2627336286587525522" />
@@ -369,13 +356,6 @@
       <ref role="PrY4T" node="4$rLBnuqZXj" resolve="JsonProperty" />
     </node>
   </node>
-  <node concept="PlHQZ" id="6$03NoGlHrD">
-    <property role="EcuMT" value="7566064099328972521" />
-    <property role="TrG5h" value="JsonTypeDefinition" />
-    <node concept="PrWs8" id="6$03NoGlHrO" role="PrDN$">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
-    </node>
-  </node>
   <node concept="1TIwiD" id="6$03NoGms0o">
     <property role="EcuMT" value="7566064099329163288" />
     <property role="TrG5h" value="JsonNumberType" />
@@ -387,7 +367,7 @@
       <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
     <node concept="PrWs8" id="6$03NoGms0p" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
   <node concept="1TIwiD" id="6$03NoGnwKy">
@@ -396,7 +376,7 @@
     <property role="34LRSv" value="external ref" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="6$03NoGnwKz" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
     <node concept="1TJgyi" id="6$03NoGnwK_" role="1TKVEl">
       <property role="IQ2nx" value="7566064099329444901" />
@@ -412,7 +392,42 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="type" />
       <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonType" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5uyaFvvEF_p">
+    <property role="EcuMT" value="6314656596746746201" />
+    <property role="TrG5h" value="JsonAnyOf" />
+    <property role="34LRSv" value="anyOf" />
+    <ref role="1TJDcQ" node="5uyaFvvEFAb" resolve="JsonSumType" />
+    <node concept="PrWs8" id="5uyaFvvEF_q" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5uyaFvvEFAb">
+    <property role="EcuMT" value="6314656596746746251" />
+    <property role="TrG5h" value="JsonSumType" />
+    <property role="R5$K7" value="true" />
+    <property role="R5$K2" value="false" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="5uyaFvvEFNs" role="1TKVEi">
+      <property role="IQ2ns" value="6314656596746747100" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="types" />
+      <property role="20lbJX" value="1..n" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+    <node concept="PrWs8" id="5uyaFvvEFAc" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5uyaFvvGuLw">
+    <property role="EcuMT" value="6314656596747218016" />
+    <property role="TrG5h" value="JsonAllOf" />
+    <property role="34LRSv" value="allOf" />
+    <ref role="1TJDcQ" node="5uyaFvvEFAb" resolve="JsonSumType" />
+    <node concept="PrWs8" id="5uyaFvvGuLx" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
 </model>

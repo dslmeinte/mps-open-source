@@ -18,7 +18,18 @@ As an example: object properties are either *regular* or *pattern*ed and co-exis
 It's the job of the mapping to actual JSON (conforming to the JSON Schema meta-schema) to pull these apart.
 I think this allows the schema author to organise their properties in the way they want, and turning a regular property into a patterned property.
 
+Another facet is that I don't intend to support *default values* (at this time): this mixes validation with pure data concerns.
+
 The longer term goal of this is to also provide an OpenAPI specification language which meshes with the JSON Schema language.
+
+
+### Links
+
+* The [specification](http://json-schema.org/specification.html) - **draft-07**
+* The corresponding ![meta-schema](json-schema/meta-schema.json)
+* Corresponding to models under Examples: [productSet](http://json-schema.org/example1.html), [entry, mainEntry](http://json-schema.org/example2.html)
+* A very good [explanation](https://spacetelescope.github.io/understanding-json-schema/).
+
 
 ### TODOs
 
@@ -29,11 +40,4 @@ Somewhat in order of rather shallowly descending importance:
 * Expand language to be able to cope with the meta-schema (or currently: an official one) for JSON Schema.
 * Implement being able to validate a JSON model (e.g. in the mbeddr JSON language) with a JSON Schema model.
 * Implement constraints/validations in the language, such as name validity.
-
-
-### Links
-
-* The [specification](http://json-schema.org/specification.html) - **draft-07**
-* The corresponding ![meta-schema](json-schema/meta-schema.json)
-* Corresponding to models under Examples: [productSet](http://json-schema.org/example1.html), [entry, mainEntry](http://json-schema.org/example2.html)
 

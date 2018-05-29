@@ -7,6 +7,9 @@
   <imports />
   <registry>
     <language id="332c9129-fd88-4f4c-a448-1f9b461e11cb" name="JsonSchema">
+      <concept id="6314656596746746251" name="JsonSchema.structure.JsonSumType" flags="ng" index="2829cW">
+        <child id="6314656596746747100" name="types" index="2829pF" />
+      </concept>
       <concept id="2627336286585814284" name="JsonSchema.structure.JsonStringFormat" flags="ng" index="2n1H5y" />
       <concept id="2627336286585814288" name="JsonSchema.structure.JsonStringPattern" flags="ng" index="2n1H5Y">
         <property id="2627336286585814293" name="pattern" index="2n1H5V" />
@@ -23,9 +26,7 @@
         <property id="2627336286585356720" name="uniqueItems" index="2n72Ru" />
         <child id="2627336286585356718" name="itemsType" index="2n72R0" />
       </concept>
-      <concept id="2627336286585093431" name="JsonSchema.structure.JsonSumType" flags="ng" index="2n4X5p">
-        <child id="2627336286585093437" name="types" index="2n4X5j" />
-      </concept>
+      <concept id="2627336286585093431" name="JsonSchema.structure.JsonOneOf" flags="ng" index="2n4X5p" />
       <concept id="2627336286585093425" name="JsonSchema.structure.JsonDefinition" flags="ng" index="2n4X5v">
         <child id="2627336286585093428" name="def" index="2n4X5q" />
       </concept>
@@ -82,16 +83,16 @@
         <property role="TrG5h" value="storage" />
         <property role="2n4XjG" value="true" />
         <node concept="2n4X5p" id="4$rLBnus7Yk" role="2ns3$z">
-          <node concept="2nZjnx" id="4$rLBnus7Yl" role="2n4X5j">
+          <node concept="2nZjnx" id="4$rLBnus7Yl" role="2829pF">
             <ref role="2nZjnW" node="2hQb6UNpwuo" resolve="diskDevice" />
           </node>
-          <node concept="2nZjnx" id="4$rLBnus7Ym" role="2n4X5j">
+          <node concept="2nZjnx" id="5uyaFvvFcoM" role="2829pF">
             <ref role="2nZjnW" node="2hQb6UNpwus" resolve="diskUUID" />
           </node>
-          <node concept="2nZjnx" id="4$rLBnus7Yn" role="2n4X5j">
+          <node concept="2nZjnx" id="5uyaFvvFcoP" role="2829pF">
             <ref role="2nZjnW" node="2hQb6UNpwuy" resolve="nfs" />
           </node>
-          <node concept="2nZjnx" id="4$rLBnus7Yo" role="2n4X5j">
+          <node concept="2nZjnx" id="5uyaFvvFcoT" role="2829pF">
             <ref role="2nZjnW" node="2hQb6UNpwuE" resolve="tmpfs" />
           </node>
         </node>

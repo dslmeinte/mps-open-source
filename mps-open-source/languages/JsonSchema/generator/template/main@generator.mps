@@ -30,9 +30,6 @@
       </concept>
     </language>
     <language id="b401a680-8325-4110-8fd3-84331ff25bef" name="jetbrains.mps.lang.generator">
-      <concept id="1114706874351" name="jetbrains.mps.lang.generator.structure.CopySrcNodeMacro" flags="ln" index="29HgVG">
-        <child id="1168024447342" name="sourceNodeQuery" index="3NFExx" />
-      </concept>
       <concept id="1095416546421" name="jetbrains.mps.lang.generator.structure.MappingConfiguration" flags="ig" index="bUwia">
         <child id="1167514678247" name="rootMappingRule" index="3lj3bC" />
       </concept>
@@ -50,7 +47,10 @@
         <reference id="1167514355421" name="template" index="3lhOvi" />
       </concept>
       <concept id="1167756080639" name="jetbrains.mps.lang.generator.structure.PropertyMacro_GetPropertyValue" flags="in" index="3zFVjK" />
-      <concept id="1168024337012" name="jetbrains.mps.lang.generator.structure.SourceSubstituteMacro_SourceNodeQuery" flags="in" index="3NFfHV" />
+      <concept id="1311078761699563727" name="jetbrains.mps.lang.generator.structure.InsertMacro_CreateNodeQuery" flags="in" index="3_AbJw" />
+      <concept id="1311078761699563726" name="jetbrains.mps.lang.generator.structure.InsertMacro" flags="ln" index="3_AbJx">
+        <child id="1311078761699602381" name="createNodeQuery" index="3_A0Ny" />
+      </concept>
     </language>
     <language id="b5c0bb04-c583-4b2a-a66e-1eab92d33c68" name="com.mbeddr.mpsutil.json">
       <concept id="4342692121161028982" name="com.mbeddr.mpsutil.json.structure.JSONObject" flags="ng" index="3YX88f" />
@@ -80,20 +80,20 @@
   <node concept="bUwia" id="2_XG2jMjnNN">
     <property role="TrG5h" value="mainJsonSchema" />
     <node concept="3lhOvk" id="2_XG2jMjtja" role="3lj3bC">
-      <ref role="30HIoZ" to="64hz:2hQb6UNpmlE" resolve="JsonSchemaDef" />
+      <ref role="30HIoZ" to="64hz:2hQb6UNpmlE" resolve="JsonSchema" />
       <ref role="3lhOvi" node="2_XG2jMjtfE" resolve="jsonSchema" />
     </node>
   </node>
   <node concept="3YXoiq" id="2_XG2jMjtfE">
     <property role="TrG5h" value="jsonSchema" />
     <node concept="3YX88f" id="2_XG2jMjtfF" role="3YXoi7">
-      <node concept="29HgVG" id="4$rLBnuiLJA" role="lGtFl">
-        <node concept="3NFfHV" id="4$rLBnuiMhZ" role="3NFExx">
-          <node concept="3clFbS" id="4$rLBnuiMi0" role="2VODD2">
-            <node concept="3clFbF" id="4$rLBnuiMVS" role="3cqZAp">
-              <node concept="2OqwBi" id="4$rLBnuiNAY" role="3clFbG">
-                <node concept="30H73N" id="4$rLBnuiMVR" role="2Oq$k0" />
-                <node concept="2qgKlT" id="4$rLBnuiOXJ" role="2OqNvi">
+      <node concept="3_AbJx" id="5uyaFvvDTKi" role="lGtFl">
+        <node concept="3_AbJw" id="5uyaFvvDTKq" role="3_A0Ny">
+          <node concept="3clFbS" id="5uyaFvvDTKy" role="2VODD2">
+            <node concept="3clFbF" id="5uyaFvvDTNZ" role="3cqZAp">
+              <node concept="2OqwBi" id="5uyaFvvDU0t" role="3clFbG">
+                <node concept="30H73N" id="5uyaFvvDTNY" role="2Oq$k0" />
+                <node concept="2qgKlT" id="5uyaFvvDUrv" role="2OqNvi">
                   <ref role="37wK5l" to="9kkn:4$rLBnuijZt" resolve="asJson" />
                 </node>
               </node>
@@ -103,7 +103,7 @@
       </node>
     </node>
     <node concept="n94m4" id="2_XG2jMjtfG" role="lGtFl">
-      <ref role="n9lRv" to="64hz:2hQb6UNpmlE" resolve="JsonSchemaDef" />
+      <ref role="n9lRv" to="64hz:2hQb6UNpmlE" resolve="JsonSchema" />
     </node>
     <node concept="17Uvod" id="2_XG2jMjyIw" role="lGtFl">
       <property role="P4ACc" value="ceab5195-25ea-4f22-9b92-103b95ca8c0c/1169194658468/1169194664001" />
