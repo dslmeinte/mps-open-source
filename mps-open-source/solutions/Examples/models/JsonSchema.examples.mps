@@ -120,7 +120,7 @@
         </node>
       </node>
       <node concept="2n4Xgh" id="2hQb6UNqUnt" role="2n4XjC">
-        <property role="TrG5h" value="readOnly" />
+        <property role="TrG5h" value="readonly" />
         <node concept="2n78DJ" id="4$rLBnus7YE" role="2ns3$z" />
       </node>
     </node>
@@ -256,6 +256,7 @@
   <node concept="2n4O$4" id="6$03NoGlHrB">
     <property role="TrG5h" value="productSet" />
     <property role="15lxNE" value="Product set" />
+    <property role="2n4XgD" value="A product from Acme's catalog" />
     <node concept="2n4X5o" id="6$03NoGlUcX" role="2n4XjE">
       <property role="2n72Ru" value="false" />
       <node concept="2n4Xgi" id="6$03NoGlUmC" role="2n72R0">
