@@ -74,7 +74,7 @@
     </node>
   </node>
   <node concept="24kQdi" id="3QNkN21Fl6t">
-    <ref role="1XX52x" to="tay9:3QNkN21Fl5Z" resolve="Variable" />
+    <ref role="1XX52x" to="tay9:3QNkN21Fl5Z" resolve="JsonPair" />
     <node concept="3EZMnI" id="3QNkN21Fl6v" role="2wV5jI">
       <node concept="3F0A7n" id="3QNkN21Fl6A" role="3EZMnx">
         <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />

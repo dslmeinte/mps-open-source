@@ -18,7 +18,7 @@
     </language>
   </registry>
   <node concept="bUwia" id="3QNkN21Fl47">
-    <property role="TrG5h" value="main" />
+    <property role="TrG5h" value="mainJson" />
   </node>
 </model>
 

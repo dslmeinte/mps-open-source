@@ -65,7 +65,7 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="pairs" />
       <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="3QNkN21Fl5Z" resolve="Variable" />
+      <ref role="20lvS9" node="3QNkN21Fl5Z" resolve="JsonPair" />
     </node>
   </node>
   <node concept="PlHQZ" id="3QNkN21Fl49">
@@ -147,7 +147,7 @@
   </node>
   <node concept="1TIwiD" id="3QNkN21Fl5Z">
     <property role="EcuMT" value="4445988724943966591" />
-    <property role="TrG5h" value="Variable" />
+    <property role="TrG5h" value="JsonPair" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="3QNkN21Fl62" role="1TKVEi">
       <property role="IQ2ns" value="4445988724943966594" />
@@ -156,11 +156,11 @@
       <property role="20lbJX" value="1" />
       <ref role="20lvS9" node="3QNkN21Fl49" resolve="IJsonValue" />
     </node>
-    <node concept="t5JxF" id="3QNkN21FzXB" role="lGtFl">
-      <property role="t5JxN" value="&quot;Variable&quot; instead of &quot;JsonKeyValuePair&quot; (or similar) to stay aligned with previous use of mbeddr's JSON implementation." />
-    </node>
     <node concept="PrWs8" id="3QNkN21G$$T" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="t5JxF" id="3QNkN21LVAQ" role="lGtFl">
+      <property role="t5JxN" value="A key-value-pair for use in a JSON Object." />
     </node>
   </node>
   <node concept="1TIwiD" id="3QNkN21GywT">
