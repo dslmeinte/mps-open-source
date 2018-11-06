@@ -7,6 +7,7 @@
   </models>
   <sourcePath />
   <languageVersions>
+    <language slang="l:8382542b-a045-4f73-951b-02d75ee252bf:Json" version="0" />
     <language slang="l:332c9129-fd88-4f4c-a448-1f9b461e11cb:JsonSchema" version="0" />
     <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="1" />
   </languageVersions>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="MPSProject">
     <projectModules>
+      <modulePath path="$PROJECT_DIR$/languages/Json/Json.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/JsonSchema/JsonSchema.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/Examples/Examples.msd" folder="" />
     </projectModules>
