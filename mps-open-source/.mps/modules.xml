@@ -5,6 +5,7 @@
       <modulePath path="$PROJECT_DIR$/languages/Json/Json.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/JsonSchema/JsonSchema.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/Examples/Examples.msd" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/runtime.lib/runtime.lib.msd" folder="" />
     </projectModules>
   </component>
 </project>
