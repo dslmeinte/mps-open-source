@@ -2,7 +2,7 @@
 <model ref="r:b9a28f2c-91e5-4b49-819f-5dd06df0e7fc(Json.behavior)">
   <persistence version="9" />
   <languages>
-    <use id="af65afd8-f0dd-4942-87d9-63a55f2a9db1" name="jetbrains.mps.lang.behavior" version="1" />
+    <use id="af65afd8-f0dd-4942-87d9-63a55f2a9db1" name="jetbrains.mps.lang.behavior" version="2" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
@@ -80,6 +80,10 @@
       <concept id="1068580123155" name="jetbrains.mps.baseLanguage.structure.ExpressionStatement" flags="nn" index="3clFbF">
         <child id="1068580123156" name="expression" index="3clFbG" />
       </concept>
+      <concept id="1068580123159" name="jetbrains.mps.baseLanguage.structure.IfStatement" flags="nn" index="3clFbJ">
+        <child id="1068580123160" name="condition" index="3clFbw" />
+        <child id="1068580123161" name="ifTrue" index="3clFbx" />
+      </concept>
       <concept id="1068580123136" name="jetbrains.mps.baseLanguage.structure.StatementList" flags="sn" stub="5293379017992965193" index="3clFbS">
         <child id="1068581517665" name="statement" index="3cqZAp" />
       </concept>
@@ -118,6 +122,12 @@
       </concept>
       <concept id="1221737317277" name="jetbrains.mps.baseLanguage.structure.StaticInitializer" flags="lg" index="1Pe0a1">
         <child id="1221737317278" name="statementList" index="1Pe0a2" />
+      </concept>
+      <concept id="6329021646629104957" name="jetbrains.mps.baseLanguage.structure.TextCommentPart" flags="nn" index="3SKdUq">
+        <property id="6329021646629104958" name="text" index="3SKdUp" />
+      </concept>
+      <concept id="6329021646629104954" name="jetbrains.mps.baseLanguage.structure.SingleLineComment" flags="nn" index="3SKdUt">
+        <child id="6329021646629175155" name="commentPart" index="3SKWNk" />
       </concept>
       <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
       <concept id="1146644623116" name="jetbrains.mps.baseLanguage.structure.PrivateVisibility" flags="nn" index="3Tm6S6" />
@@ -186,6 +196,7 @@
         <child id="1204796294226" name="closure" index="23t8la" />
       </concept>
       <concept id="1204980550705" name="jetbrains.mps.baseLanguage.collections.structure.VisitAllOperation" flags="nn" index="2es0OD" />
+      <concept id="1224414427926" name="jetbrains.mps.baseLanguage.collections.structure.SequenceCreator" flags="nn" index="kMnCb" />
       <concept id="1151689724996" name="jetbrains.mps.baseLanguage.collections.structure.SequenceType" flags="in" index="A3Dl8">
         <child id="1151689745422" name="elementType" index="A3Ik2" />
       </concept>
@@ -951,6 +962,76 @@
       </node>
     </node>
     <node concept="2tJIrI" id="4CcqqpgF83y" role="jymVt" />
+    <node concept="2YIFZL" id="24g6AyKs5FS" role="jymVt">
+      <property role="TrG5h" value="fromJsonNode" />
+      <property role="od$2w" value="false" />
+      <property role="DiZV1" value="false" />
+      <property role="2aFKle" value="false" />
+      <node concept="3clFbS" id="24g6AyKs5FV" role="3clF47">
+        <node concept="3SKdUt" id="24g6AyKseio" role="3cqZAp">
+          <node concept="3SKdUq" id="24g6AyKseiq" role="3SKWNk">
+            <property role="3SKdUp" value="TODO  implement" />
+          </node>
+        </node>
+        <node concept="3clFbJ" id="24g6AyKs9GG" role="3cqZAp">
+          <node concept="3clFbS" id="24g6AyKs9GI" role="3clFbx">
+            <node concept="3clFbF" id="24g6AyKsb8r" role="3cqZAp">
+              <node concept="2YIFZM" id="24g6AyKsbck" role="3clFbG">
+                <ref role="37wK5l" node="6z3ZIK8K24C" resolve="array" />
+                <ref role="1Pybhc" node="4$rLBnujVD2" resolve="JsonFactory" />
+                <node concept="2ShNRf" id="24g6AyKscp2" role="37wK5m">
+                  <node concept="kMnCb" id="24g6AyKsecg" role="2ShVmc" />
+                </node>
+              </node>
+            </node>
+          </node>
+          <node concept="2OqwBi" id="24g6AyKsalk" role="3clFbw">
+            <node concept="37vLTw" id="24g6AyKs9OP" role="2Oq$k0">
+              <ref role="3cqZAo" node="24g6AyKs5Nm" resolve="jsonNode" />
+            </node>
+            <node concept="liA8E" id="24g6AyKsb7i" role="2OqNvi">
+              <ref role="37wK5l" to="7k8f:~JsonNode.isArray():boolean" resolve="isArray" />
+            </node>
+          </node>
+        </node>
+        <node concept="YS8fn" id="24g6AyKs5Vk" role="3cqZAp">
+          <node concept="2ShNRf" id="24g6AyKs5Vl" role="YScLw">
+            <node concept="1pGfFk" id="24g6AyKs5Vm" role="2ShVmc">
+              <ref role="37wK5l" to="wyt6:~RuntimeException.&lt;init&gt;(java.lang.String)" resolve="RuntimeException" />
+              <node concept="3cpWs3" id="24g6AyKs5Vn" role="37wK5m">
+                <node concept="Xl_RD" id="24g6AyKs5Vt" role="3uHU7B">
+                  <property role="Xl_RC" value="JsonMapper#fromJsonNode not implemented for: " />
+                </node>
+                <node concept="2OqwBi" id="24g6AyKs86V" role="3uHU7w">
+                  <node concept="2OqwBi" id="24g6AyKs6$P" role="2Oq$k0">
+                    <node concept="37vLTw" id="24g6AyKs6aB" role="2Oq$k0">
+                      <ref role="3cqZAo" node="24g6AyKs5Nm" resolve="jsonNode" />
+                    </node>
+                    <node concept="liA8E" id="24g6AyKs7h2" role="2OqNvi">
+                      <ref role="37wK5l" to="wyt6:~Object.getClass():java.lang.Class" resolve="getClass" />
+                    </node>
+                  </node>
+                  <node concept="liA8E" id="24g6AyKs8V0" role="2OqNvi">
+                    <ref role="37wK5l" to="wyt6:~Class.getSimpleName():java.lang.String" resolve="getSimpleName" />
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="3Tm1VV" id="24g6AyKs5xF" role="1B3o_S" />
+      <node concept="3Tqbb2" id="24g6AyKs5FC" role="3clF45">
+        <ref role="ehGHo" to="tay9:3QNkN21Fl49" resolve="IJsonValue" />
+      </node>
+      <node concept="37vLTG" id="24g6AyKs5Nm" role="3clF46">
+        <property role="TrG5h" value="jsonNode" />
+        <node concept="3uibUv" id="24g6AyKs5Nl" role="1tU5fm">
+          <ref role="3uigEE" to="7k8f:~JsonNode" resolve="JsonNode" />
+        </node>
+      </node>
+    </node>
+    <node concept="2tJIrI" id="24g6AyKs5NZ" role="jymVt" />
     <node concept="3Tm1VV" id="4CcqqpgCNAQ" role="1B3o_S" />
   </node>
 </model>
