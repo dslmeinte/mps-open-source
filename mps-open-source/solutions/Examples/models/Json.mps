@@ -28,7 +28,7 @@
       <concept id="4445988724943966479" name="Json.structure.JsonFile" flags="ng" index="2W7w8Z">
         <child id="4445988724943966480" name="contents" index="2W7w8w" />
       </concept>
-      <concept id="4445988724943966591" name="Json.structure.Variable" flags="ng" index="2W7w9f">
+      <concept id="4445988724943966591" name="Json.structure.JsonPair" flags="ng" index="2W7w9f">
         <child id="4445988724943966594" name="value" index="2W7waM" />
       </concept>
     </language>

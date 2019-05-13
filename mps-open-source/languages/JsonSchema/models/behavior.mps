@@ -908,7 +908,7 @@
                             <node concept="2yIwOk" id="3QNkN21MzYf" role="2OqNvi" />
                           </node>
                           <node concept="liA8E" id="3QNkN21MzYg" role="2OqNvi">
-                            <ref role="37wK5l" to="c17a:~SAbstractConcept.getName():java.lang.String" resolve="getName" />
+                            <ref role="37wK5l" to="c17a:~SAbstractConcept.getName()" resolve="getName" />
                           </node>
                         </node>
                       </node>
@@ -1326,7 +1326,7 @@
                   <node concept="2yIwOk" id="3QNkN21MynD" role="2OqNvi" />
                 </node>
                 <node concept="liA8E" id="3QNkN21MynE" role="2OqNvi">
-                  <ref role="37wK5l" to="c17a:~SAbstractConcept.getName():java.lang.String" resolve="getName" />
+                  <ref role="37wK5l" to="c17a:~SAbstractConcept.getName()" resolve="getName" />
                 </node>
               </node>
               <node concept="Xl_RD" id="3QNkN21MynF" role="3uHU7B">
@@ -1504,7 +1504,7 @@
                 <node concept="2yIwOk" id="4$rLBnutqSb" role="2OqNvi" />
               </node>
               <node concept="liA8E" id="4$rLBnutrtG" role="2OqNvi">
-                <ref role="37wK5l" to="c17a:~SAbstractConcept.getName():java.lang.String" resolve="getName" />
+                <ref role="37wK5l" to="c17a:~SAbstractConcept.getName()" resolve="getName" />
               </node>
             </node>
             <node concept="Xl_RD" id="4$rLBnutpv2" role="3uHU7B">
@@ -1702,7 +1702,7 @@
                           <node concept="2yIwOk" id="3QNkN21MnQc" role="2OqNvi" />
                         </node>
                         <node concept="liA8E" id="3QNkN21MnQd" role="2OqNvi">
-                          <ref role="37wK5l" to="c17a:~SAbstractConcept.getName():java.lang.String" resolve="getName" />
+                          <ref role="37wK5l" to="c17a:~SAbstractConcept.getName()" resolve="getName" />
                         </node>
                       </node>
                       <node concept="Xl_RD" id="3QNkN21MnQe" role="3uHU7B">

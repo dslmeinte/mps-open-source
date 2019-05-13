@@ -241,7 +241,7 @@
               <ref role="1YBMHb" node="5uyaFvvFlrU" resolve="property" />
             </node>
             <node concept="2YIFZM" id="5uyaFvvFr3N" role="2MkJ7o">
-              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
               <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
               <node concept="Xl_RD" id="5uyaFvvFr4N" role="37wK5m">
                 <property role="Xl_RC" value="Name '%s' of property must occur at most once." />
@@ -263,7 +263,7 @@
           <node concept="2MkqsV" id="5uyaFvvFUEW" role="3cqZAp">
             <node concept="2YIFZM" id="5uyaFvvFUFr" role="2MkJ7o">
               <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
-              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
               <node concept="Xl_RD" id="5uyaFvvFUGq" role="37wK5m">
                 <property role="Xl_RC" value="Name '%s' is matched by a pattern property." />
               </node>
@@ -301,7 +301,7 @@
                       </node>
                     </node>
                     <node concept="liA8E" id="5uyaFvvFTqR" role="2OqNvi">
-                      <ref role="37wK5l" to="wyt6:~String.matches(java.lang.String):boolean" resolve="matches" />
+                      <ref role="37wK5l" to="wyt6:~String.matches(java.lang.String)" resolve="matches" />
                       <node concept="2OqwBi" id="5uyaFvvFTJm" role="37wK5m">
                         <node concept="1YBJjd" id="5uyaFvvFTyI" role="2Oq$k0">
                           <ref role="1YBMHb" node="5uyaFvvFlrU" resolve="property" />
@@ -367,7 +367,7 @@
                         </node>
                       </node>
                       <node concept="liA8E" id="5uyaFvvFIG_" role="2OqNvi">
-                        <ref role="37wK5l" to="wyt6:~String.matches(java.lang.String):boolean" resolve="matches" />
+                        <ref role="37wK5l" to="wyt6:~String.matches(java.lang.String)" resolve="matches" />
                         <node concept="2OqwBi" id="5uyaFvvFIGA" role="37wK5m">
                           <node concept="37vLTw" id="5uyaFvvFIGB" role="2Oq$k0">
                             <ref role="3cqZAo" node="5uyaFvvFIGD" resolve="it" />
