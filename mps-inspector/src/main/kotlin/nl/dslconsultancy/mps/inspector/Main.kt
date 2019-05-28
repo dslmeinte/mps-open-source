@@ -10,6 +10,7 @@ import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import java.nio.file.Files
+import java.nio.file.Path
 import java.nio.file.Paths
 
 fun main(args: Array<String>) {
@@ -23,17 +24,7 @@ fun main(args: Array<String>) {
         System.exit(1)
     }
 
-    val modulesXmlPath = mpsProject.resolve(".mps").resolve("modules.xml")
-    val modulesXml = xmlMapper.readValue<MpsProject>(modulesXmlPath.toFile())
-    val drillDown = modulesXml.component!!.projectModules!!
-    println("found ${drillDown.projectModules.size} modules in MPS project")
-
-    drillDown.projectModules = drillDown.projectModules.sortedBy { it.path!! }
-
-    val xmlOutputFactory = (xmlMapper.factory as XmlFactory).xmlOutputFactory
-    xmlOutputFactory.setProperty(WstxOutputProperties.P_USE_DOUBLE_QUOTES_IN_XML_DECL, true)
-    xmlOutputFactory.setProperty(WstxOutputProperties.P_ADD_SPACE_AFTER_EMPTY_ELEM, true)
-    xmlMapper.writeValue(modulesXmlPath.toFile(), modulesXml)
+    processModulesXml(mpsProject)
 }
 
 
@@ -44,4 +35,21 @@ internal val xmlMapper = XmlMapper(JacksonXmlModule().apply {
     .registerKotlinModule()
     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     .configure(SerializationFeature.INDENT_OUTPUT, true)
+
+
+fun processModulesXml(mpsProject: Path) {
+    val modulesXmlPath = mpsProject.resolve(".mps").resolve("modules.xml")
+    val modulesXml = xmlMapper.readValue<MpsProject>(modulesXmlPath.toFile())
+    val drillDown = modulesXml.component.projectModules
+    println("found ${drillDown.projectModules.size} modules in MPS project '${modulesXml.component.name}'")
+
+    drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
+
+    // make sure XML preamble uses double quotes, and <emptyElements have="whitespace before close" />:
+    val xmlOutputFactory = (xmlMapper.factory as XmlFactory).xmlOutputFactory
+    xmlOutputFactory.setProperty(WstxOutputProperties.P_USE_DOUBLE_QUOTES_IN_XML_DECL, true)
+    xmlOutputFactory.setProperty(WstxOutputProperties.P_ADD_SPACE_AFTER_EMPTY_ELEM, true)
+
+    xmlMapper.writeValue(modulesXmlPath.toFile(), modulesXml)
+}
 

@@ -8,18 +8,18 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 data class MpsProject(
 
     @JacksonXmlProperty(isAttribute = true)
-    var version: Int? = null,
+    var version: Int,
 
-    var component: Component? = null
+    var component: Component
 
 )
 
 data class Component(
 
     @JacksonXmlProperty(isAttribute = true)
-    var name: String? = null,
+    var name: String,
 
-    var projectModules: ProjectModules? = null
+    var projectModules: ProjectModules
 
 )
 
@@ -33,12 +33,12 @@ data class ProjectModules(
 data class ProjectModule(
 
     @JacksonXmlProperty(isAttribute = true)
-    var path: String? = null,
+    var path: String,
 
     @JacksonXmlProperty(isAttribute = true)
-    var folder: String? = null
+    var folder: String
 
 )
 
-// TODO  use @JsonAlias and such to reduce to 2 data classes
+// TODO  use @JsonAlias and such to reduce to 2 data classes (see https://medium.com/@foxjstephen/how-to-actually-parse-xml-in-java-kotlin-221a9309e6e8)
 
