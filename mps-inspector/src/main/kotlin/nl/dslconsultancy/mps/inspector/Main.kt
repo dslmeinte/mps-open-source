@@ -25,6 +25,7 @@ fun main(args: Array<String>) {
     }
 
     processModulesXml(mpsProject)
+    processMpsFiles(mpsProject)
 }
 
 
@@ -42,6 +43,7 @@ fun processModulesXml(mpsProject: Path) {
     val modulesXml = xmlMapper.readValue<MpsProject>(modulesXmlPath.toFile())
     val drillDown = modulesXml.component.projectModules
     println("found ${drillDown.projectModules.size} modules in MPS project '${modulesXml.component.name}'")
+    println()
 
     drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
 
@@ -51,5 +53,27 @@ fun processModulesXml(mpsProject: Path) {
     xmlOutputFactory.setProperty(WstxOutputProperties.P_ADD_SPACE_AFTER_EMPTY_ELEM, true)
 
     xmlMapper.writeValue(modulesXmlPath.toFile(), modulesXml)
+}
+
+
+fun processMpsFiles(mpsProject: Path) {
+    println("all true MPS-files:")
+    Files.walk(mpsProject)
+        .filter { isTrueMpsFile(it) }
+        .sorted()
+        .forEach { println(it) }
+    println()
+
+    println("languages:")
+    Files.walk(mpsProject)
+        .filter { it.toString().endsWith(".mpl") }
+        .map { xmlMapper.readValue<Language>(it.toFile()) }
+        .forEach { println(it) }
+}
+
+
+fun isTrueMpsFile(path: Path): Boolean {
+    val fileName = path.toString()
+    return fileName.endsWith(".mpl") || fileName.endsWith(".msd") || (fileName.endsWith(".mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps"))
 }
 
