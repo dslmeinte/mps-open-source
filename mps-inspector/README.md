@@ -5,9 +5,12 @@ It works on an MPS project, and can perform various maintenance functions on MPS
 Such files have extension `.mpl`, `.msd`, or `.mps`.
 (It assumes that the standard persistence strategy is used.)
 
-1. Sorting content related to dependencies, in `.mps/modules.xml` and `.msd`/`.msd`/`.mps` files.
+Capabilities:
+
+1. &#10003; Sorting content related to dependencies, in `.mps/modules.xml` and `.msd`/`.msd`/`.mps` files.
     This could facilitate textual diffing of such files/content.
 1. Track dependencies, and check for incorrect/unmatched language versions, and such.
+1. Warn about unused (i.e., not referenced from `.mps/modules.xml`) modules.
 
 The reason for this tool's existence is having had bad experiences with MPS in combination with merging/rebasing.
 MPS regularly looses track of correct versions, and such.
