@@ -8,7 +8,7 @@ import nl.dslconsultancy.mps.inspector.JacksonUtil.writeXml
 import java.nio.file.Path
 
 @JsonRootName("project")
-data class MpsProjectAsXml(
+private data class MpsProjectAsXml(
 
     @JacksonXmlProperty(isAttribute = true)
     val version: Int,
@@ -17,7 +17,7 @@ data class MpsProjectAsXml(
 
 )
 
-data class Component(
+private data class Component(
 
     @JacksonXmlProperty(isAttribute = true)
     val name: String,
@@ -26,7 +26,7 @@ data class Component(
 
 )
 
-data class ProjectModules(
+private data class ProjectModules(
 
     @set:JsonProperty("modulePath")
     var projectModules: List<ProjectModule> = ArrayList()
@@ -46,14 +46,17 @@ data class ProjectModule(
 // Note: we could use @JsonAlias and such to reduce to 2 data classes (see https://medium.com/@foxjstephen/how-to-actually-parse-xml-in-java-kotlin-221a9309e6e8)
 
 
-fun processModulesXml(mpsProject: Path) {
+data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
+
+
+fun readModulesXml(mpsProject: Path): MpsProject {
     val modulesXmlPath = mpsProject.resolve(".mps").resolve("modules.xml")
     val modulesXml = readXml<MpsProjectAsXml>(modulesXmlPath)
     val drillDown = modulesXml.component.projectModules
-    println("found ${drillDown.projectModules.size} modules in MPS project '${modulesXml.component.name}'")
-    println()
 
     drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
     writeXml(modulesXml, modulesXmlPath)
+
+    return MpsProject(modulesXml.component.name, modulesXml.version, drillDown.projectModules)
 }
 

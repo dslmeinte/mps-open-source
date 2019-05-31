@@ -14,7 +14,18 @@ fun main(args: Array<String>) {
         System.exit(1)
     }
 
-    processModulesXml(mpsProject)
-    processMpsFiles(mpsProject)
+    val mpsProjectDecl = readModulesXml(mpsProject)
+    println("found ${mpsProjectDecl.modules.size} modules in MPS project '${mpsProjectDecl.name}' with version ${mpsProjectDecl.version}")
+    println(mpsProjectDecl)
+    println()
+
+    val mpsProjectOnDisk = readMpsProject(mpsProject)
+
+    println("MPS-files on disk:")
+    println(mpsProjectOnDisk.mpsFiles.joinToString("\n"))
+
+    println()
+    println("languages:")
+    println(mpsProjectOnDisk.languages.joinToString("\n"))
 }
 
