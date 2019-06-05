@@ -1,4 +1,4 @@
-package nl.dslconsultancy.mps.inspector
+package nl.dslconsultancy.mps.inspector.util
 
 import com.ctc.wstx.api.WstxOutputProperties
 import com.fasterxml.jackson.databind.DeserializationFeature
@@ -38,7 +38,7 @@ object JacksonUtil {
     }
 
     inline fun <reified T> readXml(path: Path): T {
-        return xmlMapper().readValue<T>(path.toFile())
+        return xmlMapper().readValue(path.toFile())
     }
 
     fun <T> writeXml(content: T, path: Path) {

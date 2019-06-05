@@ -1,10 +1,11 @@
-package nl.dslconsultancy.mps.inspector
+package nl.dslconsultancy.mps.inspector.xml
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import nl.dslconsultancy.mps.inspector.JacksonUtil.readXml
-import nl.dslconsultancy.mps.inspector.JacksonUtil.writeXml
+import nl.dslconsultancy.mps.inspector.util.JacksonUtil.readXml
+import nl.dslconsultancy.mps.inspector.util.JacksonUtil.writeXml
+import nl.dslconsultancy.mps.inspector.util.isSorted
 import java.nio.file.Path
 
 @JsonRootName("project")
@@ -54,7 +55,11 @@ fun processModulesXml(mpsProjectPath: Path): MpsProject {
     val modulesXml = readXml<MpsProjectAsXml>(modulesXmlPath)
 
     val drillDown = modulesXml.component.projectModules
-    val mpsProject = MpsProject(modulesXml.component.name, modulesXml.version, drillDown.projectModules.sortedBy { it.path })
+    val mpsProject = MpsProject(
+        modulesXml.component.name,
+        modulesXml.version,
+        drillDown.projectModules.sortedBy { it.path }
+    )
 
     println("found ${mpsProject.modules.size} modules in MPS project '${mpsProject.name}' with version ${mpsProject.version}")
     if (!drillDown.projectModules.map { it.path }.isSorted()) {

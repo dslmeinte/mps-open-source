@@ -1,8 +1,9 @@
-package nl.dslconsultancy.mps.inspector
+package nl.dslconsultancy.mps.inspector.xml
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 import com.fasterxml.jackson.module.kotlin.readValue
+import nl.dslconsultancy.mps.inspector.util.JacksonUtil
 import kotlin.test.Ignore
 import kotlin.test.Test
 

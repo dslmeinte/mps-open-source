@@ -1,5 +1,6 @@
 package nl.dslconsultancy.mps.inspector
 
+import nl.dslconsultancy.mps.inspector.xml.processModulesXml
 import java.nio.file.Files
 import java.nio.file.Paths
 

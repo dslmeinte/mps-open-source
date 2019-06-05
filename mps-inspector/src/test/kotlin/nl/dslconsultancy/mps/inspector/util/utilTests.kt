@@ -1,4 +1,4 @@
-package nl.dslconsultancy.mps.inspector
+package nl.dslconsultancy.mps.inspector.util
 
 import java.util.*
 import kotlin.test.Test

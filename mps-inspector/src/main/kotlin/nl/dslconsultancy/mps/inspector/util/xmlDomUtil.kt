@@ -1,4 +1,4 @@
-package nl.dslconsultancy.mps.inspector
+package nl.dslconsultancy.mps.inspector.util
 
 import org.w3c.dom.Document
 import org.w3c.dom.Node
