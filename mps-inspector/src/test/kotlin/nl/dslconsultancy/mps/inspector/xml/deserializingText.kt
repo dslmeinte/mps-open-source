@@ -26,22 +26,22 @@ class JacksonTests {
 
 data class Root(
     @JacksonXmlProperty(localName = "Element1")
-    var element1: Element1
+    val element1: Element1
 )
 
 data class Element1(
     @JacksonXmlProperty(isAttribute = true)
-    var ns: String,
+    val ns: String,
 
     @JacksonXmlProperty(localName = "Element2")
-    var element2: Element2
+    val element2: Element2
 )
 
 data class Element2(
     @JacksonXmlProperty(isAttribute = true)
-    var ns: String,
+    val ns: String,
 
     @JacksonXmlText
-    var value: String
+    val value: String
 )
 

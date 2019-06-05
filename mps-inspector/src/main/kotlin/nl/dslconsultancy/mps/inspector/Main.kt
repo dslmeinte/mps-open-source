@@ -1,6 +1,7 @@
 package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.xml.processModulesXml
+import nl.dslconsultancy.mps.inspector.xml.readStructureXml
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -19,11 +20,13 @@ fun main(args: Array<String>) {
 
     val mpsProjectOnDisk = readMpsProject(mpsProject)
 
-    println("MPS-files on disk:")
-    println(mpsProjectOnDisk.mpsFiles.joinToString("\n"))
-
+    val structure1 = mpsProjectOnDisk.mpsFiles.filter { it.isStructureModel() }.first()
+    val structure1Xml = readStructureXml(structure1)
     println()
-    println("languages:")
-    println(mpsProjectOnDisk.languages.joinToString("\n"))
+    println("structure model (path=${structure1}):")
+    val metaConcepts = structure1Xml.registry.languages.flatMap { it.concepts }
+    println(metaConcepts.map { it.name.substring(it.name.lastIndexOf('.') + 1) }.sorted())
+    println("#top-level structural nodes: ${structure1Xml.nodes.size}")
+    println()
 }
 
