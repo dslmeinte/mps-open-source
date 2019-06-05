@@ -49,14 +49,24 @@ data class ProjectModule(
 data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
 
 
-fun readModulesXml(mpsProject: Path): MpsProject {
-    val modulesXmlPath = mpsProject.resolve(".mps").resolve("modules.xml")
+fun processModulesXml(mpsProjectPath: Path): MpsProject {
+    val modulesXmlPath = mpsProjectPath.resolve(".mps").resolve("modules.xml")
     val modulesXml = readXml<MpsProjectAsXml>(modulesXmlPath)
+
     val drillDown = modulesXml.component.projectModules
+    val mpsProject = MpsProject(modulesXml.component.name, modulesXml.version, drillDown.projectModules.sortedBy { it.path })
 
-    drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
-    writeXml(modulesXml, modulesXmlPath)
+    println("found ${mpsProject.modules.size} modules in MPS project '${mpsProject.name}' with version ${mpsProject.version}")
+    if (!drillDown.projectModules.map { it.path }.isSorted()) {
+        println("project module entries in modules XML not sorted: sorting them automatically")
+        drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
+        writeXml(modulesXml, modulesXmlPath)
+    }
 
-    return MpsProject(modulesXml.component.name, modulesXml.version, drillDown.projectModules)
+    println("")
+    println(mpsProject)
+    println()
+
+    return mpsProject
 }
 
