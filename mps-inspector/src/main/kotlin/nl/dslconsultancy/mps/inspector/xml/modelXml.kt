@@ -17,6 +17,9 @@ data class NodeXml(
     @set:JsonProperty("property")
     var properties: List<PropertyXml> = ArrayList(),
 
+    @set:JsonProperty("node")
+    var children: List<NodeXml> = ArrayList(),
+
     @set:JsonProperty("ref")
     var references: List<ReferenceXml> = ArrayList()
 
@@ -38,7 +41,10 @@ data class ReferenceXml(
     val role: String,
 
     @JacksonXmlProperty(isAttribute = true)
-    val to: String,
+    val to: String?,
+
+    @JacksonXmlProperty(isAttribute = true)
+    val node: String?,
 
     @JacksonXmlProperty(isAttribute = true)
     val resolve: String

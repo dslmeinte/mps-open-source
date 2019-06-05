@@ -11,3 +11,12 @@ fun <T> Stream<T>.asList(): List<T> {
     return this.collect(Collectors.toList())
 }
 
+fun String.lastSection(): String {
+    val index = this.lastIndexOf('.')
+    return if (index + 1 <= this.length) this.substring(index + 1) else this
+}
+
+inline fun <T> Iterable<T>.findSingle(predicate: (T) -> Boolean): T {
+    return this.filter { predicate(it) }.single()
+}
+

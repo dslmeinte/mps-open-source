@@ -14,7 +14,7 @@ data class Language(
     val name: String,
     val uuid: String,
     val languageVersion: Int,
-    val dependencies: List<Dependency>
+    val dependencies: Iterable<Dependency>
 )
 
 data class Dependency(
@@ -26,12 +26,17 @@ data class Dependency(
 interface StructuralElement
 
 data class Structure(
-    val elements: List<StructuralElement>
+    val elements: Iterable<StructuralElement>
 )
 
 data class Concept(
     val name: String,
-    val features: List<Feature>
+    val extends: String?,   // TODO  make reference to Concept
+    val implements: Iterable<String>,   // TODO  make references to Interface
+    val rootable: Boolean,
+    val alias: String?,
+    val shortDescription: String?,
+    val features: Iterable<Feature>
 ) : StructuralElement
 
 interface Feature
