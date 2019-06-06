@@ -39,7 +39,5 @@ fun Path.mpsFileType(): MpsFileType {
 }
 
 
-fun Path.isStructureModel(): Boolean {
-    return this.mpsFileType() == MpsFileType.model && this.toString().endsWith("/models/structure.mps")
-}
+fun Path.isStructureModel(): Boolean = this.mpsFileType() == MpsFileType.model && this.toString().endsWith("/models/structure.mps")
 

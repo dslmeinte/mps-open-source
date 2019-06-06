@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import nl.dslconsultancy.mps.inspector.Concept
 import nl.dslconsultancy.mps.inspector.Structure
-import nl.dslconsultancy.mps.inspector.util.JacksonUtil.readXml
+import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil.readXml
 import nl.dslconsultancy.mps.inspector.util.findSingle
 import nl.dslconsultancy.mps.inspector.util.lastSection
 import java.nio.file.Path
@@ -136,7 +136,7 @@ private fun NodeXml.asConcept(decls: Declarations): Concept {
         this.propertyValue(decls.rootable).orEmpty() == "true",
         this.propertyValue(decls.alias),
         this.propertyValue(decls.shortDescription),
-        emptyList()
+        emptyList() // TODO  implement
     )
 }
 

@@ -3,7 +3,7 @@ package nl.dslconsultancy.mps.inspector.xml
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 import com.fasterxml.jackson.module.kotlin.readValue
-import nl.dslconsultancy.mps.inspector.util.JacksonUtil
+import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil
 import kotlin.test.Ignore
 import kotlin.test.Test
 
@@ -18,7 +18,7 @@ class JacksonTests {
         </Element1>
         </Root>"""
 
-        val root = JacksonUtil.xmlMapper().readValue<Root>(xml)
+        val root = JacksonXmlUtil.xmlMapper().readValue<Root>(xml)
         println(root)
     }
 

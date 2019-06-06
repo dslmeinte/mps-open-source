@@ -1,13 +1,14 @@
 package nl.dslconsultancy.mps.inspector
 
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import nl.dslconsultancy.mps.inspector.xml.ProjectModule
 
 data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
-// TODO  use projected ProjectModule instead of class wired for XML deserialisation
+// TODO  use projected ProjectModule instead of class wired for XML deserialization
 
-fun MpsProject.render(): String {
-    return "MPS project '${this.name}' (version=${this.version}) has ${this.modules.size} modules"
-}
+fun MpsProject.render(): String = "MPS project '${this.name}' (version=${this.version}) has ${this.modules.size} modules"
 
 
 data class Language(
@@ -23,6 +24,14 @@ data class Dependency(
 )
 
 
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "metaType"
+)
+@JsonSubTypes(
+    Type(value = Concept::class)
+)
 interface StructuralElement
 
 data class Structure(

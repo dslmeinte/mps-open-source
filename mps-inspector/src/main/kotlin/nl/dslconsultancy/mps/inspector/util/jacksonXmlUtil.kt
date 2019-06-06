@@ -12,7 +12,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import java.nio.file.Path
 
-object JacksonUtil {
+object JacksonXmlUtil {
 
     private var xmlMapper_: ObjectMapper? = null
 
@@ -22,9 +22,9 @@ object JacksonUtil {
                 setDefaultUseWrapper(false)
             })
                 .configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true)
-                .registerKotlinModule()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .configure(SerializationFeature.INDENT_OUTPUT, true)
+                .registerKotlinModule()
             // make sure XML preamble uses double quotes, and <emptyElements have="whitespace before close" />:
             val xmlOutputFactory = (xmlMapper_!!.factory as XmlFactory).xmlOutputFactory
             xmlOutputFactory.setProperty(WstxOutputProperties.P_USE_DOUBLE_QUOTES_IN_XML_DECL, true)
@@ -37,9 +37,7 @@ object JacksonUtil {
         return xmlMapper_!!
     }
 
-    inline fun <reified T> readXml(path: Path): T {
-        return xmlMapper().readValue(path.toFile())
-    }
+    inline fun <reified T> readXml(path: Path): T = xmlMapper().readValue(path.toFile())
 
     fun <T> writeXml(content: T, path: Path) {
         xmlMapper().writeValue(path.toFile(), content)

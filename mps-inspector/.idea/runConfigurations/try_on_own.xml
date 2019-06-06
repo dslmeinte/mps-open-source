@@ -2,7 +2,7 @@
   <configuration default="false" name="try on own" type="JetRunConfigurationType" factoryName="Kotlin">
     <module name="mps-inspector" />
     <option name="VM_PARAMETERS" value="" />
-    <option name="PROGRAM_PARAMETERS" value="../mps-open-source" />
+    <option name="PROGRAM_PARAMETERS" value="tryOnOwn.json" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="PASS_PARENT_ENVS" value="true" />

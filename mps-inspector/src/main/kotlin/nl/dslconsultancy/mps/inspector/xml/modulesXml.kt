@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import nl.dslconsultancy.mps.inspector.MpsProject
 import nl.dslconsultancy.mps.inspector.render
-import nl.dslconsultancy.mps.inspector.util.JacksonUtil.readXml
-import nl.dslconsultancy.mps.inspector.util.JacksonUtil.writeXml
+import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil.readXml
+import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil.writeXml
 import nl.dslconsultancy.mps.inspector.util.isSorted
+import nl.dslconsultancy.mps.inspector.util.lastSection
 import java.nio.file.Path
 
 @JsonRootName("project")
@@ -21,9 +22,6 @@ private data class MpsProjectAsXml(
 )
 
 private data class ComponentXml(
-
-    @JacksonXmlProperty(isAttribute = true)
-    val name: String,
 
     val projectModules: ProjectModulesXml
 
@@ -56,7 +54,7 @@ fun processModulesXml(mpsProjectPath: Path): MpsProject {
 
     val drillDown = modulesXml.component.projectModules
     val mpsProject = MpsProject(
-        modulesXml.component.name,
+        mpsProjectPath.lastSection(),
         modulesXml.version,
         drillDown.projectModules.sortedBy { it.path }
     )

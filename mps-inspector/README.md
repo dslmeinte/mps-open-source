@@ -9,12 +9,13 @@ Capabilities:
 
 1. &#10003; Sorting content related to dependencies, in `.mps/modules.xml` and `.msd`/`.msd`/`.mps` files.
     This could facilitate textual diffing of such files/content.
+1. Export structure of languages, directly from XML to JSON.
+1. Generate Kotlin code for deserializing models from XML.
+1. Export models, directly from XML to JSON.
 1. Warn about unused (i.e., not referenced from `.mps/modules.xml`) modules.
     Or more generally: compare project/modules on disk with `.mps/modules.xml`, and generate fixes.
 1. Normalize structure on disk to standard layout.
 1. Track dependencies, and check for incorrect/unmatched language versions, and such.
-1. Export structure of languages, directly from XML to JSON?
-1. Export models, directly from XML to JSON?
 
 The reason for this tool's existence is having had bad experiences with MPS in combination with merging/rebasing.
 MPS regularly looses track of correct versions, and such.
@@ -23,6 +24,12 @@ Instead of trying to shoehorn such functionality into the MPS code base, the ide
 
 (It also serves as a small project for me to learn Kotlin "on the job".
 The required code is not very complicated, but is helped by Kotlin's facilities.)
+
+
+## TODOs
+
+* &#10003; Use JSON input for configuration.
+
 
 ## Notes
 

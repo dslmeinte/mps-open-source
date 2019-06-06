@@ -18,16 +18,12 @@ import javax.xml.xpath.XPathFactory
 
 object XmlDomUtil {
 
-    fun readXml(path: Path): Document {
-        return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(InputSource(Files.newBufferedReader(path)))
-    }
+    fun readXml(path: Path): Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(InputSource(Files.newBufferedReader(path)))
 
 }
 
 
-fun Document.xPathAsNodes(xPathExpr: String): Iterable<Node> {
-    return (XPathFactory.newInstance().newXPath().evaluate(xPathExpr, this, XPathConstants.NODESET) as NodeList).asIterable()
-}
+fun Document.xPathAsNodes(xPathExpr: String): Iterable<Node> = (XPathFactory.newInstance().newXPath().evaluate(xPathExpr, this, XPathConstants.NODESET) as NodeList).asIterable()
 
 private fun NodeList.asIterable(): Iterable<Node> {
     val list = ArrayList<Node>()
@@ -38,13 +34,9 @@ private fun NodeList.asIterable(): Iterable<Node> {
 }
 
 
-fun Node.attribute(name: String): String {
-    return this.attributes.getNamedItem(name).nodeValue
-}
+fun Node.attribute(name: String): String = this.attributes.getNamedItem(name).nodeValue
 
-fun Node.firstChild(): Node {
-    return this.childNodes.item(0)
-}
+fun Node.firstChild(): Node = this.childNodes.item(0)
 
 fun Node.textContents(): String {
     val contents = firstChild()
