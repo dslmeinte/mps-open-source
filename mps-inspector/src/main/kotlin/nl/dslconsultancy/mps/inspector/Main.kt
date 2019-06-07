@@ -4,7 +4,7 @@ import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.readJson
 import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.writeJson
 import nl.dslconsultancy.mps.inspector.xml.asStructure
 import nl.dslconsultancy.mps.inspector.xml.processModulesXml
-import nl.dslconsultancy.mps.inspector.xml.readStructureXml
+import nl.dslconsultancy.mps.inspector.xml.readModelXml
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
 
     val mpsProjectOnDisk = readMpsProject(mpsProjectPath)
 
-    val structure1 = readStructureXml(mpsProjectOnDisk.mpsFiles.first { it.isStructureModel() }).asStructure()
+    val structure1 = readModelXml(mpsProjectOnDisk.mpsFiles.first { it.isStructureModel() }).asStructure()
     val genPath = Paths.get("src/generated")
     writeJson(structure1, genPath.resolve("export.json"))
     Files.write(genPath.resolve("kotlin.kt"), generateFor(structure1))

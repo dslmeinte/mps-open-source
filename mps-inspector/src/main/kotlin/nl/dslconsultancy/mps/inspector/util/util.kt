@@ -18,5 +18,3 @@ fun String.lastSection(): String = this.lastSection('.')
 
 fun Path.lastSection(): String = this.toString().lastSection(File.separatorChar)
 
-inline fun <T> Iterable<T>.findSingle(predicate: (T) -> Boolean): T = this.single { predicate(it) }
-
