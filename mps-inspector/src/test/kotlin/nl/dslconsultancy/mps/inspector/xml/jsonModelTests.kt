@@ -7,12 +7,12 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 fun NodeXml.fromXml(concepts: List<MetaConceptXml>, memois: Map<String, Any>): Any {
-    val precomputed = memois[this.id]
+    val nodeXml = this
+    val precomputed = memois[nodeXml.id]
     if (precomputed != null) {
         return precomputed
     }
-    val concept = concepts.byIndex(this.concept)
-    val nodeXml = this
+    val concept = concepts.byIndex(nodeXml.concept)
     return when (concept.name.lastSection()) {
         "JsonArray" -> memois.of(nodeXml to JsonArray()).apply {
             items = nodeXml.theseChildren(concepts.named("JsonArray").children.named("items")).map { it.fromXml(concepts, memois) as IJsonValue }

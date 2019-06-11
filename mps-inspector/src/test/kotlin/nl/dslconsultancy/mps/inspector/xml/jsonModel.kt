@@ -65,7 +65,7 @@ class JsonPair(
     override fun toString(): String = "JsonPair(name='$name', value=$value)"
     fun equals(other: JsonPair): Boolean = name == other.name && value == other.value
     override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonPair)
-    override fun hashCode(): Int = 31 * (name.hashCode() + value.hashCode())
+    override fun hashCode(): Int = (31 * name.hashCode()) + value.hashCode()
 }
 
 class JsonString(

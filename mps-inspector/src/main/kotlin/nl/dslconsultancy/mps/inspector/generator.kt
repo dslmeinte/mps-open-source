@@ -25,7 +25,7 @@ private fun StructuralElement.generateFor(): Iterable<String> {
 private fun Concept.superTypes(): List<String> {
     val supers = ArrayList<String>()
     if (this.extends != null && this.extends != "BaseConcept") {
-        supers += this.extends
+        supers.add(this.extends!!)
     }
     supers += this.implements
     return supers
