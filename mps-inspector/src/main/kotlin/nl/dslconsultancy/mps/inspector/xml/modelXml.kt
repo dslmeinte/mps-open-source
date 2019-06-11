@@ -134,3 +134,9 @@ fun NodeXml.theseChildren(featureDecl: MetaFeatureXml?): Iterable<NodeXml>
 fun NodeXml.thisReference(featureDecl: MetaFeatureXml?): ReferenceXml?
     = if (featureDecl == null) null else this.references.filter { it.role == featureDecl.index }[0]
 
+
+fun <T> Map<String, Any>.of(keyValue: Pair<NodeXml, T>): T {
+    this.plus(keyValue.first.id to keyValue.second)
+    return keyValue.second
+}
+

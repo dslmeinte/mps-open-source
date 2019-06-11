@@ -30,7 +30,8 @@ data class Dependency(
     property = "metaType"
 )
 @JsonSubTypes(
-    Type(value = Concept::class)
+    Type(Concept::class),
+    Type(InterfaceConcept::class)
 )
 interface StructuralElement
 
@@ -48,11 +49,19 @@ data class Concept(
     val features: Iterable<Feature>
 ) : StructuralElement
 
+
+data class InterfaceConcept(
+    val name: String,
+    val features: Iterable<Feature>
+) : StructuralElement
+
+
+
 interface Feature
 
 data class Property(val name: String) : Feature
 
 data class Child(val name: String): Feature
 
-data class Reference(val name: String): Feature
+//data class Reference(val name: String): Feature
 

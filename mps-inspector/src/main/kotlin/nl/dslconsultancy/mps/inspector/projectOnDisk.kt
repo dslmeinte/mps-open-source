@@ -11,33 +11,33 @@ data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Langua
 
 fun readMpsProject(mpsProject: Path): MpsProjectOnDisk {
     val mpsFiles = Files.walk(mpsProject)
-        .filter { it.mpsFileType() != MpsFileType.none }
+        .filter { it.mpsFileType() != MpsFileType.None }
         .sorted()
         .asList()
     return MpsProjectOnDisk(
         mpsFiles,
-        mpsFiles.filter { it.mpsFileType() == MpsFileType.language }.map { readLanguageFile(it) }
+        mpsFiles.filter { it.mpsFileType() == MpsFileType.Language }.map { readLanguageFile(it) }
     )
 }
 
 
 enum class MpsFileType {
-    none,
-    language,
-    solution,   // can also be a devkit or ?
-    model
+    None,
+    Language,
+    Solution,   // can also be a devkit or ?
+    Model
 }
 
 fun Path.mpsFileType(): MpsFileType {
     val fileName = this.toString()
     return when {
-        fileName.endsWith(".mpl") -> MpsFileType.language
-        fileName.endsWith(".msd") -> MpsFileType.solution
-        fileName.endsWith(".mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps") -> MpsFileType.model
-        else -> MpsFileType.none
+        fileName.endsWith(".mpl") -> MpsFileType.Language
+        fileName.endsWith(".msd") -> MpsFileType.Solution
+        fileName.endsWith(".mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps") -> MpsFileType.Model
+        else -> MpsFileType.None
     }
 }
 
 
-fun Path.isStructureModel(): Boolean = this.mpsFileType() == MpsFileType.model && this.toString().endsWith("/models/structure.mps")
+fun Path.isStructureModel(): Boolean = this.mpsFileType() == MpsFileType.Model && this.toString().endsWith("/models/structure.mps")
 

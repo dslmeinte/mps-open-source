@@ -4,123 +4,91 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.DecimalNode
 import com.fasterxml.jackson.databind.node.NullNode
 import com.fasterxml.jackson.databind.node.TextNode
-import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.jsonMapper
-import nl.dslconsultancy.mps.inspector.util.lastSection
+import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil
 import java.math.BigDecimal
-import java.nio.file.Paths
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 interface IJsonValue
 
-data class JsonArray(
-    val items: List<IJsonValue>
-) : IJsonValue
-
-data class JsonBoolean(
-    val value: Boolean
-) : IJsonValue
-
-data class JsonFile(
-    val name: String,
-    val contents: IJsonValue
-)
-
-class JsonNull : IJsonValue {
-    override fun toString(): String = "{null}"
-    override fun equals(other: Any?): Boolean =
-        when (other) {
-            is JsonNull -> true
-            else -> false
-        }
+class JsonArray : IJsonValue {
+    lateinit var items: List<IJsonValue>
+    override fun toString(): String = "JsonArray(items=$items)"
+    fun equals(other: JsonArray): Boolean = items == other.items
+    override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonArray)
+    override fun hashCode(): Int = items.hashCode()
 }
 
-data class JsonNumber(
+class JsonBoolean(
+    val value: Boolean
+) : IJsonValue {
+    override fun toString(): String = "JsonBoolean(value=$value)"
+    fun equals(other: JsonBoolean): Boolean = value == other.value
+    override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonBoolean)
+    override fun hashCode(): Int = value.hashCode()
+}
+
+class JsonFile(val name: String) {
+    lateinit var contents: IJsonValue
+    override fun toString(): String = "JsonFile(name='$name', contents=$contents)"
+    fun equals(other: JsonFile): Boolean = name == other.name && contents == other.contents
+    override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonFile)
+    override fun hashCode(): Int = 31 * (name.hashCode() + contents.hashCode())
+}
+
+class JsonNull : IJsonValue {
+    override fun toString(): String = "JsonNull()"
+    fun equals(other: JsonNull): Boolean = true
+    override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonNull)
+    override fun hashCode(): Int = javaClass.hashCode()
+}
+
+class JsonNumber(
     val value: String
-) : IJsonValue
+) : IJsonValue {
+    override fun toString(): String = "JsonNumber(value='$value')"
+    fun equals(other: JsonNumber): Boolean = value == other.value
+    override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonNumber)
+    override fun hashCode(): Int = value.hashCode()
+}
 
-data class JsonObject(
-    val pairs: List<JsonPair>
-) : IJsonValue
+class JsonObject : IJsonValue {
+    lateinit var pairs: List<JsonPair>
+    override fun toString(): String = "JsonObject(pairs=$pairs)"
+    fun equals(other: JsonObject): Boolean = pairs == other.pairs
+    override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonObject)
+    override fun hashCode(): Int = pairs.hashCode()
+}
 
-data class JsonPair(
-    val name: String,
-    val value: IJsonValue
-) : IJsonValue
+class JsonPair(
+    val name: String
+) : IJsonValue {
+    lateinit var value: IJsonValue
+    override fun toString(): String = "JsonPair(name='$name', value=$value)"
+    fun equals(other: JsonPair): Boolean = name == other.name && value == other.value
+    override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as JsonPair)
+    override fun hashCode(): Int = 31 * (name.hashCode() + value.hashCode())
+}
 
-data class JsonString(
+class JsonString(
     val value: String
-) : IJsonValue
-
+) : IJsonValue {
+    override fun toString(): String = "JsonString(value='$value')"
+    fun equals(other: JsonString): Boolean = value == other.value
+    override fun equals(other: Any?): Boolean = this === other || other?.javaClass == other?.javaClass && equals(other as JsonString)
+    override fun hashCode(): Int = value.hashCode()
+}
 
 
 fun IJsonValue.asJackson(): JsonNode? {
     return when {
-        this is JsonArray -> jsonMapper.createArrayNode().addAll(this.items.map { it.asJackson() })
+        this is JsonArray -> JacksonJsonUtil.jsonMapper.createArrayNode().addAll(this.items.map { it.asJackson() })
         this is JsonNull -> NullNode.instance
         this is JsonNumber -> DecimalNode(BigDecimal(this.value))
-        this is JsonObject -> jsonMapper.createObjectNode().also { this.pairs.forEach { pair -> it.put(pair.name, pair.value.asJackson()) } }
+        this is JsonObject -> JacksonJsonUtil.jsonMapper.createObjectNode().also { this.pairs.forEach { pair ->
+            @Suppress("DEPRECATION")
+            it.put(pair.name, pair.value.asJackson())
+        } }
         this is JsonString -> TextNode(this.value)
         else -> throw Error("no interpretation defined for type ${this.javaClass.simpleName}")
     }
 }
 
-
-fun NodeXml.fromXml(concepts: List<MetaConceptXml>): Any {
-    val concept = concepts.byIndex(this.concept)
-    return when (concept.name.lastSection()) {
-        "JsonArray" -> JsonArray(
-            items = this.theseChildren(concepts.named("JsonArray").children.named("items")).map { it.fromXml(concepts) as IJsonValue }
-        )
-        "JsonBoolean" -> JsonBoolean(
-            value = this.thisProperty(concepts.named("JsonBoolean").properties.named("value")) == "true"
-        )
-        "JsonFile" -> JsonFile(
-            name = this.thisProperty(concepts.named("INamedConcept").properties.named("name"))!!,
-            contents = this.theseChildren(concepts.named("JsonFile").children.named("contents")).firstOrNull()?.fromXml(concepts) as IJsonValue
-        )
-        "JsonNumber" -> JsonNumber(
-            value = this.thisProperty(concepts.named("JsonNumber").properties.named("value"))!!
-        )
-        "JsonObject" -> JsonObject(
-            pairs = this.theseChildren(concepts.named("JsonObject").children.named("pairs")).map { it.fromXml(concepts) as JsonPair }
-        )
-        "JsonPair" -> JsonPair(
-            name = this.thisProperty(concepts.named("INamedConcept").properties.named("name"))!!,
-            value = this.theseChildren(concepts.named("JsonPair").children.named("value")).firstOrNull()?.fromXml(concepts) as IJsonValue
-        )
-        "JsonString" -> JsonString(
-            value = this.thisProperty(concepts.named("JsonString").properties.named("value"))!!
-        )
-        else -> JsonNull()  //throw Error("concept without Kotlin class: ${concept.name}")
-    }
-}
-
-class JsonModelTests {
-
-    @Test
-    fun `deserialize a Json model`() {
-        val jsonModelXml = readModelXml(Paths.get("../mps-open-source/solutions/Examples/models/Json.mps"))
-        val jsonModel = jsonModelXml.nodes[0].fromXml(jsonModelXml.metaConcepts()) as JsonFile
-        assertEquals(
-            JsonFile("example",
-                JsonObject(listOf(
-                    JsonPair("anArray", JsonArray(listOf(
-                        JsonArray(listOf(
-                            JsonObject(listOf(
-                                JsonPair("null", JsonNull()),
-                                JsonPair("anInt", JsonNumber("37")),
-                                JsonPair("aString", JsonString("bar"))
-                            ))
-                        )),
-                        JsonNumber("42")
-                    )))
-                ))
-            ),
-            jsonModel
-        )
-
-        println(jsonMapper.writeValueAsString(jsonModel.contents.asJackson()))
-    }
-
-}
