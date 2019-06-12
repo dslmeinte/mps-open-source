@@ -10,7 +10,7 @@ import java.nio.file.Path
 data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Language>)
 
 
-fun readMpsProject(mpsProject: Path): MpsProjectOnDisk {
+fun mpsProjectFromDisk(mpsProject: Path): MpsProjectOnDisk {
     val mpsFiles = Files.walk(mpsProject)
         .filter { it.mpsFileType() != MpsFileType.None }
         .sorted()

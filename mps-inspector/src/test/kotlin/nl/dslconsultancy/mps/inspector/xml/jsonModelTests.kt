@@ -48,7 +48,7 @@ class JsonModelTests {
 
     @Test
     fun `deserialize a Json model`() {
-        val jsonModelXml = readModelXml(Paths.get("../mps-open-source/solutions/Examples/models/Json.mps"))
+        val jsonModelXml = modelXmlFromDisk(Paths.get("../mps-open-source/solutions/Examples/models/Json.mps"))
         val jsonModel = jsonModelXml.nodes[0].fromXml(jsonModelXml.metaConcepts(), hashMapOf()) as JsonFile
         assertEquals(
             JsonFile(name = "example").apply {

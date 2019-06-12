@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
         System.err.println("must provide 1 arg: the relative path to a JSON configuration file")
         System.exit(1)
     }
-    // TODO  also accept - and then read stdin
+    // TODO  also accept - and then read stdin?
     val configPath = Paths.get(args[0])
     if (!Files.exists(configPath)) {
         System.err.println("1st argument is not the relative path to a JSON configuration file")
@@ -25,18 +25,18 @@ fun main(args: Array<String>) {
     }
     processModulesXml(mpsProjectPath, config.sortModules ?: false)
 
-    val mpsProjectOnDisk = readMpsProject(mpsProjectPath)
+    val mpsProjectOnDisk = mpsProjectFromDisk(mpsProjectPath)
 
     if (config.usageAnalysisPath != null) {
         Files.write(
             Paths.get(config.usageAnalysisPath),
             usage(mpsProjectOnDisk).entries.sortedBy { it.key }.map { "${it.key};${it.value}" }
         )
-        println("wrote usage analysis")
+        println("wrote usage analysis to '${config.usageAnalysisPath}'")
     }
 
     /*
-    val structure1 = readModelXml(mpsProjectOnDisk.mpsFiles.first { it.isStructureModel() }).asStructure()
+    val structure1 = modelXmlFromDisk(mpsProjectOnDisk.mpsFiles.first { it.isStructureModel() }).asStructure()
     val genPath = Paths.get("src/generated")
     writeJson(structure1, genPath.resolve("export.json"))
     Files.write(genPath.resolve("kotlin.kt"), generateFor(structure1))

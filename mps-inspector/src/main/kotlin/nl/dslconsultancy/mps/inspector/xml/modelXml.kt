@@ -111,12 +111,12 @@ data class ReferenceXml(
     val node: String?,
 
     @JacksonXmlProperty(isAttribute = true)
-    val resolve: String
+    val resolve: String?
 
 )
 
 
-fun readModelXml(path: Path): ModelXml = readXml(path)
+fun modelXmlFromDisk(path: Path): ModelXml = readXml(path)
 
 fun ModelXml.metaConcepts(): List<MetaConceptXml> = if (this.registry == null) emptyList() else this.registry.languages.flatMap { it.metaConcepts }
 

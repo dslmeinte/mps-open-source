@@ -4,10 +4,10 @@ import nl.dslconsultancy.mps.inspector.xml.*
 import java.nio.file.Path
 
 fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap =
-    mpsProjectOnDisk.mpsFiles.filter { it.mpsFileType() == MpsFileType.Model }.map { usage(it) }.reduce { l, r -> l.combine(r) }
+    mpsProjectOnDisk.mpsFiles.filter { it.mpsFileType() == MpsFileType.Model }.map { usage(it) }.reduce(CountingMap::combine)
 
-fun usage(modelPath: Path): CountingMap {
-    val modelXml = readModelXml(modelPath)
+private fun usage(modelPath: Path): CountingMap {
+    val modelXml = modelXmlFromDiskSafe(modelPath) ?: return emptyMap()
     val metaConcepts = modelXml.metaConcepts()
     val allNodes = modelXml.nodes.flatMap { it.allNodes() }
     val result = hashMapOf<String, Int>()
@@ -20,6 +20,16 @@ fun usage(modelPath: Path): CountingMap {
         .map { metaConcepts.featureByIndex(it.key).fullName() to it.value }.toMap(result)
     return result
 }
+
+private fun modelXmlFromDiskSafe(modelPath: Path): ModelXml? =
+    try {
+        modelXmlFromDisk(modelPath)
+    } catch (e: Exception) {
+        System.err.println("could not read '$modelPath' as MPS model XML due to: ${e.message}")
+        e.printStackTrace(System.err)
+        System.err.println()
+        null
+    }
 
 
 typealias CountingMap = Map<String, Int>
