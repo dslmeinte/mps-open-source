@@ -2,6 +2,7 @@ package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.util.asList
 import nl.dslconsultancy.mps.inspector.xml.readLanguageFile
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -33,11 +34,11 @@ fun Path.mpsFileType(): MpsFileType {
     return when {
         fileName.endsWith(".mpl") -> MpsFileType.Language
         fileName.endsWith(".msd") -> MpsFileType.Solution
-        fileName.endsWith(".mps") && !fileName.endsWith("/.mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps") -> MpsFileType.Model
+        fileName.endsWith(".mps") && !fileName.endsWith(File.separator + ".mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps") -> MpsFileType.Model
         else -> MpsFileType.None
     }
 }
 
 
-fun Path.isStructureModel(): Boolean = this.mpsFileType() == MpsFileType.Model && this.toString().endsWith("/models/structure.mps")
+fun Path.isStructureModel(): Boolean = this.mpsFileType() == MpsFileType.Model && this.toString().endsWith("${File.separator}models${File.separator}structure.mps")
 

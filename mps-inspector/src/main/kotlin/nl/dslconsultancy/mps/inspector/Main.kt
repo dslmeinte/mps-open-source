@@ -28,7 +28,10 @@ fun main(args: Array<String>) {
     val mpsProjectOnDisk = readMpsProject(mpsProjectPath)
 
     if (config.usageAnalysisPath != null) {
-        Files.write(Paths.get(config.usageAnalysisPath), usageAnalysis(mpsProjectOnDisk).entries.sortedBy { it.key }.map { "${it.key};${it.value}" })
+        Files.write(
+            Paths.get(config.usageAnalysisPath),
+            usage(mpsProjectOnDisk).entries.sortedBy { it.key }.map { "${it.key};${it.value}" }
+        )
         println("wrote usage analysis")
     }
 

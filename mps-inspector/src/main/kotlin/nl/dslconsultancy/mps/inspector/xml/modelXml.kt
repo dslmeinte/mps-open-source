@@ -66,6 +66,29 @@ data class MetaFeatureXml(
 
 )
 
+
+data class NodeXml(
+
+    @JacksonXmlProperty(isAttribute = true)
+    val concept: String,
+
+    @JacksonXmlProperty(isAttribute = true)
+    val id: String,
+
+    @JacksonXmlProperty(isAttribute = true)
+    val role: String?,
+
+    @set:JsonProperty("property")
+    var properties: List<PropertyXml> = arrayListOf(),
+
+    @set:JsonProperty("node")
+    var children: List<NodeXml> = arrayListOf(),
+
+    @set:JsonProperty("ref")
+    var references: List<ReferenceXml> = arrayListOf()
+
+)
+
 data class PropertyXml(
 
     @JacksonXmlProperty(isAttribute = true)
@@ -89,29 +112,6 @@ data class ReferenceXml(
 
     @JacksonXmlProperty(isAttribute = true)
     val resolve: String
-
-)
-
-
-data class NodeXml(
-
-    @JacksonXmlProperty(isAttribute = true)
-    val concept: String,
-
-    @JacksonXmlProperty(isAttribute = true)
-    val id: String,
-
-    @JacksonXmlProperty(isAttribute = true)
-    val role: String?,
-
-    @set:JsonProperty("property")
-    var properties: List<PropertyXml> = arrayListOf(),
-
-    @set:JsonProperty("node")
-    var children: List<NodeXml> = arrayListOf(),
-
-    @set:JsonProperty("ref")
-    var references: List<ReferenceXml> = arrayListOf()
 
 )
 
@@ -142,5 +142,17 @@ fun <T> Map<String, Any>.of(keyValue: Pair<NodeXml, T>): T {
 }
 
 
-fun NodeXml.all(): List<NodeXml> = listOf(this, *this.children.flatMap { it.all() }.toTypedArray())
+fun NodeXml.allNodes(): List<NodeXml> = listOf(this, *this.children.flatMap { it.allNodes() }.toTypedArray())
+
+private fun MetaConceptXml.featureByIndex(index: String): MetaFeatureXml? =
+    this.properties.find { it.index == index }
+        ?: this.children.find { it.index == index }
+        ?: this.references.find { it.index == index }
+
+fun List<MetaConceptXml>.featureByIndex(index: String): Pair<MetaFeatureXml, MetaConceptXml> {
+    val concept = this.find { it.featureByIndex(index) != null }
+    return concept!!.featureByIndex(index)!! to concept
+}
+
+fun Pair<MetaFeatureXml, MetaConceptXml>.fullName(): String = "${this.second.name}#${this.first.name}"
 
