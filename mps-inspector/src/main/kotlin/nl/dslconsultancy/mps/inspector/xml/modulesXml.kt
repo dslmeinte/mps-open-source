@@ -30,7 +30,7 @@ private data class ComponentXml(
 private data class ProjectModulesXml(
 
     @set:JsonProperty("modulePath")
-    var projectModules: List<ProjectModule> = ArrayList()
+    var projectModules: List<ProjectModule> = arrayListOf()
 
 )
 
@@ -48,8 +48,8 @@ data class ProjectModule(
 // Note: we could use @JsonAlias and such to reduce to 2 data classes (see https://medium.com/@foxjstephen/how-to-actually-parse-xml-in-java-kotlin-221a9309e6e8)
 
 
-fun processModulesXml(mpsProjectPath: Path): MpsProject {
-    val modulesXmlPath = mpsProjectPath.resolve(".mps").resolve("modules.xml")
+fun processModulesXml(mpsProjectPath: Path, sortModules: Boolean): MpsProject {
+    val modulesXmlPath = modulesXmlPath(mpsProjectPath)
     val modulesXml = readXml<MpsProjectAsXml>(modulesXmlPath)
 
     val drillDown = modulesXml.component.projectModules
@@ -61,11 +61,17 @@ fun processModulesXml(mpsProjectPath: Path): MpsProject {
 
     println(mpsProject.render())
     if (!drillDown.projectModules.map { it.path }.isSorted()) {
-        println("project module entries in modules XML not sorted: sorting them automatically")
-        drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
-        writeXml(modulesXml, modulesXmlPath)
+        if (sortModules) {
+            println("project module entries in modules XML not sorted: sorting them automatically")
+            drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
+            writeXml(modulesXml, modulesXmlPath)
+        } else {
+            println("project module entries in modules XML not sorted: add '\"sortModules\": true' to configuration JSON to sort them automatically")
+        }
     }
 
     return mpsProject
 }
+
+fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath.resolve(".mps").resolve("modules.xml")
 

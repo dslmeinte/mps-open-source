@@ -10,24 +10,24 @@ import java.nio.file.Path
 @JsonRootName("model")
 data class ModelXml(
 
-    val registry: RegistryXml,
+    val registry: RegistryXml?,
 
     @set:JsonProperty("node")
-    var nodes: List<NodeXml> = ArrayList()
+    var nodes: List<NodeXml> = arrayListOf()
 
 )
 
 data class RegistryXml(
 
     @set:JsonProperty("language")
-    var languages: List<MetaLanguageDefXml> = ArrayList()
+    var languages: List<MetaLanguageDefXml> = arrayListOf()
 
 )
 
 data class MetaLanguageDefXml(
 
     @set:JsonProperty("concept")
-    var metaConcepts: List<MetaConceptXml> = ArrayList()
+    var metaConcepts: List<MetaConceptXml> = arrayListOf()
 
 )
 
@@ -43,13 +43,13 @@ data class MetaConceptXml(
     val index: String,
 
     @set:JsonProperty("property")
-    var properties: List<MetaFeatureXml> = ArrayList(),
+    var properties: List<MetaFeatureXml> = arrayListOf(),
 
     @set:JsonProperty("child")
-    var children: List<MetaFeatureXml> = ArrayList(),
+    var children: List<MetaFeatureXml> = arrayListOf(),
 
     @set:JsonProperty("reference")
-    var references: List<MetaFeatureXml> = ArrayList()
+    var references: List<MetaFeatureXml> = arrayListOf()
 
 )
 
@@ -63,28 +63,6 @@ data class MetaFeatureXml(
 
     @JacksonXmlProperty(isAttribute = true)
     val index: String
-
-)
-
-data class NodeXml(
-
-    @JacksonXmlProperty(isAttribute = true)
-    val concept: String,
-
-    @JacksonXmlProperty(isAttribute = true)
-    val id: String,
-
-    @JacksonXmlProperty(isAttribute = true)
-    val role: String?,
-
-    @set:JsonProperty("property")
-    var properties: List<PropertyXml> = ArrayList(),
-
-    @set:JsonProperty("node")
-    var children: List<NodeXml> = ArrayList(),
-
-    @set:JsonProperty("ref")
-    var references: List<ReferenceXml> = ArrayList()
 
 )
 
@@ -115,9 +93,32 @@ data class ReferenceXml(
 )
 
 
+data class NodeXml(
+
+    @JacksonXmlProperty(isAttribute = true)
+    val concept: String,
+
+    @JacksonXmlProperty(isAttribute = true)
+    val id: String,
+
+    @JacksonXmlProperty(isAttribute = true)
+    val role: String?,
+
+    @set:JsonProperty("property")
+    var properties: List<PropertyXml> = arrayListOf(),
+
+    @set:JsonProperty("node")
+    var children: List<NodeXml> = arrayListOf(),
+
+    @set:JsonProperty("ref")
+    var references: List<ReferenceXml> = arrayListOf()
+
+)
+
+
 fun readModelXml(path: Path): ModelXml = readXml(path)
 
-fun ModelXml.metaConcepts(): List<MetaConceptXml> = this.registry.languages.flatMap { it.metaConcepts }
+fun ModelXml.metaConcepts(): List<MetaConceptXml> = if (this.registry == null) emptyList() else this.registry.languages.flatMap { it.metaConcepts }
 
 fun Iterable<MetaConceptXml>.named(name: String): MetaConceptXml = this.single { it.name.lastSection() == name }
 
@@ -139,4 +140,7 @@ fun <T> Map<String, Any>.of(keyValue: Pair<NodeXml, T>): T {
     this.plus(keyValue.first.id to keyValue.second)
     return keyValue.second
 }
+
+
+fun NodeXml.all(): List<NodeXml> = listOf(this, *this.children.flatMap { it.all() }.toTypedArray())
 

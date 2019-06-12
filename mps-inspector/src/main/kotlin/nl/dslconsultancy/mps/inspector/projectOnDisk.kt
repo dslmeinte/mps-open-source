@@ -33,7 +33,7 @@ fun Path.mpsFileType(): MpsFileType {
     return when {
         fileName.endsWith(".mpl") -> MpsFileType.Language
         fileName.endsWith(".msd") -> MpsFileType.Solution
-        fileName.endsWith(".mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps") -> MpsFileType.Model
+        fileName.endsWith(".mps") && !fileName.endsWith("/.mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps") -> MpsFileType.Model
         else -> MpsFileType.None
     }
 }

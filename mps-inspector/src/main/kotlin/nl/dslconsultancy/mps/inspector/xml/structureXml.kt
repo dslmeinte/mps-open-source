@@ -5,7 +5,7 @@ import nl.dslconsultancy.mps.inspector.util.lastSection
 
 fun ModelXml.asStructure(): Structure {
     val metaConcepts = metaConcepts()
-    val memois = HashMap<String, Any>()
+    val memois = hashMapOf<String, Any>()
     val modelXml = this
     val supported = listOf("ConceptDeclaration", "InterfaceConceptDeclaration").map { metaConcepts.named(it).index }
     return Structure().apply { elements = modelXml.nodes.filter { supported.contains(it.concept) }.map { it.fromXml(metaConcepts, memois) as StructuralElement } }
