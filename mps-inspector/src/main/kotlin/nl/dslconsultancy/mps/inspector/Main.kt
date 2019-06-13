@@ -1,8 +1,6 @@
 package nl.dslconsultancy.mps.inspector
 
-import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.readJson
-import nl.dslconsultancy.mps.inspector.xml.modulesXmlPath
-import nl.dslconsultancy.mps.inspector.xml.processModulesXml
+import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.jsonFromDisk
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -18,34 +16,6 @@ fun main(args: Array<String>) {
         System.exit(1)
     }
 
-    val config = readJson<Configuration>(configPath)
-    val mpsProjectPath = Paths.get(config.mpsProjectPath)
-    if (!Files.exists(modulesXmlPath(mpsProjectPath))) {
-        System.err.println("'${config.mpsProjectPath}' is not a path to an MPS project")
-    }
-    processModulesXml(mpsProjectPath, config.sortModules ?: false)
-
-    val mpsProjectOnDisk = mpsProjectFromDisk(mpsProjectPath)
-
-    if (config.usageAnalysisPath != null) {
-        Files.write(
-            Paths.get(config.usageAnalysisPath),
-            usage(mpsProjectOnDisk).entries.sortedBy { it.key }.map { "${it.key};${it.value}" }
-        )
-        println("wrote usage analysis to '${config.usageAnalysisPath}'")
-    }
-
-    /*
-    val structure1 = modelXmlFromDisk(mpsProjectOnDisk.mpsFiles.first { it.isStructureModel() }).asStructure()
-    val genPath = Paths.get("src/generated")
-    writeJson(structure1, genPath.resolve("export.json"))
-    Files.write(genPath.resolve("kotlin.kt"), generateFor(structure1))
-     */
+    jsonFromDisk<List<Configuration>>(configPath).forEach { it.run() }
 }
-
-data class Configuration(
-    val mpsProjectPath: String,
-    val sortModules: Boolean?,
-    val usageAnalysisPath: String?
-)
 

@@ -9,9 +9,10 @@ Capabilities:
 
 1. &#10003; Sorting content related to dependencies, in `.mps/modules.xml` and `.msd`/`.msd`/`.mps` files.
     This could facilitate textual diffing of such files/content.
-1. Export structure of languages, directly from XML to JSON.
-1. Generate Kotlin code for deserializing models from XML.
-1. Export models, directly from XML to JSON.
+1. &#10003; Generate concept and feature usage statistics.
+1. ... Export structure of languages, directly from XML to JSON.
+1. ... Generate Kotlin code for deserializing models from XML.
+1. ... Export models, directly from XML to JSON.
 1. Warn about unused (i.e., not referenced from `.mps/modules.xml`) modules.
     Or more generally: compare project/modules on disk with `.mps/modules.xml`, and generate fixes.
 1. Normalize structure on disk to standard layout.

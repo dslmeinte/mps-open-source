@@ -4,7 +4,10 @@ import nl.dslconsultancy.mps.inspector.xml.*
 import java.nio.file.Path
 
 fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap =
-    mpsProjectOnDisk.mpsFiles.filter { it.mpsFileType() == MpsFileType.Model }.map { usage(it) }.reduce(CountingMap::combine)
+    mpsProjectOnDisk.mpsFiles
+        .filter { mpsFileType(it) == MpsFileType.Model }
+        .map { usage(it) }
+        .reduce(CountingMap::combine)
 
 private fun usage(modelPath: Path): CountingMap {
     val modelXml = modelXmlFromDiskSafe(modelPath) ?: return emptyMap()

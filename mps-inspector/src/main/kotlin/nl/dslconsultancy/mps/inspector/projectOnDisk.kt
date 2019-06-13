@@ -2,7 +2,6 @@ package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.util.asList
 import nl.dslconsultancy.mps.inspector.xml.readLanguageFile
-import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -12,12 +11,12 @@ data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Langua
 
 fun mpsProjectFromDisk(mpsProject: Path): MpsProjectOnDisk {
     val mpsFiles = Files.walk(mpsProject)
-        .filter { it.mpsFileType() != MpsFileType.None }
+        .filter { mpsFileType(it) != MpsFileType.None }
         .sorted()
         .asList()
     return MpsProjectOnDisk(
         mpsFiles,
-        mpsFiles.filter { it.mpsFileType() == MpsFileType.Language }.map { readLanguageFile(it) }
+        mpsFiles.filter { mpsFileType(it) == MpsFileType.Language }.map { readLanguageFile(it) }
     )
 }
 
@@ -29,16 +28,20 @@ enum class MpsFileType {
     Model
 }
 
-fun Path.mpsFileType(): MpsFileType {
-    val fileName = this.toString()
+fun mpsFileType(path: Path): MpsFileType {
+    val fileName = path.last().toString()
     return when {
         fileName.endsWith(".mpl") -> MpsFileType.Language
         fileName.endsWith(".msd") -> MpsFileType.Solution
-        fileName.endsWith(".mps") && !fileName.endsWith(File.separator + ".mps") && !fileName.endsWith("aspectcps-descriptorclasses.mps") -> MpsFileType.Model
+        fileName.endsWith(".mps") && !isNotAModelFile(path) -> MpsFileType.Model
         else -> MpsFileType.None
     }
 }
 
+private fun isNotAModelFile(path: Path): Boolean =
+    path.last().toString() == ".mps" || path.any { listOf("classes_gen", "source_gen").contains(it.toString()) }
+    // TODO  also filter out source_gen.caches?
 
-fun Path.isStructureModel(): Boolean = this.mpsFileType() == MpsFileType.Model && this.toString().endsWith("${File.separator}models${File.separator}structure.mps")
+fun isStructureModel(path: Path): Boolean =
+    mpsFileType(path) == MpsFileType.Model && path.asIterable().reversed().take(2).toList() == listOf("structure", "models")
 
