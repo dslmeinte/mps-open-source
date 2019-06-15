@@ -18,3 +18,6 @@ fun String.lastSection(): String = this.lastSection('.')
 
 fun Path.lastSection(): String = this.toString().lastSection(File.separatorChar)
 
+fun Iterable<String>.withHeader(header: String): Iterable<String> =
+    listOf(header, *this.toList().toTypedArray())
+

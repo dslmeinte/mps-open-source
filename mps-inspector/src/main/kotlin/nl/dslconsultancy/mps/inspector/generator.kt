@@ -1,5 +1,12 @@
 package nl.dslconsultancy.mps.inspector
 
+import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.writeJson
+import nl.dslconsultancy.mps.inspector.xml.asStructure
+import nl.dslconsultancy.mps.inspector.xml.modelXmlFromDisk
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+
 fun generateFor(structure: Structure): Iterable<String> {
     return structure.elements.flatMap { it.generateFor() }
 }
@@ -29,5 +36,15 @@ private fun Concept.superTypes(): List<String> {
     }
     supers += this.implements
     return supers
+}
+
+
+fun GenerateFromStructure.run(mpsProjectPath: Path) {
+    val structureModelAsPath = mpsProjectPath.resolve(structureModelPath)
+    val structure = modelXmlFromDisk(structureModelAsPath).asStructure()
+    val genPath = Paths.get(generationPath)
+    writeJson(structure, genPath.resolve("export.json"))
+    Files.write(genPath.resolve("kotlin.kt"), generateFor(structure))
+    println("wrote generated stuff to '$genPath'")
 }
 
