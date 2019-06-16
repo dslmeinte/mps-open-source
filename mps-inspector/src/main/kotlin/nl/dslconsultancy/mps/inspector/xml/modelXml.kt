@@ -10,10 +10,31 @@ import java.nio.file.Path
 @JsonRootName("model")
 data class ModelXml(
 
+    @set:JsonProperty("languages")
+    var dependencies: Dependencies,
+
     val registry: RegistryXml?,
 
     @set:JsonProperty("node")
     var nodes: List<NodeXml> = arrayListOf()
+
+)
+
+data class Dependencies(
+    @set:JsonProperty("use")
+    var importedLanguages: List<ImportedLanguage> = arrayListOf()
+)
+
+data class ImportedLanguage(
+
+    @JacksonXmlProperty(isAttribute = true)
+    val id: String,
+
+    @JacksonXmlProperty(isAttribute = true)
+    val name: String,
+
+    @JacksonXmlProperty(isAttribute = true)
+    val version: Int
 
 )
 

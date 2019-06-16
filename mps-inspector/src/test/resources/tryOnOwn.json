@@ -3,7 +3,10 @@
     "mpsProjectPath": "../mps-open-source",
     "sortModules": true,
     "usageAnalysisPath": "target/usage.csv",
-    "languageVersionReportPath": "target/languageVersions.csv",
+    "languageVersions": {
+      "reportPath": "target/languageVersions.csv",
+      "checkMinus1sInModels": true
+    },
     "generations": [
       {
         "structureModelPath": "languages/Json/models/structure.mps",
