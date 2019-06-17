@@ -10,7 +10,6 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import java.lang.RuntimeException
 import java.nio.file.Path
 
 object JacksonXmlUtil {
@@ -38,11 +37,15 @@ object JacksonXmlUtil {
         return xmlMapper_!!
     }
 
-    inline fun <reified T> readXml(path: Path): T =
+    inline fun <reified T> readXml(path: Path): T = xmlMapper().readValue(path.toFile())
+
+    inline fun <reified T> readXml(path: Path, resultOnFail: (path: Path, e: Exception) -> T): T =
         try {
-            xmlMapper().readValue(path.toFile())
+            readXml(path)
         } catch (e: Exception) {
-            throw RuntimeException("could not read '$path' as XML file (of indicated type)")
+            System.err.println("could not read '$path' as XML file (of indicated type): ${e.message}")
+            e.printStackTrace(System.err)
+            resultOnFail(path, e)
         }
 
     fun <T> writeXml(content: T, path: Path) {

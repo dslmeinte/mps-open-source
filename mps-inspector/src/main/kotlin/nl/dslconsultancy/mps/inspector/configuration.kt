@@ -46,8 +46,10 @@ fun Configuration.run() {
                 .filter { mpsFileType(it) == MpsFileType.Model }
                 .forEach {
                     val modelXml = modelXmlFromDisk(it)
-                    if (modelXml.dependencies.importedLanguages.any { il -> il.version == -1 }) {
-                        println("'$it' relies on at least one language with version -1")
+                    if (modelXml.dependencies != null) {
+                        if (modelXml.dependencies!!.importedLanguages.any { il -> il.version == -1 }) {
+                            println("'$it' relies on at least one language with version -1")
+                        }
                     }
                 }
             println("checked for occurrences of language version '-1' in models")

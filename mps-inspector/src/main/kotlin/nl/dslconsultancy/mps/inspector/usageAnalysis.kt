@@ -12,6 +12,7 @@ fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap =
 
 private fun usage(modelPath: Path): CountingMap {
     val modelXml = modelXmlFromDiskSafe(modelPath) ?: return emptyMap()
+    // (Using S(t)AX should be much more efficient.)
     val metaConcepts = modelXml.metaConcepts()
     val allNodes = modelXml.nodes.flatMap { it.allNodes() }
     val result = hashMapOf<String, Int>()

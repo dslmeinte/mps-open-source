@@ -13,10 +13,10 @@ Capabilities:
 1. ... Export structure of languages, directly from XML to JSON.
 1. ... Generate Kotlin code for deserializing models from XML.
 1. ... Export models, directly from XML to JSON.
+1. Track dependencies, and check for incorrect/unmatched language versions, and such.
+    1. &#10003; Warn about language dependencies being specified with an invalid version of -1.
 1. Warn about unused (i.e., not referenced from `.mps/modules.xml`) modules.
     Or more generally: compare project/modules on disk with `.mps/modules.xml`, and generate fixes.
-1. Normalize structure on disk to standard layout.
-1. Track dependencies, and check for incorrect/unmatched language versions, and such.
 
 The reason for this tool's existence is having had bad experiences with MPS in combination with merging/rebasing.
 MPS regularly looses track of correct versions, and such.

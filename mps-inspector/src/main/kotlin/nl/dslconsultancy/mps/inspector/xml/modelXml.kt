@@ -11,7 +11,7 @@ import java.nio.file.Path
 data class ModelXml(
 
     @set:JsonProperty("languages")
-    var dependencies: Dependencies,
+    var dependencies: Dependencies?,
 
     val registry: RegistryXml?,
 
@@ -19,6 +19,8 @@ data class ModelXml(
     var nodes: List<NodeXml> = arrayListOf()
 
 )
+
+val emptyModelXml = ModelXml(null, null)
 
 data class Dependencies(
     @set:JsonProperty("use")
@@ -137,7 +139,10 @@ data class ReferenceXml(
 )
 
 
-fun modelXmlFromDisk(path: Path): ModelXml = readXml(path)
+fun modelXmlFromDisk(path: Path): ModelXml = readXml(path) { skippedPath, _ ->
+    System.out.println("skipped '$skippedPath'")
+    emptyModelXml
+}
 
 fun ModelXml.metaConcepts(): List<MetaConceptXml> = if (this.registry == null) emptyList() else this.registry.languages.flatMap { it.metaConcepts }
 
