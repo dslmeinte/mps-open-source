@@ -1,13 +1,13 @@
 package nl.dslconsultancy.mps.inspector
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import nl.dslconsultancy.mps.inspector.xml.modelXmlFromDisk
+import nl.dslconsultancy.mps.inspector.xml.modelXmlWithoutNodesFromDisk
 import nl.dslconsultancy.mps.inspector.xml.modulesXmlPath
 import nl.dslconsultancy.mps.inspector.xml.processModulesXml
 import java.nio.file.Files
 import java.nio.file.Paths
 
-data class Configuration(
+data class ConfigurationItem(
     val mpsProjectPath: String,
     val sortModules: Boolean?,
     val usageAnalysisPath: String?,
@@ -26,8 +26,10 @@ data class GenerateFromStructure(
     val generationPath: String
 )
 
+// TODO  use a discriminator to distinguish generations(/exports?)
 
-fun Configuration.run() {
+
+fun ConfigurationItem.run() {
     val mpsProjectPath = Paths.get(mpsProjectPath)
     if (!Files.exists(modulesXmlPath(mpsProjectPath))) {
         System.err.println("'$mpsProjectPath' is not a path to an MPS project")
@@ -45,7 +47,7 @@ fun Configuration.run() {
             mpsProjectOnDisk.mpsFiles
                 .filter { mpsFileType(it) == MpsFileType.Model }
                 .forEach {
-                    val modelXml = modelXmlFromDisk(it)
+                    val modelXml = modelXmlWithoutNodesFromDisk(it)
                     if (modelXml.dependencies != null) {
                         if (modelXml.dependencies!!.importedLanguages.any { il -> il.version == -1 }) {
                             println("'$it' relies on at least one language with version -1")

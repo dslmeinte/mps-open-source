@@ -37,6 +37,7 @@ object JacksonXmlUtil {
         return xmlMapper_!!
     }
 
+
     inline fun <reified T> readXml(path: Path): T = xmlMapper().readValue(path.toFile())
 
     inline fun <reified T> readXml(path: Path, resultOnFail: (path: Path, e: Exception) -> T): T =
@@ -47,6 +48,9 @@ object JacksonXmlUtil {
             e.printStackTrace(System.err)
             resultOnFail(path, e)
         }
+
+    // TODO  implement a read cache?
+
 
     fun <T> writeXml(content: T, path: Path) {
         xmlMapper().writeValue(path.toFile(), content)

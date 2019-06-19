@@ -7,11 +7,11 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-fun generateFor(structure: Structure): Iterable<String> {
-    return structure.elements.flatMap { it.generateFor() }
+fun generateKotlinFor(structure: Structure): Iterable<String> {
+    return structure.elements.flatMap { it.generateKotlinFor() }
 }
 
-private fun StructuralElement.generateFor(): Iterable<String> {
+private fun StructuralElement.generateKotlinFor(): Iterable<String> {
     return when (this) {
         is Concept -> {
             val supers = this.superTypes().filter { it != "INamedConcept" }
@@ -44,7 +44,7 @@ fun GenerateFromStructure.run(mpsProjectPath: Path) {
     val structure = modelXmlFromDisk(structureModelAsPath).asStructure()
     val genPath = Paths.get(generationPath)
     writeJson(structure, genPath.resolve("export.json"))
-    Files.write(genPath.resolve("kotlin.kt"), generateFor(structure))
+    Files.write(genPath.resolve("kotlin.kt"), generateKotlinFor(structure))
     println("wrote generated stuff to '$genPath'")
 }
 

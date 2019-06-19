@@ -16,6 +16,6 @@ fun main(args: Array<String>) {
         System.exit(1)
     }
 
-    jsonFromDisk<List<Configuration>>(configPath).forEach { it.run() }
+    jsonFromDisk<List<ConfigurationItem>>(configPath).forEach { it.run() }
 }
 

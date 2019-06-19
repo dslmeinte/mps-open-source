@@ -20,6 +20,14 @@ data class ModelXml(
 
 )
 
+@JsonRootName("model")
+data class ModelXmlWithoutNodes(
+
+    @set:JsonProperty("languages")
+    var dependencies: Dependencies?
+
+)
+
 val emptyModelXml = ModelXml(null, null)
 
 data class Dependencies(
@@ -143,6 +151,9 @@ fun modelXmlFromDisk(path: Path): ModelXml = readXml(path) { skippedPath, _ ->
     System.out.println("skipped '$skippedPath'")
     emptyModelXml
 }
+
+fun modelXmlWithoutNodesFromDisk(path: Path): ModelXmlWithoutNodes = readXml(path)
+
 
 fun ModelXml.metaConcepts(): List<MetaConceptXml> = if (this.registry == null) emptyList() else this.registry.languages.flatMap { it.metaConcepts }
 
