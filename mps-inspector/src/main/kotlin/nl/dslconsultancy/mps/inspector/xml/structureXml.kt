@@ -18,12 +18,14 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
         return precomputed
     }
     val metaConcept = metaConcepts.byIndex(nodeXml.concept)
+    fun isDeprecated(): Boolean = nodeXml.theseChildren(metaConcepts.named("BaseConcept").children.named("smodelAttribute")).firstOrNull() != null
     return when (metaConcept.name.lastSection()) {
         "ConceptDeclaration" -> memois.of(nodeXml to Concept(
             name = nodeXml.thisProperty(metaConcepts.named("INamedConcept").properties.named("name"))!!,
             rootable = nodeXml.thisProperty(metaConcepts.named("ConceptDeclaration").properties.named("rootable")).orEmpty() == "true",
             alias = nodeXml.thisProperty(metaConcepts.named("AbstractConceptDeclaration").properties.named("conceptAlias")),
-            shortDescription = nodeXml.thisProperty(metaConcepts.named("AbstractConceptDeclaration").properties.named("conceptShortDescription"))
+            shortDescription = nodeXml.thisProperty(metaConcepts.named("AbstractConceptDeclaration").properties.named("conceptShortDescription")),
+            deprecated = isDeprecated()
         )).apply {
             extends = nodeXml.thisReference(metaConcepts.named("ConceptDeclaration").references.named("extends"))?.resolve
             implements = nodeXml.theseChildren(metaConcepts.named("ConceptDeclaration").children.named("implements")).mapNotNull {
@@ -37,16 +39,19 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
             ).flatten()
         }
         "InterfaceConceptDeclaration" -> memois.of(nodeXml to InterfaceConcept(
-            name = nodeXml.thisProperty(metaConcepts.named("INamedConcept").properties.named("name"))!!
+            name = nodeXml.thisProperty(metaConcepts.named("INamedConcept").properties.named("name"))!!,
+            deprecated = isDeprecated()
         )).apply {
             features = emptyList()
         }
         "LinkDeclaration" -> memois.of(nodeXml to Child(
-            name = this.thisProperty(metaConcepts.named("LinkDeclaration").properties.named("role"))!!)
-        )
+            name = this.thisProperty(metaConcepts.named("LinkDeclaration").properties.named("role"))!!,
+            deprecated = isDeprecated()
+        ))
         "PropertyDeclaration" -> memois.of(nodeXml to Property(
-            name = nodeXml.thisProperty(metaConcepts.named("INamedConcept").properties.named("name"))!!)
-        )
+            name = nodeXml.thisProperty(metaConcepts.named("INamedConcept").properties.named("name"))!!,
+            deprecated = isDeprecated()
+        ))
         else -> throw Error("concept without Kotlin class: ${metaConcept.name}")
     }
 }

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import nl.dslconsultancy.mps.inspector.xml.ProjectModule
 
 data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
-// TODO  use projected ProjectModule instead of class wired for XML deserialization
+// TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
 
 fun MpsProject.render(): String = "MPS project '${this.name}' (version=${this.version}) has ${this.modules.size} modules"
 
@@ -47,19 +47,21 @@ class Concept(
     val name: String,
     val rootable: Boolean,
     val alias: String?,
-    val shortDescription: String?
+    val shortDescription: String?,
+    val deprecated: Boolean
 ) : StructuralElement {
     var extends: String? = null   // TODO  make reference to Concept
     lateinit var implements: Iterable<String>   // TODO  make references to Interface
     lateinit var features: Iterable<Feature>
-    override fun toString(): String = "Concept(name='$name', rootable=$rootable, alias=$alias, shortDescription=$shortDescription, extends=$extends, implements=$implements, features=$features)"
-    fun equals(other: Concept): Boolean = name == other.name && rootable == other.rootable && alias == other.alias && shortDescription == other.shortDescription && extends == other.extends && implements == other.implements && features == other.features
+    override fun toString(): String = "Concept(name='$name', rootable=$rootable, alias=$alias, shortDescription=$shortDescription, deprecated=$deprecated, extends=$extends, implements=$implements, features=$features)"
+    fun equals(other: Concept): Boolean = name == other.name && rootable == other.rootable && alias == other.alias && shortDescription == other.shortDescription && deprecated == other.deprecated && extends == other.extends && implements == other.implements && features == other.features
     override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as Concept)
     override fun hashCode(): Int {
         var result = name.hashCode()
         result = 31 * result + rootable.hashCode()
         result = 31 * result + (alias?.hashCode() ?: 0)
         result = 31 * result + (shortDescription?.hashCode() ?: 0)
+        result = 31 * result + deprecated.hashCode()
         result = 31 * result + (extends?.hashCode() ?: 0)
         result = 31 * result + implements.hashCode()
         result = 31 * result + features.hashCode()
@@ -69,13 +71,14 @@ class Concept(
 
 
 class InterfaceConcept(
-    val name: String
+    val name: String,
+    val deprecated: Boolean
 ) : StructuralElement {
     lateinit var features: Iterable<Feature>
-    override fun toString(): String = "InterfaceConcept(name='$name', features=$features)"
-    fun equals(other: InterfaceConcept): Boolean = name == other.name && features == other.features
+    override fun toString(): String = "InterfaceConcept(name='$name', deprecated=$deprecated, features=$features)"
+    fun equals(other: InterfaceConcept): Boolean = name == other.name && deprecated == other.deprecated && features == other.features
     override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as InterfaceConcept)
-    override fun hashCode(): Int = (31 * name.hashCode()) + features.hashCode()
+    override fun hashCode(): Int = 31 * (31 * name.hashCode() + deprecated.hashCode()) + features.hashCode()
 }
 
 
@@ -92,18 +95,24 @@ class InterfaceConcept(
 )
 interface Feature
 
-class Property(val name: String) : Feature {
-    override fun toString(): String = "Property(name='$name')"
-    fun equals(other: Property): Boolean = name == other.name
+class Property(
+    val name: String,
+    val deprecated: Boolean
+) : Feature {
+    override fun toString(): String = "Property(name='$name', deprecated=$deprecated)"
+    fun equals(other: Property): Boolean = name == other.name && deprecated == other.deprecated
     override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as Property)
-    override fun hashCode(): Int = name.hashCode()
+    override fun hashCode(): Int = 31 * name.hashCode() + deprecated.hashCode()
 }
 
-class Child(val name: String): Feature {
-    override fun toString(): String = "Child(name='$name')"
-    fun equals(other: Child): Boolean = name == other.name
+class Child(
+    val name: String,
+    val deprecated: Boolean
+): Feature {
+    override fun toString(): String = "Child(name='$name', deprecated=$deprecated)"
+    fun equals(other: Child): Boolean = name == other.name && deprecated == other.deprecated
     override fun equals(other: Any?): Boolean = this === other || javaClass == other?.javaClass && equals(other as Child)
-    override fun hashCode(): Int = name.hashCode()
+    override fun hashCode(): Int = 31 * name.hashCode() + deprecated.hashCode()
 }
 
 //data class Reference(val name: String): Feature
