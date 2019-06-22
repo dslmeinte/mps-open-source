@@ -8,7 +8,9 @@ fun ModelXml.asStructure(): Structure {
     val memois = hashMapOf<String, Any>()
     val modelXml = this
     val supported = listOf("ConceptDeclaration", "InterfaceConceptDeclaration").map { metaConcepts.named(it).index }
-    return Structure().apply { elements = modelXml.nodes.filter { supported.contains(it.concept) }.map { it.fromXml(metaConcepts, memois) as StructuralElement } }
+    return Structure(
+        elements = modelXml.nodes.filter { supported.contains(it.concept) }.map { it.fromXml(metaConcepts, memois) as StructuralElement }
+    )
 }
 
 private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<String, Any>): Any {

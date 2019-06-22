@@ -24,7 +24,6 @@ private fun StructuralElement.generateKotlinFor(): Iterable<String> =
         is InterfaceConcept -> {
             listOf("interface ${this.name}", "")
         }
-        else -> listOf("// Kotlin-generation not yet implemented for structural element of type " + this.javaClass.simpleName, "")
     }
 
 private fun Concept.superTypes(): List<String> {
@@ -43,7 +42,6 @@ private fun StructuralElement.generateCsvFor(): Iterable<String> =
     when (this) {
         is Concept -> listOf("$name;$deprecated")
         is InterfaceConcept -> listOf("$name;false")
-        else -> listOf("// Kotlin-generation not yet implemented for structural element of type " + this.javaClass.simpleName, "")
     }
 
 

@@ -73,7 +73,7 @@ class JsonModelTests {
             jsonModel
         )
 
-        println(jsonMapper.writeValueAsString(jsonModel.contents.asJackson()))
+        println(jsonMapper.writeValueAsString(jsonModel.contents?.asJackson()))
     }
 
 }

@@ -148,7 +148,7 @@ data class ReferenceXml(
 
 
 fun modelXmlFromDisk(path: Path): ModelXml = readXml(path) { skippedPath, _ ->
-    System.out.println("skipped '$skippedPath'")
+    println("skipped '$skippedPath'")
     emptyModelXml
 }
 
