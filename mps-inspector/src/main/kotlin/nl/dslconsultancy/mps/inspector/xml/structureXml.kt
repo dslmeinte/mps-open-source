@@ -47,7 +47,7 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
             features = emptyList()
         }
         "LinkDeclaration" -> memois.of(nodeXml to Child(
-            name = this.thisProperty(metaConcepts.named("LinkDeclaration").properties.named("role"))!!,
+            name = thisProperty(metaConcepts.named("LinkDeclaration").properties.named("role"))!!,
             deprecated = isDeprecated()
         ))
         "PropertyDeclaration" -> memois.of(nodeXml to Property(

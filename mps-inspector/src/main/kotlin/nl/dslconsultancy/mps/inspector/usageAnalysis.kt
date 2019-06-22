@@ -41,7 +41,7 @@ typealias CountingMap = Map<String, Int>
 
 fun CountingMap.combine(other: CountingMap): CountingMap {
     val map = hashMapOf<String, Int>()
-    this.toMap(map)
+    toMap(map)
     other.entries.forEach {
         map += it.key to ((other[it.key] ?: 0) + it.value)
     }
@@ -50,5 +50,5 @@ fun CountingMap.combine(other: CountingMap): CountingMap {
 
 
 fun CountingMap.asCsvLines(): Iterable<String> =
-    this.entries.sortedBy { it.key }.map { "${it.key};${it.value}" }.withHeader("concept(#feature),\"number of usages\"")
+    entries.sortedBy { it.key }.map { "${it.key};${it.value}" }.withHeader("concept(#feature),\"number of usages\"")
 

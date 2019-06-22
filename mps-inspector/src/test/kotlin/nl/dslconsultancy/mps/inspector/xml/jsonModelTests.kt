@@ -25,7 +25,7 @@ fun NodeXml.fromXml(concepts: List<MetaConceptXml>, memois: Map<String, Any>): A
         )).apply {
             contents = nodeXml.theseChildren(concepts.named("JsonFile").children.named("contents")).firstOrNull()?.fromXml(concepts, memois) as IJsonValue
         }
-        "JsonNull" -> memois.of(nodeXml to JsonNull())
+        "JsonNull" -> memois.of(nodeXml to IJsonValue.JsonNull)
         "JsonNumber" -> memois.of(nodeXml to JsonNumber(
             value = nodeXml.thisProperty(concepts.named("JsonNumber").properties.named("value"))!!
         ))
@@ -59,7 +59,7 @@ class JsonModelTests {
                             JsonArray().apply {
                                 items = listOf(JsonObject().apply {
                                     pairs = listOf(
-                                        JsonPair(name ="null").apply { value = JsonNull() },
+                                        JsonPair(name ="null").apply { value = IJsonValue.JsonNull },
                                         JsonPair(name ="anInt").apply { value = JsonNumber(value ="37") },
                                         JsonPair(name ="aString").apply { value = JsonString(value ="bar") }
                                     )

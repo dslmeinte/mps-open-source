@@ -8,7 +8,7 @@ import nl.dslconsultancy.mps.inspector.xml.ProjectModule
 data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
 // TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
 
-fun MpsProject.render(): String = "MPS project '${this.name}' (version=${this.version}) has ${this.modules.size} modules"
+fun MpsProject.render(): String = "MPS project '$name' (version=$version) has ${modules.size} modules"
 
 
 data class Language(

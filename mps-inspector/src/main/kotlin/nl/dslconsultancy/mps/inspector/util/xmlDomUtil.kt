@@ -27,16 +27,16 @@ fun Document.xPathAsNodes(xPathExpr: String): Iterable<Node> = (XPathFactory.new
 
 private fun NodeList.asIterable(): Iterable<Node> {
     val list = ArrayList<Node>()
-    for (i in 1..this.length) {
-        list.add(this.item(i - 1))
+    for (i in 1..length) {
+        list.add(item(i - 1))
     }
     return list
 }
 
 
-fun Node.attribute(name: String): String = this.attributes.getNamedItem(name).nodeValue
+fun Node.attribute(name: String): String = attributes.getNamedItem(name).nodeValue
 
-fun Node.firstChild(): Node = this.childNodes.item(0)
+fun Node.firstChild(): Node = childNodes.item(0)
 
 fun Node.textContents(): String {
     val contents = firstChild()

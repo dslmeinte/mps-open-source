@@ -39,14 +39,14 @@ fun mpsFileType(path: Path): MpsFileType {
     }
 }
 
-private fun isNotAModelFile(path: Path): Boolean =
+private fun isNotAModelFile(path: Path) =
     path.last().toString() == ".mps" || path.any { listOf("classes_gen", "source_gen").contains(it.toString()) }
     // TODO  also filter out source_gen.caches?
 
-fun isStructureModel(path: Path): Boolean =
+fun isStructureModel(path: Path) =
         mpsFileType(path) == MpsFileType.Model && path.asIterable().toList().takeLast(2) == listOf("models", "structure")
 
 
 fun MpsProjectOnDisk.languageReportAsCsvLines() =
-        this.languages.sortedBy { it.name }.map { "${it.name};${it.languageVersion};${it.uuid}" }.withHeader("\"language name\";version;uuid")
+        languages.sortedBy { it.name }.map { "${it.name};${it.languageVersion};${it.uuid}" }.withHeader("\"language name\";version;uuid")
 

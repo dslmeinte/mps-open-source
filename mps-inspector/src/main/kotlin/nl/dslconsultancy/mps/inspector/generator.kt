@@ -13,25 +13,25 @@ fun generateKotlinFor(structure: Structure): Iterable<String> = structure.elemen
 private fun StructuralElement.generateKotlinFor(): Iterable<String> =
     when (this) {
         is Concept -> {
-            val supers = this.superTypes().filter { it != "INamedConcept" }
+            val supers = superTypes().filter { it != "INamedConcept" }
             listOf(
-                "data class ${this.name}(",
-                this.features.filterIsInstance<Property>().joinToString(",\n") { "\t${it.name}: String" },
+                "data class $name(",
+                features.filterIsInstance<Property>().joinToString(",\n") { "\t${it.name}: String" },
                 ")" + (if (supers.isEmpty()) "" else " : " + supers.joinToString(", ")),
                 ""
             )
         }
         is InterfaceConcept -> {
-            listOf("interface ${this.name}", "")
+            listOf("interface $name", "")
         }
     }
 
 private fun Concept.superTypes(): List<String> {
     val supers = ArrayList<String>()
-    if (this.extends != null && this.extends != "BaseConcept") {
-        supers.add(this.extends!!)
+    if (extends != null && extends != "BaseConcept") {
+        supers.add(extends!!)
     }
-    supers += this.implements
+    supers += implements
     return supers
 }
 

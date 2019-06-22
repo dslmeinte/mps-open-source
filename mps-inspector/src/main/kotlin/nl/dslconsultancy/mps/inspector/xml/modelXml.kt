@@ -16,7 +16,7 @@ data class ModelXml(
     val registry: RegistryXml?,
 
     @set:JsonProperty("node")
-    var nodes: List<NodeXml> = arrayListOf()
+    var nodes: List<NodeXml> = emptyList()
 
 )
 
@@ -32,7 +32,7 @@ val emptyModelXml = ModelXml(null, null)
 
 data class Dependencies(
     @set:JsonProperty("use")
-    var importedLanguages: List<ImportedLanguage> = arrayListOf()
+    var importedLanguages: List<ImportedLanguage> = emptyList()
 )
 
 data class ImportedLanguage(
@@ -51,14 +51,14 @@ data class ImportedLanguage(
 data class RegistryXml(
 
     @set:JsonProperty("language")
-    var languages: List<MetaLanguageDefXml> = arrayListOf()
+    var languages: List<MetaLanguageDefXml> = emptyList()
 
 )
 
 data class MetaLanguageDefXml(
 
     @set:JsonProperty("concept")
-    var metaConcepts: List<MetaConceptXml> = arrayListOf()
+    var metaConcepts: List<MetaConceptXml> = emptyList()
 
 )
 
@@ -74,13 +74,13 @@ data class MetaConceptXml(
     val index: String,
 
     @set:JsonProperty("property")
-    var properties: List<MetaFeatureXml> = arrayListOf(),
+    var properties: List<MetaFeatureXml> = emptyList(),
 
     @set:JsonProperty("child")
-    var children: List<MetaFeatureXml> = arrayListOf(),
+    var children: List<MetaFeatureXml> = emptyList(),
 
     @set:JsonProperty("reference")
-    var references: List<MetaFeatureXml> = arrayListOf()
+    var references: List<MetaFeatureXml> = emptyList()
 
 )
 
@@ -110,13 +110,13 @@ data class NodeXml(
     val role: String?,
 
     @set:JsonProperty("property")
-    var properties: List<PropertyXml> = arrayListOf(),
+    var properties: List<PropertyXml> = emptyList(),
 
     @set:JsonProperty("node")
-    var children: List<NodeXml> = arrayListOf(),
+    var children: List<NodeXml> = emptyList(),
 
     @set:JsonProperty("ref")
-    var references: List<ReferenceXml> = arrayListOf()
+    var references: List<ReferenceXml> = emptyList()
 
 )
 
@@ -155,41 +155,41 @@ fun modelXmlFromDisk(path: Path): ModelXml = readXml(path) { skippedPath, _ ->
 fun modelXmlWithoutNodesFromDisk(path: Path): ModelXmlWithoutNodes = readXml(path)
 
 
-fun ModelXml.metaConcepts(): List<MetaConceptXml> = if (this.registry == null) emptyList() else this.registry.languages.flatMap { it.metaConcepts }
+fun ModelXml.metaConcepts(): List<MetaConceptXml> = registry?.languages?.flatMap { it.metaConcepts } ?: emptyList()
 
-fun Iterable<MetaConceptXml>.named(name: String): MetaConceptXml = this.single { it.name.lastSection() == name }
+fun Iterable<MetaConceptXml>.named(name: String): MetaConceptXml = single { it.name.lastSection() == name }
 
-fun Iterable<MetaConceptXml>.byIndex(index: String): MetaConceptXml = this.single { it.index == index }
+fun Iterable<MetaConceptXml>.byIndex(index: String): MetaConceptXml = single { it.index == index }
 
-fun Iterable<MetaFeatureXml>.named(name: String): MetaFeatureXml? = this.filter { it.name == name }.getOrNull(0)
+fun Iterable<MetaFeatureXml>.named(name: String): MetaFeatureXml? = filter { it.name == name }.getOrNull(0)
 
 fun NodeXml.thisProperty(featureDecl: MetaFeatureXml?): String?
-    = if (featureDecl == null) null else this.properties.filter { it.role == featureDecl.index }.getOrNull(0)?.value
+    = if (featureDecl == null) null else properties.filter { it.role == featureDecl.index }.getOrNull(0)?.value
 
 fun NodeXml.theseChildren(featureDecl: MetaFeatureXml?): Iterable<NodeXml>
-    = if (featureDecl == null) emptyList() else this.children.filter { it.role == featureDecl.index }
+    = if (featureDecl == null) emptyList() else children.filter { it.role == featureDecl.index }
 
 fun NodeXml.thisReference(featureDecl: MetaFeatureXml?): ReferenceXml?
-    = if (featureDecl == null) null else this.references.filter { it.role == featureDecl.index }[0]
+    = if (featureDecl == null) null else references.filter { it.role == featureDecl.index }[0]
 
 
 fun <T> Map<String, Any>.of(keyValue: Pair<NodeXml, T>): T {
-    this.plus(keyValue.first.id to keyValue.second)
+    plus(keyValue.first.id to keyValue.second)
     return keyValue.second
 }
 
 
-fun NodeXml.allNodes(): List<NodeXml> = listOf(this, *this.children.flatMap { it.allNodes() }.toTypedArray())
+fun NodeXml.allNodes(): List<NodeXml> = listOf(this, *children.flatMap { it.allNodes() }.toTypedArray())
 
 private fun MetaConceptXml.featureByIndex(index: String): MetaFeatureXml? =
-    this.properties.find { it.index == index }
-        ?: this.children.find { it.index == index }
-        ?: this.references.find { it.index == index }
+    properties.find { it.index == index }
+        ?: children.find { it.index == index }
+        ?: references.find { it.index == index }
 
 fun List<MetaConceptXml>.featureByIndex(index: String): Pair<MetaFeatureXml, MetaConceptXml> {
-    val concept = this.find { it.featureByIndex(index) != null }
+    val concept = find { it.featureByIndex(index) != null }
     return concept!!.featureByIndex(index)!! to concept
 }
 
-fun Pair<MetaFeatureXml, MetaConceptXml>.fullName(): String = "${this.second.name}#${this.first.name}"
+fun Pair<MetaFeatureXml, MetaConceptXml>.fullName(): String = "${second.name}#${first.name}"
 

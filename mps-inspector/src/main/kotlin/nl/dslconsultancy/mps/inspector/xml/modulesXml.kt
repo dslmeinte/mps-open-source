@@ -30,7 +30,7 @@ private data class ComponentXml(
 private data class ProjectModulesXml(
 
     @set:JsonProperty("modulePath")
-    var projectModules: List<ProjectModule> = arrayListOf()
+    var projectModules: List<ProjectModule> = emptyList()
 
 )
 
