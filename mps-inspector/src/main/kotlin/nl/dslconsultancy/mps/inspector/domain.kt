@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import nl.dslconsultancy.mps.inspector.xml.ProjectModule
+import java.nio.file.Path
 
 data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
 // TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
@@ -16,6 +17,7 @@ interface Named {
 }
 
 data class Language(
+    val path: Path,
     override val name: String,
     val uuid: String,
     val languageVersion: Int,
@@ -74,12 +76,13 @@ data class Concept(
  *
  * If we say that an interface also *implements* (instead of *extends*) interfaces,
  * and impose the following additional constraint,
- * then we can simply add a boolean flag to Concept saying whether it's an interface (true), or a concept (false):
+ * then we can justify simply adding a boolean flag to Concept saying whether it's an interface (true), or a concept (false):
  *
  *  1) an interface does not *extend* anything,
  *  2) rootable = false.
  *
  * This doesn't seem to be too contrary to "MPS World", and makes plenty of sense outside of it.
+ * Now, we have "real" and interface concepts distinguished by the isInterface flag.
  */
 
 

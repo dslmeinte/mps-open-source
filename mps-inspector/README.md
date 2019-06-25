@@ -36,7 +36,7 @@ A configuration item is an object with properties with the following names, type
 * `languageVersions.checkMinus1sInModels`: `true`/`false`, triggers checking all models for occurrences of -1 for the version of languages depended on.
     MPS sometimes looses track of correct language versions, and such, while merging/rebasing.
     The root cause for this should be addressed by [this ticket registered with JetBrains](https://youtrack.jetbrains.com/issue/MPS-29937).
-* `generations`: an array of generation items - this is still a very experimental feature, hence goes undocumented for now.
+* `generations`: an array of generation items - this is still a very experimental feature, hence goes undocumented here for now.
 
 
 ### Usage analysis

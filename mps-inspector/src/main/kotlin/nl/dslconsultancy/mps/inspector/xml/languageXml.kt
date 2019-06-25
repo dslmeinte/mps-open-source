@@ -14,6 +14,7 @@ fun readLanguageFile(path: Path): Language {
 
     val root = xmlDoc.firstChild()
     return Language(
+        path = path,
         name = root.attribute("namespace"),
         uuid = root.attribute("uuid"),
         languageVersion = Integer.parseInt(root.attribute("languageVersion")),

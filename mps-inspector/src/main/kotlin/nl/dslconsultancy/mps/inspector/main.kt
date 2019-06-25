@@ -31,7 +31,7 @@ fun main(args: Array<String>) {
     } catch (e: MismatchedInputException) {
         jsonFromString<List<ConfigurationItem>>(config).forEach { it.run() }
     } catch (e: JsonProcessingException) {
-        System.err.println("could not parse config input as JSON according to the configuration schema")
+        System.err.println("could not parse config input as JSON according to the configuration schema: check with JSON schema for it")
     }
 }
 

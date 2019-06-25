@@ -8,7 +8,7 @@
   },
   "generations": [
     {
-      "structureModelPath": "languages/JsonSchema/models/structure.mps",
+      "languageName": "JsonSchema",
       "generationPath": "src/generated"
     }
   ]

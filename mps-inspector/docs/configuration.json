@@ -1,11 +1,16 @@
 {
   "$schema" : "http://json-schema.org/draft-07/schema#",
   "title" : "MPS Inspector configuration format",
-  "type" : "array",
-  "minItems" : 0.0,
-  "items" : {
+  "type" : "object",
+  "oneOf" : [ {
     "$ref" : "#/definitions/configurationItem"
-  },
+  }, {
+    "type" : "array",
+    "minItems" : 0.0,
+    "items" : {
+      "$ref" : "#/definitions/configurationItem"
+    }
+  } ],
   "definitions" : {
     "configurationItem" : {
       "type" : "object",
@@ -59,8 +64,8 @@
       "type" : "object",
       "title" : "Triggers generation from a specified language's structure.",
       "properties" : {
-        "structureModelPath" : {
-          "description" : "Path (relative to mpsProjectPath) of structure model XML file to generate from. ",
+        "languageName" : {
+          "description" : "Name of the language for which to generate \"stuff\" from the structure.",
           "type" : "string"
         },
         "generationPath" : {
@@ -68,7 +73,7 @@
           "type" : "string"
         }
       },
-      "required" : [ "structureModelPath", "generationPath" ],
+      "required" : [ "languageName", "generationPath" ],
       "additionalProperties" : false
     }
   }

@@ -7,6 +7,9 @@
   <imports />
   <registry>
     <language id="332c9129-fd88-4f4c-a448-1f9b461e11cb" name="JsonSchema">
+      <concept id="6314656596746746251" name="JsonSchema.structure.JsonSumType" flags="ng" index="2829cW">
+        <child id="6314656596746747100" name="types" index="2829pF" />
+      </concept>
       <concept id="2627336286585054570" name="JsonSchema.structure.JsonSchema" flags="ng" index="2n4O$4">
         <property id="7566064099328922588" name="title" index="15lxNE" />
         <child id="2627336286585093422" name="definitions" index="2n4X50" />
@@ -15,6 +18,7 @@
       <concept id="2627336286585093430" name="JsonSchema.structure.JsonArrayDef" flags="ng" index="2n4X5o">
         <child id="2627336286585356718" name="itemsType" index="2n72R0" />
       </concept>
+      <concept id="2627336286585093431" name="JsonSchema.structure.JsonOneOf" flags="ng" index="2n4X5p" />
       <concept id="2627336286585093425" name="JsonSchema.structure.JsonDefinition" flags="ng" index="2n4X5v">
         <child id="2627336286585093428" name="def" index="2n4X5q" />
       </concept>
@@ -82,11 +86,6 @@
         </node>
       </node>
     </node>
-    <node concept="2n4X5o" id="3mDcvi9vBON" role="2n4XjE">
-      <node concept="2nZjnx" id="3mDcvi9vBSt" role="2n72R0">
-        <ref role="2nZjnW" node="3mDcvi9vBS4" resolve="configurationItem" />
-      </node>
-    </node>
     <node concept="2n4X5v" id="3mDcvi9vBPy" role="2n4X50">
       <property role="TrG5h" value="languageVersionsConfiguration" />
       <node concept="2n4Xgi" id="3mDcvi9vBPA" role="2n4X5q">
@@ -108,9 +107,9 @@
       <node concept="2n4Xgi" id="3mDcvi9vBQu" role="2n4X5q">
         <property role="15meCP" value="Triggers generation from a specified language's structure." />
         <node concept="2n4Xgh" id="3mDcvi9vBQx" role="2n4XjC">
-          <property role="TrG5h" value="structureModelPath" />
+          <property role="TrG5h" value="languageName" />
           <property role="2n4XjG" value="true" />
-          <property role="15mDuz" value="Path (relative to mpsProjectPath) of structure model XML file to generate from. " />
+          <property role="15mDuz" value="Name of the language for which to generate &quot;stuff&quot; from the structure." />
           <node concept="2n78An" id="3mDcvi9vBQ_" role="2ns3$z" />
         </node>
         <node concept="2n4Xgh" id="3mDcvi9vBQC" role="2n4XjC">
@@ -118,6 +117,16 @@
           <property role="2n4XjG" value="true" />
           <property role="15mDuz" value="Path (relative to cwd) to generate to." />
           <node concept="2n78An" id="3mDcvi9vBQD" role="2ns3$z" />
+        </node>
+      </node>
+    </node>
+    <node concept="2n4X5p" id="55X3kSPn63d" role="2n4XjE">
+      <node concept="2nZjnx" id="55X3kSPn63n" role="2829pF">
+        <ref role="2nZjnW" node="3mDcvi9vBS4" resolve="configurationItem" />
+      </node>
+      <node concept="2n4X5o" id="3mDcvi9vBON" role="2829pF">
+        <node concept="2nZjnx" id="3mDcvi9vBSt" role="2n72R0">
+          <ref role="2nZjnW" node="3mDcvi9vBS4" resolve="configurationItem" />
         </node>
       </node>
     </node>

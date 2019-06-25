@@ -22,7 +22,7 @@ data class LanguageVersionsConfiguration(
 )
 
 data class GenerateFromStructure(
-    val structureModelPath: String,
+    val languageName: String,
     val generationPath: String
 )
 
@@ -54,7 +54,7 @@ fun ConfigurationItem.run() {
                         }
                     }
                 }
-            println("checked for occurrences of language version '-1' in models")
+            println("checked for occurrences of language version -1 in models")
         }
     }
 
@@ -64,6 +64,6 @@ fun ConfigurationItem.run() {
         println("wrote usage analysis to '$usageAnalysisPath'")
     }
 
-    generations.forEach { it.run(mpsProjectPath) }
+    generations.forEach { it.run(mpsProjectOnDisk) }
 }
 
