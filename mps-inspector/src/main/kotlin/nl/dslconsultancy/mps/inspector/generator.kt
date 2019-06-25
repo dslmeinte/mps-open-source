@@ -1,6 +1,7 @@
 package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.writeJson
+import nl.dslconsultancy.mps.inspector.util.asCsvRow
 import nl.dslconsultancy.mps.inspector.util.withHeader
 import nl.dslconsultancy.mps.inspector.xml.asStructure
 import nl.dslconsultancy.mps.inspector.xml.modelXmlFromDisk
@@ -42,7 +43,7 @@ fun generateCsvFor(structure: Structure): Iterable<String> = structure.elements.
 
 private fun StructuralElement.generateCsvFor(): Iterable<String> =
     when (this) {
-        is Concept -> features.map { "${this.name}#${it.name};${it.deprecated}" }.withHeader("$name;$deprecated")
+        is Concept -> features.map { asCsvRow("${this.name}#${it.name}", it.deprecated) }.withHeader(asCsvRow(name, deprecated))
     }
 
 
@@ -52,7 +53,7 @@ fun GenerateFromStructure.run(mpsProjectPath: Path) {
     val genPath = Paths.get(generationPath)
     writeJson(structure, genPath.resolve("export.json"))
     Files.write(genPath.resolve("kotlin.kt"), generateKotlinFor(structure))
-    Files.write(genPath.resolve("structure.csv"), generateCsvFor(structure).sorted().withHeader("\"concept(#feature)\";deprecated"))
+    Files.write(genPath.resolve("structure.csv"), generateCsvFor(structure).sorted().withHeader(asCsvRow("\"concept(#feature)\"", "deprecated")))
     println("wrote generated stuff to '$genPath'")
 }
 

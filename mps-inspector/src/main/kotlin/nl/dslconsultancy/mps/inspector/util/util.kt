@@ -18,6 +18,7 @@ fun String.lastSection(): String = lastSection('.')
 
 fun Path.lastSection(): String = toString().lastSection(File.separatorChar)
 
-fun Iterable<String>.withHeader(header: String): Iterable<String> =
-    listOf(header, *toList().toTypedArray())
+fun Iterable<String>.withHeader(header: String): Iterable<String> = listOf(header, *toList().toTypedArray())
+
+fun asCsvRow(vararg strings: Any): String = strings.joinToString(",")
 

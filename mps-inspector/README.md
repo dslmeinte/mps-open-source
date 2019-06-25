@@ -30,7 +30,7 @@ The format is an array of configuration items, which are objects with the follow
     This has no effect on (the loading of) the MPS project itself, but makes it easier to manually compare revisions of this file.
 * `usageAnalysisPath`: a string with the path (relative to the cwd) to which a report of a usage analysis (see [below](#usage-analysis)) is written.
 * `languageVersions`: an object that triggers some language version analyses.
-* `languageVersions.reportPath`: a string with the path (relative to the cwd) to which an overview of all languages in this project (again: regardless whether they'd actually be loaded by MPS as part of the project!) including their version number, is written as a `;`-separated file.
+* `languageVersions.reportPath`: a string with the path (relative to the cwd) to which an overview of all languages in this project (again: regardless whether they'd actually be loaded by MPS as part of the project!) including their version number, is written as a `,`-separated file.
 * `languageVersions.checkMinus1sInModels`: `true`/`false`, triggers checking all models for occurrences of -1 for the version of languages depended on.
     MPS sometimes looses track of correct language versions, and such, while merging/rebasing.
     The root cause for this should be addressed by [this ticket registered with JetBrains](https://youtrack.jetbrains.com/issue/MPS-29937).
@@ -40,7 +40,7 @@ The format is an array of configuration items, which are objects with the follow
 ### Usage analysis
 
 The usage analysis scans all MPS model XML files (regardless whether they'd actually be loaded by MPS as part of the project!), and tallies concept's instances as well as populated features (=properties, children, references).
-The report is a `;`-separated file, where the 1st column contains the fully-qualified name of a concept or a feature, and the 2nd column is the number of instances encountered over the whole project.
+The report is a `,`-separated file, where the 1st column contains the fully-qualified name of a concept or a feature, and the 2nd column is the number of instances encountered over the whole project.
 The fully-qualified name of a feature is of the following form: `<fully-qualified name of the owning concept>#<name of the feature"`.
 
 
