@@ -14,6 +14,8 @@ object JacksonJsonUtil {
 
     inline fun <reified T> jsonFromDisk(path: Path): T = jsonMapper.readValue(path.toFile())
 
+    inline fun <reified T> jsonFromString(string: String): T = jsonMapper.readValue(string)
+
     fun <T> writeJson(content: T, path: Path) {
         jsonMapper.writeValue(path.toFile(), content)
     }

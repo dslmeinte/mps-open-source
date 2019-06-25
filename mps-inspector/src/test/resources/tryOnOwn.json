@@ -1,17 +1,15 @@
-[
-  {
-    "mpsProjectPath": "../mps-open-source",
-    "sortModules": true,
-    "usageAnalysisPath": "target/usage.csv",
-    "languageVersions": {
-      "reportPath": "target/languageVersions.csv",
-      "checkMinus1sInModels": true
-    },
-    "generations": [
-      {
-        "structureModelPath": "languages/JsonSchema/models/structure.mps",
-        "generationPath": "src/generated"
-      }
-    ]
-  }
-]
+{
+  "mpsProjectPath": "../mps-open-source",
+  "sortModules": true,
+  "usageAnalysisPath": "target/usage.csv",
+  "languageVersions": {
+    "reportPath": "target/languageVersions.csv",
+    "checkMinus1sInModels": true
+  },
+  "generations": [
+    {
+      "structureModelPath": "languages/JsonSchema/models/structure.mps",
+      "generationPath": "src/generated"
+    }
+  ]
+}

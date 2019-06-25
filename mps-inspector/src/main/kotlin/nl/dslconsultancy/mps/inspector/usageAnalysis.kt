@@ -1,6 +1,6 @@
 package nl.dslconsultancy.mps.inspector
 
-import nl.dslconsultancy.mps.inspector.util.asCsvRow
+import nl.dslconsultancy.mps.inspector.util.csvRowOf
 import nl.dslconsultancy.mps.inspector.util.withHeader
 import nl.dslconsultancy.mps.inspector.xml.*
 import java.nio.file.Path
@@ -51,5 +51,8 @@ fun CountingMap.combine(other: CountingMap): CountingMap {
 
 
 fun CountingMap.asCsvLines(): Iterable<String> =
-    entries.sortedBy { it.key }.map { asCsvRow(it.key, it.value) }.withHeader(asCsvRow("concept(#feature)", "\"number of usages\""))
+    entries
+        .sortedBy { it.key }
+        .map { csvRowOf(it.key, it.value) }
+        .withHeader(csvRowOf("concept(#feature)", "\"number of usages\""))
 

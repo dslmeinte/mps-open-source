@@ -1,6 +1,6 @@
 package nl.dslconsultancy.mps.inspector
 
-import nl.dslconsultancy.mps.inspector.util.asCsvRow
+import nl.dslconsultancy.mps.inspector.util.csvRowOf
 import nl.dslconsultancy.mps.inspector.util.asList
 import nl.dslconsultancy.mps.inspector.util.withHeader
 import nl.dslconsultancy.mps.inspector.xml.readLanguageFile
@@ -49,5 +49,5 @@ fun isStructureModel(path: Path) =
 
 
 fun MpsProjectOnDisk.languageReportAsCsvLines() =
-        languages.sortedBy { it.name }.map { asCsvRow(it.name, it.languageVersion, it.uuid) }.withHeader(asCsvRow("\"language name\"", "version", "uuid"))
+        languages.sortedBy { it.name }.map { csvRowOf(it.name, it.languageVersion, it.uuid) }.withHeader(csvRowOf("\"language name\"", "version", "uuid"))
 
