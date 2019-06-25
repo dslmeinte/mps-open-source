@@ -14,10 +14,10 @@ fun readLanguageFile(path: Path): Language {
 
     val root = xmlDoc.firstChild()
     return Language(
-        root.attribute("namespace"),
-        root.attribute("uuid"),
-        Integer.parseInt(root.attribute("languageVersion")),
-        xmlDoc.xPathAsNodes("//language/dependencies/dependency").map {
+        name = root.attribute("namespace"),
+        uuid = root.attribute("uuid"),
+        languageVersion = Integer.parseInt(root.attribute("languageVersion")),
+        dependencies = xmlDoc.xPathAsNodes("//language/dependencies/dependency").map {
             Dependency(
                 it.attribute("reexport") == "true",
                 it.textContents()

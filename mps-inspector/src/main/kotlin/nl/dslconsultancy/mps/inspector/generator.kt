@@ -13,16 +13,18 @@ fun generateKotlinFor(structure: Structure): Iterable<String> = structure.elemen
 private fun StructuralElement.generateKotlinFor(): Iterable<String> =
     when (this) {
         is Concept -> {
-            val supers = superTypes().filter { it != "INamedConcept" }
-            listOf(
-                "data class $name(",
-                features.filterIsInstance<Property>().joinToString(",\n") { "\t${it.name}: String" },
-                ")" + (if (supers.isEmpty()) "" else " : " + supers.joinToString(", ")),
-                ""
-            )
-        }
-        is InterfaceConcept -> {
-            listOf("interface $name", "")
+            when {
+                isInterface -> listOf("interface $name")
+                else -> {
+                    val supers = superTypes().filter { it != "INamedConcept" }
+                    listOf(
+                        "data class $name(",
+                        features.filterIsInstance<Property>().joinToString(",\n") { "\t${it.name}: String" },
+                        ")" + (if (supers.isEmpty()) "" else " : " + supers.joinToString(", ")),
+                        ""
+                    )
+                }
+            }
         }
     }
 
@@ -40,8 +42,7 @@ fun generateCsvFor(structure: Structure): Iterable<String> = structure.elements.
 
 private fun StructuralElement.generateCsvFor(): Iterable<String> =
     when (this) {
-        is Concept -> listOf("$name;$deprecated")
-        is InterfaceConcept -> listOf("$name;false")
+        is Concept -> features.map { "${this.name}#${it.name};${it.deprecated}" }.withHeader("$name;$deprecated")
     }
 
 

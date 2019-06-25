@@ -11,12 +11,16 @@ data class MpsProject(val name: String, val version: Int, val modules: List<Proj
 fun MpsProject.render(): String = "MPS project '$name' (version=$version) has ${modules.size} modules"
 
 
+interface Named {
+    val name: String
+}
+
 data class Language(
-    val name: String,
+    override val name: String,
     val uuid: String,
     val languageVersion: Int,
     val dependencies: Iterable<Dependency>
-)
+) : Named
 
 data class Dependency(
     val reexport: Boolean,
@@ -24,16 +28,23 @@ data class Dependency(
 )
 
 
+interface MetaModelElement : Named {
+    val deprecated: Boolean
+}
+
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "metaType"
 )
 @JsonSubTypes(
-    Type(Concept::class),
-    Type(InterfaceConcept::class)
+    Type(Concept::class)
 )
-sealed class StructuralElement
+sealed class StructuralElement : MetaModelElement {
+    abstract var features: Iterable<Feature>
+}
+
+// TODO  also define enums and such, otherwise wouldn't need OO hierarchy
 
 
 /*
@@ -45,23 +56,31 @@ data class Structure(
 )
 
 data class Concept(
-    val name: String,
+    override val name: String,
+    val isInterface: Boolean,
     val rootable: Boolean,
     val alias: String?,
     val shortDescription: String?,
-    val deprecated: Boolean,
-    var extends: String? = null,   // TODO  make reference to Concept
+    override val deprecated: Boolean,
+    var extends: String? = null,   // TODO  make reference to Concept, but make sure it also serializes without infinite recursion
     var implements: Iterable<String> = emptyList(),   // TODO  make references to Interface
-    var features: Iterable<Feature> = emptyList()
+    override var features: Iterable<Feature> = emptyList()
 ) : StructuralElement()
 
-
-data class InterfaceConcept(
-    val name: String,
-    val deprecated: Boolean,
-    var features: Iterable<Feature> = emptyList()
-) : StructuralElement()
-
+/*
+ * The main differences between a concept and an interface concept is:
+ *  1) an interface *extends* an arbitrary number of (other) interfaces
+ *  2) a concept *extends* at most one concept, and *implements* an arbitrary number of interfaces.
+ *
+ * If we say that an interface also *implements* (instead of *extends*) interfaces,
+ * and impose the following additional constraint,
+ * then we can simply add a boolean flag to Concept saying whether it's an interface (true), or a concept (false):
+ *
+ *  1) an interface does not *extend* anything,
+ *  2) rootable = false.
+ *
+ * This doesn't seem to be too contrary to "MPS World", and makes plenty of sense outside of it.
+ */
 
 
 @JsonTypeInfo(
@@ -71,20 +90,23 @@ data class InterfaceConcept(
 )
 @JsonSubTypes(
     Type(Property::class),
-    Type(Child::class)
-//, Type(Reference::class)
+    Type(Link::class)
 )
-sealed class Feature
+sealed class Feature {
+    abstract val name: String
+    abstract val deprecated: Boolean
+}
 
 data class Property(
-    val name: String,
-    val deprecated: Boolean
+    override val name: String,
+    override val deprecated: Boolean
 ) : Feature()
 
-data class Child(
-    val name: String,
-    val deprecated: Boolean
+data class Link(
+    override val name: String,
+    override val deprecated: Boolean,
+    val reference: Boolean,
+    val cardinality: String,
+    val targetType: String  // TODO  make reference to a Concept/Interface
 ) : Feature()
-
-//data class Reference(val name: String) : Feature()
 

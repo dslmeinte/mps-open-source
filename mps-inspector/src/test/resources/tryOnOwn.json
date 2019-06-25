@@ -9,7 +9,7 @@
     },
     "generations": [
       {
-        "structureModelPath": "languages/Json/models/structure.mps",
+        "structureModelPath": "languages/JsonSchema/models/structure.mps",
         "generationPath": "src/generated"
       }
     ]
