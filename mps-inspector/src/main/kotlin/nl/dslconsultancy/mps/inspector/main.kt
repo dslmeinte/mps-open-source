@@ -1,8 +1,5 @@
 package nl.dslconsultancy.mps.inspector
 
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.exc.MismatchedInputException
-import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.jsonFromString
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.system.exitProcess
@@ -12,7 +9,7 @@ fun main(args: Array<String>) {
         System.err.println("must provide 1 arg: the relative path to a JSON file with the configuration, or '-' in which case you have to provide the JSON configuration on stdin")
         exitProcess(1)
     }
-    val config = when (args[0]) {
+    when (args[0]) {
         "-" -> {
             println("reading JSON configuration from stdin")
             generateSequence(::readLine)
@@ -25,13 +22,6 @@ fun main(args: Array<String>) {
             }
             Files.readAllLines(configPath).asSequence()
         }
-    }.joinToString("\n")    // put whitespace back in
-    try {
-        jsonFromString<ConfigurationItem>(config).run()
-    } catch (e: MismatchedInputException) {
-        jsonFromString<List<ConfigurationItem>>(config).forEach { it.run() }
-    } catch (e: JsonProcessingException) {
-        System.err.println("could not parse config input as JSON according to the configuration schema: check with JSON schema for it")
-    }
+    }.joinToString("\n").asConfiguration().forEach { it.run() }
 }
 

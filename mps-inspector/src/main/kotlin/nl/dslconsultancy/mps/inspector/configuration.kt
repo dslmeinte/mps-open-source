@@ -1,6 +1,9 @@
 package nl.dslconsultancy.mps.inspector
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.databind.exc.MismatchedInputException
+import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.jsonFromString
 import nl.dslconsultancy.mps.inspector.xml.modelXmlWithoutNodesFromDisk
 import nl.dslconsultancy.mps.inspector.xml.modulesXmlPath
 import nl.dslconsultancy.mps.inspector.xml.processModulesXml
@@ -65,5 +68,19 @@ fun ConfigurationItem.run() {
     }
 
     generations.forEach { it.run(mpsProjectOnDisk) }
+}
+
+
+fun String.asConfiguration(): List<ConfigurationItem> {
+    return try {
+        try {
+            listOf(jsonFromString(this))
+        } catch (e: MismatchedInputException) {
+            jsonFromString(this)
+        }
+    } catch (e: JsonProcessingException) {
+        System.err.println("could not parse config input as JSON according to the configuration format: check against JSON Schema docs/configuration.json")
+        emptyList()
+    }
 }
 

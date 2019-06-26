@@ -1,7 +1,7 @@
 package nl.dslconsultancy.mps.inspector
 
-import nl.dslconsultancy.mps.inspector.util.csvRowOf
 import nl.dslconsultancy.mps.inspector.util.asList
+import nl.dslconsultancy.mps.inspector.util.csvRowOf
 import nl.dslconsultancy.mps.inspector.util.withHeader
 import nl.dslconsultancy.mps.inspector.xml.readLanguageFile
 import java.nio.file.Files
@@ -45,7 +45,7 @@ private fun isNotAModelFile(path: Path) =
     // TODO  also filter out source_gen.caches?
 
 fun isStructureModel(path: Path) =
-        mpsFileType(path) == MpsFileType.Model && path.asIterable().toList().takeLast(2) == listOf("models", "structure")
+        mpsFileType(path) == MpsFileType.Model && path.toList().takeLast(2) == listOf("models", "structure")
 
 
 fun MpsProjectOnDisk.languageReportAsCsvLines() =
