@@ -20,5 +20,17 @@ fun Path.lastSection(): String = toString().lastSection(File.separatorChar)
 
 fun Iterable<String>.withHeader(header: String): Iterable<String> = listOf(header, *toList().toTypedArray())
 
-fun csvRowOf(vararg strings: Any): String = strings.joinToString(",")
+fun csvRowOf(vararg items: Any): String = items.joinToString(",")
+
+
+typealias CountingMap<T> = Map<T, Int>
+
+fun <T> CountingMap<T>.combine(other: CountingMap<T>): CountingMap<T> {
+    val newMap = hashMapOf<T, Int>()
+    toMap(newMap)
+    other.entries.forEach {
+        newMap += it.key to ((this[it.key] ?: 0) + it.value)
+    }
+    return newMap
+}
 

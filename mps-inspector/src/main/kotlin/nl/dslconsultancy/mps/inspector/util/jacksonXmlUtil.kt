@@ -38,18 +38,16 @@ object JacksonXmlUtil {
     }
 
 
-    inline fun <reified T> readXml(path: Path): T = xmlMapper().readValue(path.toFile())
+    inline fun <reified T> xmlFromDisk(path: Path): T = xmlMapper().readValue(path.toFile())
 
-    inline fun <reified T> readXml(path: Path, resultOnFail: (path: Path, e: Exception) -> T): T =
+    inline fun <reified T> xmlFromDisk(path: Path, resultOnFail: (path: Path, e: Exception) -> T): T =
         try {
-            readXml(path)
+            xmlFromDisk(path)
         } catch (e: Exception) {
             System.err.println("could not read '$path' as XML file (of indicated type): ${e.message}")
             e.printStackTrace(System.err)
             resultOnFail(path, e)
         }
-
-    // TODO  implement a read cache?
 
 
     fun <T> writeXml(content: T, path: Path) {

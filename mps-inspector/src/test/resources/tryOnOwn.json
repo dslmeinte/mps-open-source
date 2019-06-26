@@ -8,6 +8,10 @@
   },
   "generations": [
     {
+      "languageName": "Json",
+      "generationPath": "src/generated"
+    },
+    {
       "languageName": "JsonSchema",
       "generationPath": "src/generated"
     }

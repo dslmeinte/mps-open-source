@@ -3,8 +3,6 @@ package nl.dslconsultancy.mps.inspector
 import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.writeJson
 import nl.dslconsultancy.mps.inspector.util.csvRowOf
 import nl.dslconsultancy.mps.inspector.util.withHeader
-import nl.dslconsultancy.mps.inspector.xml.asStructure
-import nl.dslconsultancy.mps.inspector.xml.modelXmlFromDisk
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -52,12 +50,14 @@ fun GenerateFromStructure.run(mpsProjectOnDisk: MpsProjectOnDisk) {
         System.err.println("no language with name '$languageName' in MPS project")
         return
     }
-    val structureModelAsPath = language.path.parent.resolve("models").resolve("structure.mps")
-    val structure = modelXmlFromDisk(structureModelAsPath).asStructure()
+    val structure = language.structure()
     val genPath = Paths.get(generationPath)
-    writeJson(structure, genPath.resolve("export.json"))
-    Files.write(genPath.resolve("kotlin.kt"), generateKotlinFor(structure))
-    Files.write(genPath.resolve("structure.csv"), generateCsvFor(structure).sorted().withHeader(csvRowOf("\"concept[#feature]\"", "deprecated")))
-    println("wrote generated stuff to '$genPath'")
+    writeJson(structure, genPath.resolve("export-${language.name}.json"))
+    Files.write(genPath.resolve("kotlin-${language.name}.kt"), generateKotlinFor(structure))
+    Files.write(
+        genPath.resolve("structure-${language.name}.csv"),
+        generateCsvFor(structure).sorted().withHeader(csvRowOf("\"concept[#feature]\"", "deprecated"))
+    )
+    println("wrote \"stuff\" generated for structure of '${language.name}' to '$genPath'")
 }
 

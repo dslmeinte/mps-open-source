@@ -1,58 +1,48 @@
 package nl.dslconsultancy.mps.inspector
 
+import nl.dslconsultancy.mps.inspector.util.CountingMap
+import nl.dslconsultancy.mps.inspector.util.combine
 import nl.dslconsultancy.mps.inspector.util.csvRowOf
 import nl.dslconsultancy.mps.inspector.util.withHeader
 import nl.dslconsultancy.mps.inspector.xml.*
-import java.nio.file.Path
 
-fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap =
-    mpsProjectOnDisk.mpsFiles
+fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap<String> {
+    val pathsModelFiles = mpsProjectOnDisk.mpsFiles
         .filter { mpsFileType(it) == MpsFileType.Model }
+    val modelFiles = pathsModelFiles.map { modelXmlFromDisk(it) }
+    val namesAllImportedLanguages = modelFiles.flatMap { mf -> mf.dependencies?.importedLanguages?.map { il -> il.name } ?: emptyList() }.distinct()
+    val namesOwnImportedLanguages = mpsProjectOnDisk.languages.map { it.name }.intersect(namesAllImportedLanguages)
+    val ownImportedLanguages = namesOwnImportedLanguages.flatMap { n -> mpsProjectOnDisk.languages.filter { l -> l.name == n } }
+    val allStructureOfOwnImportedLanguages = ownImportedLanguages.flatMap { l ->
+        val elements = l.structure().elements
+        listOf(elements.map { e -> "${l.name}.structure.${e.name}" }, elements.flatMap { e -> e.features.map { f -> "${l.name}.structure.#${f.name}" } }).flatten()
+    }.map { it to 0 }.toMap()
+    return modelFiles
         .map { usage(it) }
-        .reduce(CountingMap::combine)
+        .reduce { l, r -> l.combine(r) }
+        .combine(allStructureOfOwnImportedLanguages)
+}
 
-private fun usage(modelPath: Path): CountingMap {
-    val modelXml = modelXmlFromDiskSafe(modelPath) ?: return emptyMap()
-    // (Using S(t)AX should be much more efficient.)
+private fun usage(modelXml: ModelXml): CountingMap<String> {
     val metaConcepts = modelXml.metaConcepts()
     val allNodes = modelXml.nodes.flatMap { it.allNodes() }
     val result = hashMapOf<String, Int>()
     allNodes.map { it.concept }
-        .groupingBy { it }.eachCount()
+        .groupingBy { it }
+        .eachCount()
         .map { metaConcepts.byIndex(it.key).name to it.value }.toMap(result)
     listOf(allNodes.mapNotNull { it.role })
         .flatten()
-        .groupingBy { it }.eachCount()
+        .groupingBy { it }
+        .eachCount()
         .map { metaConcepts.featureByIndex(it.key).fullName() to it.value }.toMap(result)
     return result
 }
 
-private fun modelXmlFromDiskSafe(modelPath: Path): ModelXml? =
-    try {
-        modelXmlFromDisk(modelPath)
-    } catch (e: Exception) {
-        System.err.println("could not read '$modelPath' as MPS model XML due to: ${e.message}")
-        e.printStackTrace(System.err)
-        System.err.println()
-        null
-    }
 
-
-typealias CountingMap = Map<String, Int>
-
-fun CountingMap.combine(other: CountingMap): CountingMap {
-    val map = hashMapOf<String, Int>()
-    toMap(map)
-    other.entries.forEach {
-        map += it.key to ((other[it.key] ?: 0) + it.value)
-    }
-    return map
-}
-
-
-fun CountingMap.asCsvLines(): Iterable<String> =
+fun <T> CountingMap<T>.asCsvLines(): Iterable<String> =
     entries
-        .sortedBy { it.key }
-        .map { csvRowOf(it.key, it.value) }
+        .sortedBy { it.key.toString() }
+        .map { csvRowOf(it.key.toString(), it.value) }
         .withHeader(csvRowOf("concept(#feature)", "\"number of usages\""))
 

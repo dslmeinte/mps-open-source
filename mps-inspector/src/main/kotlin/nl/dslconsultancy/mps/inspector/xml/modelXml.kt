@@ -3,7 +3,7 @@ package nl.dslconsultancy.mps.inspector.xml
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil.readXml
+import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil.xmlFromDisk
 import nl.dslconsultancy.mps.inspector.util.lastSection
 import java.nio.file.Path
 
@@ -147,12 +147,15 @@ data class ReferenceXml(
 )
 
 
-fun modelXmlFromDisk(path: Path): ModelXml = readXml(path) { skippedPath, _ ->
-    println("skipped '$skippedPath'")
+/**
+ * Reads an MPS model XML file from the given path, returning an empty model if any error occurs.
+ */
+fun modelXmlFromDisk(path: Path): ModelXml = xmlFromDisk(path) { skippedPath, _ ->
+    println("could not read '$skippedPath' as MPS model XML: skipped")
     emptyModelXml
 }
 
-fun modelXmlWithoutNodesFromDisk(path: Path): ModelXmlWithoutNodes = readXml(path)
+fun modelXmlWithoutNodesFromDisk(path: Path): ModelXmlWithoutNodes = xmlFromDisk(path)
 
 
 fun ModelXml.metaConcepts(): List<MetaConceptXml> = registry?.languages?.flatMap { it.metaConcepts } ?: emptyList()

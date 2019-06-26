@@ -9,7 +9,7 @@ import nl.dslconsultancy.mps.inspector.util.textContents
 import nl.dslconsultancy.mps.inspector.util.xPathAsNodes
 import java.nio.file.Path
 
-fun readLanguageFile(path: Path): Language {
+fun languageXmlFromDisk(path: Path): Language {
     val xmlDoc = readXml(path)
 
     val root = xmlDoc.firstChild()

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import nl.dslconsultancy.mps.inspector.xml.ProjectModule
+import nl.dslconsultancy.mps.inspector.xml.asStructure
+import nl.dslconsultancy.mps.inspector.xml.modelXmlFromDisk
 import java.nio.file.Path
 
 data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
@@ -21,13 +23,24 @@ data class Language(
     override val name: String,
     val uuid: String,
     val languageVersion: Int,
-    val dependencies: Iterable<Dependency>
+    val dependencies: Iterable<Dependency>,
+    var cachedStructure: Structure? = null
 ) : Named
 
 data class Dependency(
     val reexport: Boolean,
     val dependencyId: String
 )
+
+
+fun Language.structureModelPath(): Path = path.parent.resolve("models").resolve("structure.mps")
+
+fun Language.structure(): Structure {
+    if (cachedStructure == null) {
+        cachedStructure = modelXmlFromDisk(structureModelPath()).asStructure()
+    }
+    return cachedStructure!!
+}
 
 
 interface MetaModelElement : Named {
