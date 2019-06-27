@@ -15,12 +15,19 @@ fun ModelXml.asStructure(): Structure {
 
 private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<String, Any>): Any {
     val nodeXml = this
+
     val precomputed = memois[nodeXml.id]
     if (precomputed != null) {
         return precomputed
     }
+
+    fun isDeprecated(): Boolean =
+        nodeXml
+            .theseChildren(metaConcepts.named("BaseConcept").children.named("smodelAttribute"))
+            .any { metaConcepts.byIndex(it.concept).name.endsWith("DeprecatedNodeAnnotation") }
+
     val metaConcept = metaConcepts.byIndex(nodeXml.concept)
-    fun isDeprecated(): Boolean = nodeXml.theseChildren(metaConcepts.named("BaseConcept").children.named("smodelAttribute")).firstOrNull() != null
+
     return when (metaConcept.name.lastSection()) {
         "ConceptDeclaration" -> memois.of(nodeXml to Concept(
             name = nodeXml.thisProperty(metaConcepts.named("INamedConcept").properties.named("name"))!!,

@@ -2,7 +2,6 @@ package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.writeJson
 import nl.dslconsultancy.mps.inspector.util.csvRowOf
-import nl.dslconsultancy.mps.inspector.util.withHeader
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -40,7 +39,7 @@ fun generateCsvFor(structure: Structure): Iterable<String> = structure.elements.
 
 private fun StructuralElement.generateCsvFor(): Iterable<String> =
     when (this) {
-        is Concept -> features.map { csvRowOf("${this.name}#${it.name}", it.deprecated) }.withHeader(csvRowOf(name, deprecated))
+        is Concept -> listOf(csvRowOf(name, deprecated)) + features.map { csvRowOf("${this.name}#${it.name}", it.deprecated) }
     }
 
 
@@ -56,7 +55,7 @@ fun GenerateFromStructure.run(mpsProjectOnDisk: MpsProjectOnDisk) {
     Files.write(genPath.resolve("kotlin-${language.name}.kt"), generateKotlinFor(structure))
     Files.write(
         genPath.resolve("structure-${language.name}.csv"),
-        generateCsvFor(structure).sorted().withHeader(csvRowOf("\"concept[#feature]\"", "deprecated"))
+        listOf(csvRowOf("\"concept[#feature]\"", "deprecated")) + generateCsvFor(structure).sorted()
     )
     println("wrote \"stuff\" generated for structure of '${language.name}' to '$genPath'")
 }

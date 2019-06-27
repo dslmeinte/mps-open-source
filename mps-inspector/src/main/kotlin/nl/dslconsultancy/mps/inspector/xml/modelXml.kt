@@ -166,23 +166,25 @@ fun Iterable<MetaConceptXml>.byIndex(index: String): MetaConceptXml = single { i
 
 fun Iterable<MetaFeatureXml>.named(name: String): MetaFeatureXml? = filter { it.name == name }.getOrNull(0)
 
-fun NodeXml.thisProperty(featureDecl: MetaFeatureXml?): String?
-    = if (featureDecl == null) null else properties.filter { it.role == featureDecl.index }.getOrNull(0)?.value
+fun NodeXml.thisProperty(featureDecl: MetaFeatureXml?): String? =
+    if (featureDecl == null) null else properties.filter { it.role == featureDecl.index }.getOrNull(0)?.value
 
-fun NodeXml.theseChildren(featureDecl: MetaFeatureXml?): Iterable<NodeXml>
-    = if (featureDecl == null) emptyList() else children.filter { it.role == featureDecl.index }
+fun NodeXml.theseChildren(featureDecl: MetaFeatureXml?): Iterable<NodeXml> =
+    if (featureDecl == null) emptyList() else children.filter { it.role == featureDecl.index }
 
-fun NodeXml.thisReference(featureDecl: MetaFeatureXml?): ReferenceXml?
-    = if (featureDecl == null) null else references.filter { it.role == featureDecl.index }[0]
+fun NodeXml.thisReference(featureDecl: MetaFeatureXml?): ReferenceXml? =
+    if (featureDecl == null) null else references.filter { it.role == featureDecl.index }[0]
 
 
+// primarily intended for memoising: {@code memois.of(src to dst()).apply { ... }}
 fun <T> Map<String, Any>.of(keyValue: Pair<NodeXml, T>): T {
     plus(keyValue.first.id to keyValue.second)
     return keyValue.second
 }
 
 
-fun NodeXml.allNodes(): List<NodeXml> = listOf(this, *children.flatMap { it.allNodes() }.toTypedArray())
+fun NodeXml.allNodes(): List<NodeXml> = listOf(this) + children.flatMap { it.allNodes() }
+
 
 private fun MetaConceptXml.featureByIndex(index: String): MetaFeatureXml? =
     properties.find { it.index == index }
@@ -195,4 +197,8 @@ fun List<MetaConceptXml>.featureByIndex(index: String): Pair<MetaFeatureXml, Met
 }
 
 fun Pair<MetaFeatureXml, MetaConceptXml>.fullName(): String = "${second.name}#${first.name}"
+
+
+fun ModelXml.namesImportedLanguages(): List<String> =
+    dependencies?.importedLanguages?.map { il -> il.name } ?: emptyList()
 

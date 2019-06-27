@@ -17,4 +17,5 @@ Not meant as an actual roadmap!
 ## Notes
 
 * [polling with Java NIO](https://dzone.com/articles/event-driven-architecture-over-polling-architecture), for making things incremental
+* [serialize references to JSON, without infinite recursion](https://www.logicbig.com/tutorials/misc/jackson/json-identity-info-annotation.html)
 

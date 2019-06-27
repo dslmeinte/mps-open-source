@@ -108,15 +108,15 @@ data class Concept(
     Type(Property::class),
     Type(Link::class)
 )
-sealed class Feature {
-    abstract val name: String
-    abstract val deprecated: Boolean
-}
+sealed class Feature(
+    override val name: String,
+    override val deprecated: Boolean
+) : MetaModelElement
 
 data class Property(
     override val name: String,
     override val deprecated: Boolean
-) : Feature()
+) : Feature(name, deprecated)
 
 data class Link(
     override val name: String,
@@ -124,5 +124,5 @@ data class Link(
     val reference: Boolean,
     val cardinality: String,
     val targetType: String  // TODO  make reference to a Concept/Interface
-) : Feature()
+) : Feature(name, deprecated)
 

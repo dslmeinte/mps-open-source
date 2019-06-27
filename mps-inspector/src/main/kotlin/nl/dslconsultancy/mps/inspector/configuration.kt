@@ -63,7 +63,7 @@ fun ConfigurationItem.run() {
 
 
     if (usageAnalysisPath != null) {
-        Files.write(Paths.get(usageAnalysisPath), usage(mpsProjectOnDisk).asCsvLines())
+        Files.write(Paths.get(usageAnalysisPath), usage(mpsProjectOnDisk).asCsvLines(mpsProjectOnDisk))
         println("wrote usage analysis to '$usageAnalysisPath'")
     }
 

@@ -7,7 +7,9 @@ import java.util.stream.Stream
 
 fun Iterable<String>.isSorted(): Boolean = zip(drop(1)).all { it.first <= it.second }
 
+
 fun <T> Stream<T>.asList(): List<T> = collect(Collectors.toList())
+
 
 fun String.lastSection(ch: Char): String {
     val index = lastIndexOf(ch)
@@ -18,9 +20,10 @@ fun String.lastSection(): String = lastSection('.')
 
 fun Path.lastSection(): String = toString().lastSection(File.separatorChar)
 
-fun Iterable<String>.withHeader(header: String): Iterable<String> = listOf(header, *toList().toTypedArray())
 
 fun csvRowOf(vararg items: Any): String = items.joinToString(",")
+
+fun Iterable<String>.asCsvRow(): String = joinToString(",")
 
 
 typealias CountingMap<T> = Map<T, Int>

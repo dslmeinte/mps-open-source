@@ -2,7 +2,6 @@ package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.util.asList
 import nl.dslconsultancy.mps.inspector.util.csvRowOf
-import nl.dslconsultancy.mps.inspector.util.withHeader
 import nl.dslconsultancy.mps.inspector.xml.languageXmlFromDisk
 import java.nio.file.Files
 import java.nio.file.Path
@@ -12,10 +11,11 @@ data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Langua
 
 
 fun mpsProjectFromDisk(mpsProject: Path): MpsProjectOnDisk {
+    Sequence { Files.walk(mpsProject).iterator() }
     val mpsFiles = Files.walk(mpsProject)
+        .asList()
         .filter { mpsFileType(it) != MpsFileType.None }
         .sorted()
-        .asList()
     return MpsProjectOnDisk(
         mpsFiles,
         mpsFiles.filter { mpsFileType(it) == MpsFileType.Language }.map { languageXmlFromDisk(it) }
@@ -49,5 +49,5 @@ fun isStructureModel(path: Path) =
 
 
 fun MpsProjectOnDisk.languageReportAsCsvLines() =
-        languages.sortedBy { it.name }.map { csvRowOf(it.name, it.languageVersion, it.uuid) }.withHeader(csvRowOf("\"language name\"", "version", "uuid"))
+    listOf(csvRowOf("\"language name\"", "version", "uuid")) + languages.sortedBy { it.name }.map { csvRowOf(it.name, it.languageVersion, it.uuid) }
 
