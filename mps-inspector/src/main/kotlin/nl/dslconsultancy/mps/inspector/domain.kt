@@ -37,7 +37,13 @@ fun Language.structureModelPath(): Path = path.parent.resolve("models").resolve(
 
 fun Language.structure(): Structure {
     if (cachedStructure == null) {
-        cachedStructure = modelXmlFromDisk(structureModelPath()).asStructure()
+        try {
+            cachedStructure = modelXmlFromDisk(structureModelPath()).asStructure()
+        } catch (e: Exception) {
+            System.err.println("could not read structure model XML file for language '$name'; due to:")
+            System.err.println(e.message)
+            e.printStackTrace(System.err)
+        }
     }
     return cachedStructure!!
 }

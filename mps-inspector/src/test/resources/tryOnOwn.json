@@ -14,6 +14,18 @@
     {
       "languageName": "JsonSchema",
       "generationPath": "src/generated"
+    },
+    {
+      "languageName": "WSDL",
+      "generationPath": "src/generated"
+    },
+    {
+      "languageName": "XSD",
+      "generationPath": "src/generated"
+    },
+    {
+      "languageName": "XmlWithExtension",
+      "generationPath": "src/generated"
     }
   ]
 }

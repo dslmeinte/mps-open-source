@@ -160,7 +160,7 @@ fun modelXmlWithoutNodesFromDisk(path: Path): ModelXmlWithoutNodes = xmlFromDisk
 
 fun ModelXml.metaConcepts(): List<MetaConceptXml> = registry?.languages?.flatMap { it.metaConcepts } ?: emptyList()
 
-fun Iterable<MetaConceptXml>.named(name: String): MetaConceptXml = single { it.name.lastSection() == name }
+fun Iterable<MetaConceptXml>.named(name: String): MetaConceptXml? = firstOrNull { it.name.lastSection() == name }
 
 fun Iterable<MetaConceptXml>.byIndex(index: String): MetaConceptXml = single { it.index == index }
 
