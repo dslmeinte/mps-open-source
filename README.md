@@ -41,7 +41,7 @@ These language serve as a slight abstraction of WSDL, resp, XSD.
 The XmlWithExtension is an extension of the XML language built into MPS, that allows to specify an extension -such as `.wsdl` or `.xsd`- for an XML file.
 
 
-## TODOs
+### TODOs w.r.t. languages
 
 Somewhat in order of rather shallowly descending importance:
 
@@ -50,4 +50,10 @@ Somewhat in order of rather shallowly descending importance:
 * Implement being able to validate a JSON model with/against a JSON Schema model.
 * Implement constraints/validations such as name validity in the languages.
 * Avoid having to use the Inspector for input (e.g., 2 occurrences in the XSD language).
+
+
+## MPS Inspector
+
+The MPS Inspector is a commandline tool meant for use in conjunction with [JetBrains' MPS](https://www.jetbrains.com/mps/), working directly on MPS project files.
+For further information: [see here](./mps-inspector/README.md).
 

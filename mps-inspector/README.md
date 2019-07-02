@@ -1,6 +1,6 @@
 # README
 
-The MPS Inspector is a tool meant for use in conjunction with [JetBrains' MPS](https://www.jetbrains.com/mps/).
+The MPS Inspector is a commandline tool meant for use in conjunction with [JetBrains' MPS](https://www.jetbrains.com/mps/), working directly on MPS project files.
 It works on an MPS project, and can perform various maintenance functions on MPS XML files - such files have extension `.mpl`, `.msd`, or `.mps`.
 (It relies heavily on the assumption that the standard persistence strategy is used.)
 
