@@ -173,7 +173,7 @@ fun NodeXml.theseChildren(featureDecl: MetaFeatureXml?): Iterable<NodeXml> =
     if (featureDecl == null) emptyList() else children.filter { it.role == featureDecl.index }
 
 fun NodeXml.thisReference(featureDecl: MetaFeatureXml?): ReferenceXml? =
-    if (featureDecl == null) null else references.filter { it.role == featureDecl.index }[0]
+    if (featureDecl == null) null else references.filter { it.role == featureDecl.index }.getOrNull(0)
 
 
 // primarily intended for memoising: {@code memois.of(src to dst()).apply { ... }}
