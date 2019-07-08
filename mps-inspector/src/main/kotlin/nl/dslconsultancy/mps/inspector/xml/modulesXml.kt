@@ -7,6 +7,7 @@ import nl.dslconsultancy.mps.inspector.MpsProject
 import nl.dslconsultancy.mps.inspector.render
 import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil.writeXml
 import nl.dslconsultancy.mps.inspector.util.JacksonXmlUtil.xmlFromDisk
+import nl.dslconsultancy.mps.inspector.util.div
 import nl.dslconsultancy.mps.inspector.util.isSorted
 import nl.dslconsultancy.mps.inspector.util.lastSection
 import java.nio.file.Path
@@ -73,5 +74,5 @@ fun processModulesXml(mpsProjectPath: Path, sortModules: Boolean): MpsProject {
     return mpsProject
 }
 
-fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath.resolve(".mps").resolve("modules.xml")
+fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath/".mps"/"modules.xml"
 

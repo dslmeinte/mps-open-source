@@ -3,6 +3,7 @@ package nl.dslconsultancy.mps.inspector
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type
 import com.fasterxml.jackson.annotation.JsonTypeInfo
+import nl.dslconsultancy.mps.inspector.util.div
 import nl.dslconsultancy.mps.inspector.xml.ProjectModule
 import nl.dslconsultancy.mps.inspector.xml.asStructure
 import nl.dslconsultancy.mps.inspector.xml.modelXmlFromDisk
@@ -33,7 +34,7 @@ data class Dependency(
 )
 
 
-fun Language.structureModelPath(): Path = path.parent.resolve("models").resolve("structure.mps")
+fun Language.structureModelPath(): Path = path.parent/"models"/"structure.mps"
 
 fun Language.structure(): Structure {
     if (cachedStructure == null) {

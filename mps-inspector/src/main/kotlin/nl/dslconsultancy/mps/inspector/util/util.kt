@@ -21,6 +21,11 @@ fun String.lastSection(): String = lastSection('.')
 fun Path.lastSection(): String = toString().lastSection(File.separatorChar)
 
 
+// syntactic sugar for paths:
+operator fun Path.div(other: Path): Path = resolve(other)
+operator fun Path.div(other: String): Path = resolve(other)
+
+
 fun csvRowOf(vararg items: Any): String = items.joinToString(",")
 
 fun Iterable<String>.asCsvRow(): String = joinToString(",")

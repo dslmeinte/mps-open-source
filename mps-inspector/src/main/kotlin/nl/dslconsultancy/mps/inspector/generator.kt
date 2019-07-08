@@ -2,6 +2,7 @@ package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.util.JacksonJsonUtil.writeJson
 import nl.dslconsultancy.mps.inspector.util.csvRowOf
+import nl.dslconsultancy.mps.inspector.util.div
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -51,10 +52,10 @@ fun GenerateFromStructure.run(mpsProjectOnDisk: MpsProjectOnDisk) {
     }
     val structure = language.structure()
     val genPath = Paths.get(generationPath)
-    writeJson(structure, genPath.resolve("export-${language.name}.json"))
-    Files.write(genPath.resolve("kotlin-${language.name}.kt"), generateKotlinFor(structure))
+    writeJson(structure, genPath/"export-${language.name}.json")
+    Files.write(genPath/"kotlin-${language.name}.kt", generateKotlinFor(structure))
     Files.write(
-        genPath.resolve("structure-${language.name}.csv"),
+        genPath/"structure-${language.name}.csv",
         listOf(csvRowOf("\"concept[#feature]\"", "deprecated")) + generateCsvFor(structure).sorted()
     )
     println("wrote \"stuff\" generated for structure of '${language.name}' to '$genPath'")
