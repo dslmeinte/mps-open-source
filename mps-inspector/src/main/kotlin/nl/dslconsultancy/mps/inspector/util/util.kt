@@ -36,8 +36,8 @@ typealias CountingMap<T> = Map<T, Int>
 fun <T> CountingMap<T>.combine(other: CountingMap<T>): CountingMap<T> {
     val newMap = hashMapOf<T, Int>()
     toMap(newMap)
-    other.entries.forEach {
-        newMap += it.key to ((this[it.key] ?: 0) + it.value)
+    other.entries.forEach { (key, value) ->
+        newMap += key to ((this[key] ?: 0) + value)
     }
     return newMap
 }

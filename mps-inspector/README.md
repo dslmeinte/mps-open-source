@@ -45,7 +45,9 @@ The usage analysis scans all MPS model XML files (regardless whether they'd actu
 The report is a comma-separated file, with the columns as follows:
 
 1. The fully-qualified name of a concept or a feature.
-2. The number of instances encountered over the whole project - can be 0.
+2. The number of instances encountered over the whole project.
+    This number can be 0, as the tallies are seeded with all concepts and all their features from languages that are used in models, and reside in the project.
+    This should help with determining whether language elements/features are actually used, as long as the languages used reside in the same project.
 3. Whether the concept or feature is marked `@Deprecated`, or a `?` if that couldn't be determined.
     If the latter occurs, it's most likely it came from a language that doesn't reside in the project, e.g. a built-in or deployed one.
 

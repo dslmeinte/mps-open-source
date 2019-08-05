@@ -51,9 +51,9 @@ fun IJsonValue.asJackson(): JsonNode? =
         is JsonBoolean -> if(value) BooleanNode.TRUE else BooleanNode.FALSE
         is IJsonValue.JsonNull -> NullNode.instance
         is JsonNumber -> DecimalNode(BigDecimal(value))
-        is JsonObject -> JacksonJsonUtil.jsonMapper.createObjectNode().also { pairs.forEach { pair ->
+        is JsonObject -> JacksonJsonUtil.jsonMapper.createObjectNode().also { pairs.forEach { (name, value) ->
             @Suppress("DEPRECATION")
-            it.put(pair.name, pair.value?.asJackson())
+            it.put(name, value?.asJackson())
         } }
         is JsonString -> TextNode(value)
     }
