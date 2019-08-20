@@ -41,8 +41,7 @@ fun mpsFileType(path: Path): MpsFileType {
 }
 
 private fun isNotAModelFile(path: Path) =
-    path.last().toString() == ".mps" || path.any { listOf("classes_gen", "source_gen").contains(it.toString()) }
-    // TODO  also filter out source_gen.caches?
+    path.last().toString() == ".mps" || path.any { listOf("classes_gen", "source_gen", "source_gen.caches").contains(it.toString()) }
 
 fun isStructureModel(path: Path) =
         mpsFileType(path) == MpsFileType.Model && path.toList().takeLast(2) == listOf("models", "structure")

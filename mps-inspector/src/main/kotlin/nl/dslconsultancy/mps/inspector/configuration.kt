@@ -47,6 +47,7 @@ fun ConfigurationItem.run() {
             println("wrote language version report to '${languageVersions.reportPath}'")
         }
         if (languageVersions.checkMinus1sInModels == true) {
+            var nrFound = 0
             mpsProjectOnDisk.mpsFiles
                 .filter { mpsFileType(it) == MpsFileType.Model }
                 .forEach {
@@ -54,10 +55,11 @@ fun ConfigurationItem.run() {
                     if (modelXml.dependencies != null) {
                         if (modelXml.dependencies!!.importedLanguages.any { il -> il.version == -1 }) {
                             println("'$it' relies on at least one language with version -1")
+                            nrFound++
                         }
                     }
                 }
-            println("checked for occurrences of language version -1 in models")
+            println("checked for occurrences of language version -1 in models: found $nrFound")
         }
     }
 

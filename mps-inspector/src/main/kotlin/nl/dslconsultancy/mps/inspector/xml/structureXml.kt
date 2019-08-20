@@ -31,6 +31,15 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
     val abstractConceptDeclaration = metaConcepts.named("AbstractConceptDeclaration")!!
     val iNamedConcept = metaConcepts.named("INamedConcept")!!
 
+    fun NodeXml.features() = listOf(
+        this.theseChildren(abstractConceptDeclaration.children.named("propertyDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature },
+        this.theseChildren(abstractConceptDeclaration.children.named("linkDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature }
+    ).flatten()
+
+    fun Iterable<NodeXml>.asImplements() = mapNotNull {
+        it.thisReference(metaConcepts.named("InterfaceConceptReference")?.references?.named("intfc"))?.resolve
+    }
+
     return when (metaConcept.name.lastSection()) {
         "ConceptDeclaration" -> {
             val conceptDeclaration = metaConcepts.named("ConceptDeclaration")!!
@@ -43,15 +52,8 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
                 deprecated = isDeprecated()
             )).apply {
                 extends = nodeXml.thisReference(conceptDeclaration.references.named("extends"))?.resolve
-                implements = nodeXml.theseChildren(conceptDeclaration.children.named("implements")).mapNotNull {
-                    it.thisReference(
-                        metaConcepts.named("InterfaceConceptReference")?.references?.named("intfc")
-                    )?.resolve
-                }
-                features = listOf(
-                    nodeXml.theseChildren(abstractConceptDeclaration.children.named("propertyDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature },
-                    nodeXml.theseChildren(abstractConceptDeclaration.children.named("linkDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature }
-                ).flatten()
+                implements = nodeXml.theseChildren(conceptDeclaration.children.named("implements")).asImplements()
+                features = nodeXml.features()
             }
         }
         "InterfaceConceptDeclaration" -> memois.of(nodeXml to Concept(
@@ -62,15 +64,8 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
             shortDescription = nodeXml.thisProperty(abstractConceptDeclaration.properties.named("conceptShortDescription")),
             deprecated = isDeprecated()
         )).apply {
-            implements = nodeXml.theseChildren(metaConcepts.named("InterfaceConceptDeclaration")?.children?.named("extends")).mapNotNull {
-                it.thisReference(
-                    metaConcepts.named("InterfaceConceptReference")?.references?.named("intfc")
-                )?.resolve
-            }
-            features = listOf(
-                nodeXml.theseChildren(abstractConceptDeclaration.children.named("propertyDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature },
-                nodeXml.theseChildren(abstractConceptDeclaration.children.named("linkDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature }
-            ).flatten()
+            implements = nodeXml.theseChildren(metaConcepts.named("InterfaceConceptDeclaration")?.children?.named("extends")).asImplements()
+            features = nodeXml.features()
         }
         "LinkDeclaration" -> {
             val linkDeclaration = metaConcepts.named("LinkDeclaration")!!
@@ -86,11 +81,9 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
             name = nodeXml.thisProperty(iNamedConcept.properties.named("name"))!!,
             deprecated = isDeprecated()
         ))
-        else -> throw Error("concept without Kotlin class: ${metaConcept.name}")
+        else -> throw Error("no Kotlin class for concept ${metaConcept.name}")
     }
 }
-
-// TODO  DRY w.r.t. Concept now capturing both "real" and interface concepts
 
 /*
  * Note: a lot of this should be generatable from a structure-model for the Structure language (relying on the meta-circularity of the MPS code base),

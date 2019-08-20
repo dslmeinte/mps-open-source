@@ -34,12 +34,10 @@ data class Dependency(
 )
 
 
-fun Language.structureModelPath(): Path = path.parent/"models"/"structure.mps"
-
 fun Language.structure(): Structure {
     if (cachedStructure == null) {
         try {
-            cachedStructure = modelXmlFromDisk(structureModelPath()).asStructure()
+            cachedStructure = modelXmlFromDisk(path.parent/"models"/"structure.mps").asStructure()
         } catch (e: Exception) {
             System.err.println("could not read structure model XML file for language '$name'; due to:")
             System.err.println(e.message)
@@ -84,8 +82,8 @@ data class Concept(
     val alias: String?,
     val shortDescription: String?,
     override val deprecated: Boolean,
-    var extends: String? = null,   // TODO  make reference to Concept, but make sure it also serializes without infinite recursion
-    var implements: Iterable<String> = emptyList(),   // TODO  make references to Interface
+    var extends: String? = null,   // TODO  make reference to Concept, but make sure it also deserializes without infinite recursion
+    var implements: Iterable<String> = emptyList(),   // TODO  make references to Concept with isInterface == true
     override var features: Iterable<Feature> = emptyList()
 ) : StructuralElement()
 

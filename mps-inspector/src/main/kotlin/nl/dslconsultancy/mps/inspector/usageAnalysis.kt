@@ -71,7 +71,9 @@ private fun Map.Entry<String, Int>.asRow(languages: List<Language>): Iterable<St
     val index = parts[0].lastIndexOf('.')
     val languageName = parts[0].substring(0, index)
     val elementName = parts[0].substring(index + 1)
-    val elements = languages.filter { l -> l.name == languageName }.flatMap { l -> l.structure().elements.filter { e -> e.name == elementName } }
+    val elements = languages
+        .filter { l -> l.name == languageName }
+        .flatMap { l -> l.structure().elements.filter { e -> e.name == elementName } }
     if (elements.isEmpty()) {
         return listOf(key, value.toString(), "?")
     }
