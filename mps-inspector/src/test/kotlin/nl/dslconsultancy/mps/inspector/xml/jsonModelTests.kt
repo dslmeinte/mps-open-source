@@ -15,30 +15,30 @@ private fun NodeXml.fromXml(concepts: List<MetaConceptXml>, memois: Map<String, 
     val concept = concepts.byIndex(nodeXml.concept)
     return when (concept.name.lastSection()) {
         "JsonArray" -> memois.of(nodeXml to JsonArray()).apply {
-            items = nodeXml.theseChildren(concepts.named("JsonArray")!!.children.named("items")).map { it.fromXml(concepts, memois) as IJsonValue }
+            items = nodeXml.theseChildNodes(concepts["JsonArray"].children["items"]).map { it.fromXml(concepts, memois) as IJsonValue }
         }
         "JsonBoolean" -> memois.of(nodeXml to JsonBoolean(
-            value = nodeXml.thisProperty(concepts.named("JsonBoolean")!!.properties.named("value")) == "true"
+            value = nodeXml.thisPropertySetting(concepts["JsonBoolean"].properties["value"]) == "true"
         ))
         "JsonFile" -> memois.of(nodeXml to JsonFile(
-            name = nodeXml.thisProperty(concepts.named("INamedConcept")!!.properties.named("name"))!!
+            name = nodeXml.thisPropertySetting(concepts["INamedConcept"].properties["name"])!!
         )).apply {
-            contents = nodeXml.theseChildren(concepts.named("JsonFile")!!.children.named("contents")).firstOrNull()?.fromXml(concepts, memois) as IJsonValue
+            contents = nodeXml.theseChildNodes(concepts["JsonFile"].children["contents"]).firstOrNull()?.fromXml(concepts, memois) as IJsonValue
         }
         "JsonNull" -> memois.of(nodeXml to IJsonValue.JsonNull)
         "JsonNumber" -> memois.of(nodeXml to JsonNumber(
-            value = nodeXml.thisProperty(concepts.named("JsonNumber")!!.properties.named("value"))!!
+            value = nodeXml.thisPropertySetting(concepts["JsonNumber"].properties["value"])!!
         ))
         "JsonObject" -> memois.of(nodeXml to JsonObject()).apply {
-            pairs = nodeXml.theseChildren(concepts.named("JsonObject")!!.children.named("pairs")).map { it.fromXml(concepts, memois) as JsonPair }
+            pairs = nodeXml.theseChildNodes(concepts["JsonObject"].children["pairs"]).map { it.fromXml(concepts, memois) as JsonPair }
         }
         "JsonPair" -> memois.of(nodeXml to JsonPair(
-                name = nodeXml.thisProperty(concepts.named("INamedConcept")!!.properties.named("name"))!!
+                name = nodeXml.thisPropertySetting(concepts["INamedConcept"].properties["name"])!!
             )).apply {
-            value = nodeXml.theseChildren(concepts.named("JsonPair")!!.children.named("value")).firstOrNull()?.fromXml(concepts, memois) as IJsonValue
+            value = nodeXml.theseChildNodes(concepts["JsonPair"].children["value"]).firstOrNull()?.fromXml(concepts, memois) as IJsonValue
         }
         "JsonString" -> memois.of(nodeXml to JsonString(
-            value = nodeXml.thisProperty(concepts.named("JsonString")!!.properties.named("value"))!!
+            value = nodeXml.thisPropertySetting(concepts["JsonString"].properties["value"])!!
         ))
         else -> throw Error("concept without Kotlin class: ${concept.name}")
     }

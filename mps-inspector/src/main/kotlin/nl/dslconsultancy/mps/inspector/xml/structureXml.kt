@@ -23,62 +23,62 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
 
     fun isDeprecated(): Boolean =
         nodeXml
-            .theseChildren(metaConcepts.named("BaseConcept")?.children?.named("smodelAttribute"))
+            .theseChildNodes(metaConcepts.named("BaseConcept")?.children?.named("smodelAttribute"))
             .any { metaConcepts.byIndex(it.concept).name.endsWith("DeprecatedNodeAnnotation") }
 
     val metaConcept = metaConcepts.byIndex(nodeXml.concept)
 
-    val abstractConceptDeclaration = metaConcepts.named("AbstractConceptDeclaration")!!
-    val iNamedConcept = metaConcepts.named("INamedConcept")!!
+    val abstractConceptDeclaration = metaConcepts["AbstractConceptDeclaration"]
+    val iNamedConcept = metaConcepts["INamedConcept"]
 
     fun NodeXml.features() = listOf(
-        this.theseChildren(abstractConceptDeclaration.children.named("propertyDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature },
-        this.theseChildren(abstractConceptDeclaration.children.named("linkDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature }
+        this.theseChildNodes(abstractConceptDeclaration.children["propertyDeclaration"]).map { it.fromXml(metaConcepts, memois) as Feature },
+        this.theseChildNodes(abstractConceptDeclaration.children.named("linkDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature }
     ).flatten()
 
     fun Iterable<NodeXml>.asImplements() = mapNotNull {
-        it.thisReference(metaConcepts.named("InterfaceConceptReference")?.references?.named("intfc"))?.resolve
+        it.thisReferenceSetting(metaConcepts.named("InterfaceConceptReference")?.references?.named("intfc"))?.resolve
     }
 
     return when (metaConcept.name.lastSection()) {
         "ConceptDeclaration" -> {
-            val conceptDeclaration = metaConcepts.named("ConceptDeclaration")!!
+            val conceptDeclaration = metaConcepts["ConceptDeclaration"]
             memois.of(nodeXml to Concept(
-                name = nodeXml.thisProperty(iNamedConcept.properties.named("name"))!!,
+                name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
                 isInterface = false,
-                rootable = nodeXml.thisProperty(conceptDeclaration.properties.named("rootable")).orEmpty() == "true",
-                alias = nodeXml.thisProperty(abstractConceptDeclaration.properties.named("conceptAlias")),
-                shortDescription = nodeXml.thisProperty(abstractConceptDeclaration.properties.named("conceptShortDescription")),
+                rootable = nodeXml.thisPropertySetting(conceptDeclaration.properties["rootable"]).orEmpty() == "true",
+                alias = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties["conceptAlias"]),
+                shortDescription = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties.named("conceptShortDescription")),
                 deprecated = isDeprecated()
             )).apply {
-                extends = nodeXml.thisReference(conceptDeclaration.references.named("extends"))?.resolve
-                implements = nodeXml.theseChildren(conceptDeclaration.children.named("implements")).asImplements()
+                extends = nodeXml.thisReferenceSetting(conceptDeclaration.references.named("extends"))?.resolve
+                implements = nodeXml.theseChildNodes(conceptDeclaration.children.named("implements")).asImplements()
                 features = nodeXml.features()
             }
         }
         "InterfaceConceptDeclaration" -> memois.of(nodeXml to Concept(
-            name = nodeXml.thisProperty(iNamedConcept.properties.named("name"))!!,
+            name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
             isInterface = true,
             rootable = false,
-            alias = nodeXml.thisProperty(abstractConceptDeclaration.properties.named("conceptAlias")),
-            shortDescription = nodeXml.thisProperty(abstractConceptDeclaration.properties.named("conceptShortDescription")),
+            alias = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties["conceptAlias"]),
+            shortDescription = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties.named("conceptShortDescription")),
             deprecated = isDeprecated()
         )).apply {
-            implements = nodeXml.theseChildren(metaConcepts.named("InterfaceConceptDeclaration")?.children?.named("extends")).asImplements()
+            implements = nodeXml.theseChildNodes(metaConcepts.named("InterfaceConceptDeclaration")?.children?.named("extends")).asImplements()
             features = nodeXml.features()
         }
         "LinkDeclaration" -> {
-            val linkDeclaration = metaConcepts.named("LinkDeclaration")!!
+            val linkDeclaration = metaConcepts["LinkDeclaration"]
             memois.of(nodeXml to Link(
-                name = thisProperty(linkDeclaration.properties.named("role"))!!,
+                name = thisPropertySetting(linkDeclaration.properties["role"])!!,
                 deprecated = isDeprecated(),
-                reference = thisProperty(linkDeclaration.properties.named("metaClass"))!! == "reference",
-                cardinality = thisProperty(linkDeclaration.properties.named("sourceCardinality")) ?: "0..1",
-                targetType = thisReference(linkDeclaration.references.named("target"))!!.resolve!!
+                reference = thisPropertySetting(linkDeclaration.properties["metaClass"])!! == "reference",
+                cardinality = thisPropertySetting(linkDeclaration.properties.named("sourceCardinality")) ?: "0..1",
+                targetType = thisReferenceSetting(linkDeclaration.references["target"])!!.resolve!!
             ))
         }
         "PropertyDeclaration" -> memois.of(nodeXml to Property(
-            name = nodeXml.thisProperty(iNamedConcept.properties.named("name"))!!,
+            name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
             deprecated = isDeprecated()
         ))
         else -> throw Error("no Kotlin class for concept ${metaConcept.name}")

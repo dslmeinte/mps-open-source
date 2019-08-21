@@ -52,7 +52,10 @@ private fun usage(modelXml: ModelXml): CountingMap<String> {
         .flatten()
         .groupingBy { it }
         .eachCount()
-        .map { (key, value) -> metaConcepts.featureByIndex(key).fullName().withoutStructurePathFragment() to value }.toMap(result)
+        .map { (key, value) ->
+            val featureByIndex = metaConcepts.featureByIndex(key)
+            "${featureByIndex.second.name.withoutStructurePathFragment()}#${featureByIndex.first.name}" to value
+        }.toMap(result)
 
     return result
 }

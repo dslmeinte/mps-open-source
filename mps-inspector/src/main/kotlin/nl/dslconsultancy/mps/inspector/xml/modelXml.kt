@@ -48,6 +48,10 @@ data class ImportedLanguage(
 
 )
 
+/**
+ * A registry of all used languages, and all used constructs of these.
+ * ("Used", as in: used at least in a model XML file.)
+ */
 data class RegistryXml(
 
     @set:JsonProperty("language")
@@ -55,6 +59,15 @@ data class RegistryXml(
 
 )
 
+
+/*
+ * Subsequent 3 data class having names of the form "Meta<X>Xml"
+ * to indicate they correspond to the meta-part of a model XML file.
+ */
+
+/**
+ * A definition of a language used in a model XML file.
+ */
 data class MetaLanguageDefXml(
 
     @set:JsonProperty("concept")
@@ -62,6 +75,9 @@ data class MetaLanguageDefXml(
 
 )
 
+/**
+ * A definition of a language construct (==concept, but can also be on the meta level of MPS itself).
+ */
 data class MetaConceptXml(
 
     @JacksonXmlProperty(isAttribute = true)
@@ -84,6 +100,9 @@ data class MetaConceptXml(
 
 )
 
+/**
+ * A definition of a feature (property, child, or reference) of a language construct.
+ */
 data class MetaFeatureXml(
 
     @JacksonXmlProperty(isAttribute = true)
@@ -110,17 +129,17 @@ data class NodeXml(
     val role: String?,
 
     @set:JsonProperty("property")
-    var properties: List<PropertyXml> = emptyList(),
+    var propertySettings: List<PropertySettingXml> = emptyList(),
 
     @set:JsonProperty("node")
-    var children: List<NodeXml> = emptyList(),
+    var childNodes: List<NodeXml> = emptyList(),
 
     @set:JsonProperty("ref")
-    var references: List<ReferenceXml> = emptyList()
+    var referenceSettings: List<ReferenceSettingXml> = emptyList()
 
 )
 
-data class PropertyXml(
+data class PropertySettingXml(
 
     @JacksonXmlProperty(isAttribute = true)
     val role: String,
@@ -130,7 +149,7 @@ data class PropertyXml(
 
 )
 
-data class ReferenceXml(
+data class ReferenceSettingXml(
 
     @JacksonXmlProperty(isAttribute = true)
     val role: String,
@@ -158,32 +177,41 @@ fun modelXmlFromDisk(path: Path): ModelXml = xmlFromDisk(path) { skippedPath, _ 
 fun modelXmlWithoutNodesFromDisk(path: Path): ModelXmlWithoutNodes = xmlFromDisk(path)
 
 
+/**
+ * The language constructs used in this model XML file.
+ */
 fun ModelXml.metaConcepts(): List<MetaConceptXml> = registry?.languages?.flatMap { it.metaConcepts } ?: emptyList()
 
 fun Iterable<MetaConceptXml>.named(name: String): MetaConceptXml? = firstOrNull { it.name.lastSection() == name }
+operator fun Iterable<MetaConceptXml>.get(name: String): MetaConceptXml = this.named(name)!!
 
 fun Iterable<MetaConceptXml>.byIndex(index: String): MetaConceptXml = single { it.index == index }
 
-fun Iterable<MetaFeatureXml>.named(name: String): MetaFeatureXml? = filter { it.name == name }.getOrNull(0)
-
-fun NodeXml.thisProperty(featureDecl: MetaFeatureXml?): String? =
-    if (featureDecl == null) null else properties.filter { it.role == featureDecl.index }.getOrNull(0)?.value
-
-fun NodeXml.theseChildren(featureDecl: MetaFeatureXml?): Iterable<NodeXml> =
-    if (featureDecl == null) emptyList() else children.filter { it.role == featureDecl.index }
-
-fun NodeXml.thisReference(featureDecl: MetaFeatureXml?): ReferenceXml? =
-    if (featureDecl == null) null else references.filter { it.role == featureDecl.index }.getOrNull(0)
+fun Iterable<MetaFeatureXml>.named(name: String): MetaFeatureXml? = firstOrNull { it.name == name }
+operator fun Iterable<MetaFeatureXml>.get(name: String): MetaFeatureXml = this.named(name)!!
 
 
-// primarily intended for memoising: {@code memois.of(src to dst()).apply { ... }}
+fun NodeXml.thisPropertySetting(featureDecl: MetaFeatureXml?): String? =
+    if (featureDecl == null) null else propertySettings.filter { it.role == featureDecl.index }.getOrNull(0)?.value
+
+fun NodeXml.theseChildNodes(featureDecl: MetaFeatureXml?): Iterable<NodeXml> =
+    if (featureDecl == null) emptyList() else childNodes.filter { it.role == featureDecl.index }
+
+fun NodeXml.thisReferenceSetting(featureDecl: MetaFeatureXml?): ReferenceSettingXml? =
+    if (featureDecl == null) null else referenceSettings.filter { it.role == featureDecl.index }.getOrNull(0)
+
+
+/**
+ * Intended for memoising.
+ * Usage: {@code memois.of(src to dst()).apply { ... }}
+ */
 fun <T> Map<String, Any>.of(keyValue: Pair<NodeXml, T>): T {
     plus(keyValue.first.id to keyValue.second)
     return keyValue.second
 }
 
 
-fun NodeXml.allNodes(): List<NodeXml> = listOf(this) + children.flatMap { it.allNodes() }
+fun NodeXml.allNodes(): List<NodeXml> = listOf(this) + childNodes.flatMap { it.allNodes() }
 
 
 private fun MetaConceptXml.featureByIndex(index: String): MetaFeatureXml? =
@@ -195,8 +223,6 @@ fun List<MetaConceptXml>.featureByIndex(index: String): Pair<MetaFeatureXml, Met
     val concept = find { it.featureByIndex(index) != null }
     return concept!!.featureByIndex(index)!! to concept
 }
-
-fun Pair<MetaFeatureXml, MetaConceptXml>.fullName(): String = "${second.name}#${first.name}"
 
 
 fun ModelXml.namesImportedLanguages(): List<String> =
