@@ -121,6 +121,7 @@
       <property role="IQ2ns" value="6653263982431758948" />
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="restriction" />
+      <property role="20lbJX" value="0..n" />
       <ref role="20lvS9" node="5Ll95tHJICX" resolve="XsdFacet" />
     </node>
   </node>
@@ -473,6 +474,31 @@
     </node>
     <node concept="PrWs8" id="zT7KcIBrwm" role="PzmwI">
       <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6GtTJsVQjWB">
+    <property role="EcuMT" value="7718579285918301991" />
+    <property role="3GE5qa" value="facets" />
+    <property role="TrG5h" value="XsdRangeEnd" />
+    <property role="34LRSv" value="max/min-Ex/Inclusive" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyi" id="6GtTJsVQjWC" role="1TKVEl">
+      <property role="IQ2nx" value="7718579285918301992" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="DmPLYxqw4O" role="1TKVEl">
+      <property role="IQ2nx" value="745019319228432692" />
+      <property role="TrG5h" value="max" />
+      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
+    </node>
+    <node concept="1TJgyi" id="6GtTJsVQjWE" role="1TKVEl">
+      <property role="IQ2nx" value="7718579285918301994" />
+      <property role="TrG5h" value="exclusive" />
+      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
+    </node>
+    <node concept="PrWs8" id="DmPLYxqwvD" role="PzmwI">
+      <ref role="PrY4T" node="5Ll95tHJICX" resolve="XsdFacet" />
     </node>
   </node>
 </model>

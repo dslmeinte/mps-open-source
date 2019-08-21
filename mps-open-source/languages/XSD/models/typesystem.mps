@@ -186,7 +186,7 @@
     </node>
   </node>
   <node concept="18kY7G" id="zT7KcIDm7m">
-    <property role="TrG5h" value="aSchemaShouldNotImportItselfDirectlyOrIndirectly" />
+    <property role="TrG5h" value="check_XsdImport" />
     <node concept="3clFbS" id="zT7KcIDm7n" role="18ibNy">
       <node concept="3cpWs8" id="zT7KcIE3_B" role="3cqZAp">
         <node concept="3cpWsn" id="zT7KcIE3_C" role="3cpWs9">
@@ -293,7 +293,7 @@
     </node>
   </node>
   <node concept="18kY7G" id="3UUH6AJY5GI">
-    <property role="TrG5h" value="aSchemaBodyMustSpecifyTechnicalTargets" />
+    <property role="TrG5h" value="check_XsdSchemaBody" />
     <node concept="3clFbS" id="3UUH6AJY5GJ" role="18ibNy">
       <node concept="3clFbJ" id="3UUH6AJZNoG" role="3cqZAp">
         <node concept="3clFbS" id="3UUH6AJZNoI" role="3clFbx">
