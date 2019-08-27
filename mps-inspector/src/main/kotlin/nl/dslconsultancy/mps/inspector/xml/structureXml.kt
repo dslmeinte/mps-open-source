@@ -36,8 +36,11 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
         this.theseChildNodes(abstractConceptDeclaration.children.named("linkDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature }
     ).flatten()
 
-    fun Iterable<NodeXml>.asImplements() = mapNotNull {
-        it.thisReferenceSetting(metaConcepts.named("InterfaceConceptReference")?.references?.named("intfc"))?.resolve
+    fun ReferenceSettingXml?.resolveConcept() = if (this?.node == null) null else nodeXml.model!!.findById(this.node)?.fromXml(metaConcepts, memois) as? Concept
+
+    fun Iterable<NodeXml>.asImplements(): List<Concept> {
+        val featureDecl = metaConcepts.named("InterfaceConceptReference")?.references?.named("intfc")
+        return mapNotNull {it.thisReferenceSetting(featureDecl).resolveConcept() }
     }
 
     return when (metaConcept.name.lastSection()) {
@@ -51,7 +54,7 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
                 shortDescription = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties.named("conceptShortDescription")),
                 deprecated = isDeprecated()
             )).apply {
-                extends = nodeXml.thisReferenceSetting(conceptDeclaration.references.named("extends"))?.resolve
+                extends = nodeXml.thisReferenceSetting(conceptDeclaration.references.named("extends")).resolveConcept()
                 implements = nodeXml.theseChildNodes(conceptDeclaration.children.named("implements")).asImplements()
                 features = nodeXml.features()
             }

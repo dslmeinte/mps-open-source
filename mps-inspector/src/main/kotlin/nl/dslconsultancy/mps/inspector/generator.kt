@@ -14,11 +14,11 @@ private fun StructuralElement.generateKotlinFor(): Iterable<String> =
             when {
                 isInterface -> listOf("interface $name")
                 else -> {
-                    val supers = superTypes().filter { it != "INamedConcept" }
+                    val supers = superTypes()
                     listOf(
                         "data class $name(",
                         features.filterIsInstance<Property>().joinToString(",\n") { "\t${it.name}: String" },
-                        ")" + (if (supers.isEmpty()) "" else " : " + supers.joinToString(", ")),
+                        ")" + (if (supers.isEmpty()) "" else " : " + supers.map { it.name }.joinToString(", ")),
                         ""
                     )
                 }
@@ -26,14 +26,8 @@ private fun StructuralElement.generateKotlinFor(): Iterable<String> =
         }
     }
 
-private fun Concept.superTypes(): List<String> {
-    val supers = ArrayList<String>()
-    if (extends != null && extends != "BaseConcept") {
-        supers.add(extends!!)
-    }
-    supers += implements
-    return supers
-}
+private fun Concept.superTypes(): List<Concept> =
+    (if (extends == null) emptyList() else listOf(extends!!)) + implements
 
 
 fun generateCsvFor(structure: Structure): Iterable<String> = structure.elements.flatMap { it.generateCsvFor() }

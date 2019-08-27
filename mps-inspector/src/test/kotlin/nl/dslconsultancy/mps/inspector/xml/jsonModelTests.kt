@@ -5,6 +5,7 @@ import nl.dslconsultancy.mps.inspector.util.lastSection
 import java.nio.file.Paths
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 private fun NodeXml.fromXml(concepts: List<MetaConceptXml>, memois: Map<String, Any>): Any {
     val nodeXml = this
@@ -74,6 +75,17 @@ class JsonModelTests {
         )
 
         println(jsonMapper.writeValueAsString(jsonModel.contents?.asJackson()))
+    }
+
+    @Test
+    fun `deserialize a structure model, and find a specific node in it`() {
+        val modelXml = modelXmlFromDisk(Paths.get("../mps-open-source/languages/JsonSchema/models/structure.mps"))
+        val id = "5uyaFvvEFAb"
+        assertEquals(id, modelXml.nodes[23].id)
+
+        val node = modelXml.findById(id)
+        assertNotNull(node)
+        assertEquals(id, node.id)
     }
 
 }

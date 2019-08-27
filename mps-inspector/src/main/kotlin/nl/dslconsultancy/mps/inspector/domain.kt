@@ -1,5 +1,7 @@
 package nl.dslconsultancy.mps.inspector
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type
 import com.fasterxml.jackson.annotation.JsonTypeInfo
@@ -61,7 +63,7 @@ interface MetaModelElement : Named {
     Type(Concept::class)
 )
 sealed class StructuralElement : MetaModelElement {
-    abstract var features: Iterable<Feature>
+    abstract val features: Iterable<Feature>
 }
 
 // TODO  also define enums and such, otherwise wouldn't need OO hierarchy
@@ -72,7 +74,7 @@ sealed class StructuralElement : MetaModelElement {
  */
 
 data class Structure(
-    var elements: Iterable<StructuralElement> = emptyList()
+    val elements: Iterable<StructuralElement> = emptyList()
 )
 
 data class Concept(
@@ -82,10 +84,19 @@ data class Concept(
     val alias: String?,
     val shortDescription: String?,
     override val deprecated: Boolean,
-    var extends: String? = null,   // TODO  make reference to Concept, but make sure it also deserializes without infinite recursion
-    var implements: Iterable<String> = emptyList(),   // TODO  make references to Concept with isInterface == true
+    @JsonIgnore
+    var extends: Concept? = null,
+    @JsonIgnore
+    var implements: Iterable<Concept> = emptyList(),
     override var features: Iterable<Feature> = emptyList()
-) : StructuralElement()
+) : StructuralElement() {
+
+    @JsonProperty("extends")
+    fun extendsForJson() = extends?.name
+
+    @JsonProperty("implements")
+    fun implementsForJson() = implements.map { it.name }
+}
 
 /*
  * The main differences between a concept and an interface concept is:

@@ -15,7 +15,6 @@ data class ModelXml(
     , val registry: RegistryXml?
 
     , @set:JsonProperty("node")
-//    @JsonManagedReference("model")
     var nodes: List<NodeXml> = emptyList()
 
 )
@@ -71,7 +70,8 @@ data class RegistryXml(
 fun modelXmlFromDisk(path: Path): ModelXml = xmlFromDisk(path) { skippedPath, _ ->
     println("could not read '$skippedPath' as MPS model XML: skipped")
     emptyModelXml
-}
+}.apply { this.nodes.forEach { it.populateCompositionRefs(null, this) } }
+
 
 /**
  * Reads the top-level and meta data parts of an MPS model XML file from the given path,
@@ -85,6 +85,10 @@ fun modelXmlWithoutNodesFromDisk(path: Path): ModelXmlWithoutNodes = xmlFromDisk
  */
 fun ModelXml.metaConcepts(): List<MetaConceptXml> = registry?.languages?.flatMap { it.metaConcepts } ?: emptyList()
 
+
 fun ModelXml.namesImportedLanguages(): List<String> =
     dependencies?.importedLanguages?.map { il -> il.name } ?: emptyList()
+
+
+fun ModelXml.findById(id: String): NodeXml? = this.nodes.findById(id)
 

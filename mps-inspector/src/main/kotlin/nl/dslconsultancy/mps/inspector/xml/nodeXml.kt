@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
 data class NodeXml(
 
-    @JacksonXmlProperty(isAttribute = true)
+      @JacksonXmlProperty(isAttribute = true)
     val concept: String
 
     , @JacksonXmlProperty(isAttribute = true)
@@ -18,19 +18,18 @@ data class NodeXml(
     var propertySettings: List<PropertySettingXml> = emptyList()
 
     , @set:JsonProperty("node")
-//    @JsonManagedReference("nodes")
     var childNodes: List<NodeXml> = emptyList()
 
     , @set:JsonProperty("ref")
     var referenceSettings: List<ReferenceSettingXml> = emptyList()
 
-//    , @JsonBackReference("nodes")
-//    val parent: NodeXml?
+    , var parent: NodeXml?
 
-//    , @JsonBackReference("model")
-//    val model: ModelXml
+    , var model: ModelXml?
 
-)
+) {
+    override fun toString() = "Node(id=$id)"
+}
 
 data class PropertySettingXml(
 
@@ -50,13 +49,22 @@ data class ReferenceSettingXml(
     , @JacksonXmlProperty(isAttribute = true)
     val to: String?
 
+    /** The id of a node within this model (?). */
     , @JacksonXmlProperty(isAttribute = true)
     val node: String?
 
+    /** A text rendering of the reference. */
     , @JacksonXmlProperty(isAttribute = true)
     val resolve: String?
 
 )
+
+
+fun NodeXml.populateCompositionRefs(parent: NodeXml?, model: ModelXml) {
+    this.parent = parent
+    this.model = model
+    this.childNodes.forEach { it.populateCompositionRefs(this, model) }
+}
 
 
 fun NodeXml.thisPropertySetting(featureDecl: MetaFeatureXml?): String? =
@@ -69,7 +77,7 @@ fun NodeXml.thisReferenceSetting(featureDecl: MetaFeatureXml?): ReferenceSetting
     if (featureDecl == null) null else referenceSettings.filter { it.role == featureDecl.index }.getOrNull(0)
 
 
-fun Iterable<NodeXml>.findById(id: String): NodeXml? = this.mapNotNull { it.findById(id) }.first()
+fun Iterable<NodeXml>.findById(id: String): NodeXml? = this.mapNotNull { it.findById(id) }.firstOrNull()
 
 fun NodeXml.findById(id: String): NodeXml? = if (this.id == id) this else this.childNodes.findById(id)
 
