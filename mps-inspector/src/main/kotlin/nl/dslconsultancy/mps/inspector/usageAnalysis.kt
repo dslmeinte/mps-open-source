@@ -16,7 +16,7 @@ fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap<String> {
     val pathsModelFiles = mpsProjectOnDisk.mpsFiles.filter { mpsFileType(it) == MpsFileType.Model }
     val modelFiles = pathsModelFiles.map { modelXmlFromDisk(it) }
 
-    // provide 0 counts for all concepts and their features from own, imported languages; not just (non-0 counts for) the used ones:
+    // provide 0 counts for all concepts and their features from own, imported languages, not just (non-0 counts for) the used ones:
     val namesAllImportedLanguages = modelFiles.flatMap { mf -> mf.namesImportedLanguages() }.distinct()
     val namesOwnImportedLanguages = mpsProjectOnDisk.languages.map { it.name }.intersect(namesAllImportedLanguages)
     val ownImportedLanguages = namesOwnImportedLanguages.flatMap { n -> mpsProjectOnDisk.languages.filter { l -> l.name == n } }

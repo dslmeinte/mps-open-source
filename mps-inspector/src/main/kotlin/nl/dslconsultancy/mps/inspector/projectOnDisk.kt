@@ -2,7 +2,7 @@ package nl.dslconsultancy.mps.inspector
 
 import nl.dslconsultancy.mps.inspector.util.asList
 import nl.dslconsultancy.mps.inspector.util.csvRowOf
-import nl.dslconsultancy.mps.inspector.xml.languageXmlFromDisk
+import nl.dslconsultancy.mps.inspector.xml.languageMetaDataXmlFromDisk
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -18,7 +18,7 @@ fun mpsProjectFromDisk(mpsProject: Path): MpsProjectOnDisk {
         .sorted()
     return MpsProjectOnDisk(
         mpsFiles,
-        mpsFiles.filter { mpsFileType(it) == MpsFileType.Language }.map { languageXmlFromDisk(it) }
+        mpsFiles.filter { mpsFileType(it) == MpsFileType.Language }.map { languageMetaDataXmlFromDisk(it) }
     )
 }
 
