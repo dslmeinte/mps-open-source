@@ -281,6 +281,7 @@
       <concept id="1160600644654" name="jetbrains.mps.baseLanguage.collections.structure.ListCreatorWithInit" flags="nn" index="Tc6Ow" />
       <concept id="1160612413312" name="jetbrains.mps.baseLanguage.collections.structure.AddElementOperation" flags="nn" index="TSZUe" />
       <concept id="1201792049884" name="jetbrains.mps.baseLanguage.collections.structure.TranslateOperation" flags="nn" index="3goQfb" />
+      <concept id="1165530316231" name="jetbrains.mps.baseLanguage.collections.structure.IsEmptyOperation" flags="nn" index="1v1jN8" />
       <concept id="1225727723840" name="jetbrains.mps.baseLanguage.collections.structure.FindFirstOperation" flags="nn" index="1z4cxt" />
       <concept id="1202128969694" name="jetbrains.mps.baseLanguage.collections.structure.SelectOperation" flags="nn" index="3$u5V9" />
       <concept id="1172254888721" name="jetbrains.mps.baseLanguage.collections.structure.ContainsOperation" flags="nn" index="3JPx81" />
@@ -1346,26 +1347,46 @@
             <node concept="3cpWs6" id="zT7KcJgJ3c" role="3cqZAp">
               <node concept="3K4zz7" id="zT7KcJgNlA" role="3cqZAk">
                 <node concept="1rXfSq" id="zT7KcJh0IZ" role="3K4GZi">
-                  <ref role="37wK5l" node="zT7KcJfKUk" resolve="minimumSerialisationLength" />
-                  <node concept="2OqwBi" id="zT7KcJh1sV" role="37wK5m">
-                    <node concept="Jnkvi" id="zT7KcJh1jW" role="2Oq$k0">
-                      <ref role="1M0zk5" node="zT7KcJgGED" resolve="simpleType" />
+                  <ref role="37wK5l" node="zT7KcJhOTI" resolve="min" />
+                  <node concept="2OqwBi" id="5xFSyvKQNFw" role="37wK5m">
+                    <node concept="2OqwBi" id="zT7KcJh1sV" role="2Oq$k0">
+                      <node concept="Jnkvi" id="zT7KcJh1jW" role="2Oq$k0">
+                        <ref role="1M0zk5" node="zT7KcJgGED" resolve="simpleType" />
+                      </node>
+                      <node concept="3Tsc0h" id="5xFSyvKQGkN" role="2OqNvi">
+                        <ref role="3TtcxE" to="irkh:5Ll95tHJID$" resolve="restriction" />
+                      </node>
                     </node>
-                    <node concept="3TrEf2" id="zT7KcJh2qv" role="2OqNvi">
-                      <ref role="3Tt5mk" to="irkh:5Ll95tHJID$" resolve="restriction" />
+                    <node concept="3$u5V9" id="5xFSyvKQPVs" role="2OqNvi">
+                      <node concept="1bVj0M" id="5xFSyvKQPVu" role="23t8la">
+                        <node concept="3clFbS" id="5xFSyvKQPVv" role="1bW5cS">
+                          <node concept="3clFbF" id="5xFSyvKQQsH" role="3cqZAp">
+                            <node concept="1rXfSq" id="5xFSyvKQQsG" role="3clFbG">
+                              <ref role="37wK5l" node="zT7KcJfKUk" resolve="minimumSerialisationLength" />
+                              <node concept="37vLTw" id="5xFSyvKQRGD" role="37wK5m">
+                                <ref role="3cqZAo" node="5xFSyvKQPVw" resolve="it" />
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                        <node concept="Rh6nW" id="5xFSyvKQPVw" role="1bW2Oz">
+                          <property role="TrG5h" value="it" />
+                          <node concept="2jxLKc" id="5xFSyvKQPVx" role="1tU5fm" />
+                        </node>
+                      </node>
                     </node>
                   </node>
                 </node>
-                <node concept="3clFbC" id="zT7KcJgM3P" role="3K4Cdx">
-                  <node concept="10Nm6u" id="zT7KcJgMIk" role="3uHU7w" />
-                  <node concept="2OqwBi" id="zT7KcJgKgS" role="3uHU7B">
+                <node concept="2OqwBi" id="5xFSyvKQFkP" role="3K4Cdx">
+                  <node concept="2OqwBi" id="zT7KcJgKgS" role="2Oq$k0">
                     <node concept="Jnkvi" id="zT7KcJgJ_m" role="2Oq$k0">
                       <ref role="1M0zk5" node="zT7KcJgGED" resolve="simpleType" />
                     </node>
-                    <node concept="3TrEf2" id="zT7KcJgLby" role="2OqNvi">
-                      <ref role="3Tt5mk" to="irkh:5Ll95tHJID$" resolve="restriction" />
+                    <node concept="3Tsc0h" id="5xFSyvKQGjL" role="2OqNvi">
+                      <ref role="3TtcxE" to="irkh:5Ll95tHJID$" resolve="restriction" />
                     </node>
                   </node>
+                  <node concept="1v1jN8" id="5xFSyvKQIQh" role="2OqNvi" />
                 </node>
                 <node concept="1rXfSq" id="zT7KcJgRIX" role="3K4E3e">
                   <ref role="37wK5l" node="zT7KcJgT0o" resolve="minimumSerialisationLengthOfDataType" />
