@@ -740,27 +740,21 @@
   </node>
   <node concept="24kQdi" id="2hQb6UNyLAk">
     <ref role="1XX52x" to="64hz:2hQb6UNyLAf" resolve="JsonReferableRef" />
-    <node concept="3EZMnI" id="6$03NoGjSnv" role="2wV5jI">
-      <node concept="2iRfu4" id="6$03NoGjSnw" role="2iSdaV" />
-      <node concept="3F0ifn" id="6$03NoGjSnz" role="3EZMnx">
-        <property role="3F0ifm" value="→" />
-      </node>
-      <node concept="1iCGBv" id="2hQb6UNyLAv" role="3EZMnx">
-        <ref role="1NtTu8" to="64hz:2hQb6UNyLAi" resolve="ref" />
-        <ref role="1k5W1q" node="2hQb6UNwAla" resolve="Reference" />
-        <node concept="1sVBvm" id="2hQb6UNyLAx" role="1sWHZn">
-          <node concept="3F0A7n" id="2hQb6UNyTuU" role="2wV5jI">
-            <property role="1Intyy" value="true" />
-            <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
-          </node>
-        </node>
-      </node>
-    </node>
     <node concept="3EZMnI" id="6$03NoGksTr" role="6VMZX">
       <node concept="2iRkQZ" id="6$03NoGksTs" role="2iSdaV" />
       <node concept="3F0ifn" id="6$03NoGksTv" role="3EZMnx">
         <property role="3F0ifm" value="A reference to the mentioned type." />
         <ref role="1k5W1q" node="6$03NoGkgKX" resolve="Documentation" />
+      </node>
+    </node>
+    <node concept="1iCGBv" id="2hQb6UNyLAv" role="2wV5jI">
+      <ref role="1k5W1q" node="2hQb6UNwAla" resolve="Reference" />
+      <ref role="1NtTu8" to="64hz:2hQb6UNyLAi" resolve="ref" />
+      <node concept="1sVBvm" id="2hQb6UNyLAx" role="1sWHZn">
+        <node concept="3F0A7n" id="2hQb6UNyTuU" role="2wV5jI">
+          <property role="1Intyy" value="true" />
+          <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+        </node>
       </node>
     </node>
   </node>
