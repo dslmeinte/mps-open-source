@@ -9,7 +9,10 @@ import nl.dslconsultancy.mps.inspector.util.div
 import nl.dslconsultancy.mps.inspector.xml.ProjectModule
 import nl.dslconsultancy.mps.inspector.xml.asStructure
 import nl.dslconsultancy.mps.inspector.xml.modelXmlFromDisk
+import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.attribute.BasicFileAttributes
+import java.util.function.BiPredicate
 
 data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
 // TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
@@ -22,11 +25,14 @@ interface Named {
 }
 
 data class Language(
+    /** Path to XML file with this language's meta and configuration data. */
     val path: Path,
     override val name: String,
     val uuid: String,
     val languageVersion: Int,
     val dependencies: Iterable<Dependency>,
+    /** Name of directory containing this language's aspect models (structure, behavior, etc.). */
+    val modelsDir: String,
     var cachedStructure: Structure? = null
 ) : Named
 
@@ -38,10 +44,14 @@ data class Dependency(
 
 fun Language.structure(): Structure {
     if (cachedStructure == null) {
+        val structureModelPath = Files
+            .find(path.parent/modelsDir, 42, BiPredicate { f: Path, _: BasicFileAttributes -> f.fileName.toString() == "structure.mps" })
+            .findFirst()
+            .get()
         try {
-            cachedStructure = modelXmlFromDisk(path.parent/"models"/"structure.mps").asStructure()
+            cachedStructure = modelXmlFromDisk(structureModelPath).asStructure()
         } catch (e: Exception) {
-            System.err.println("could not read structure model XML file for language '$name'; due to:")
+            System.err.println("could not read structure model XML file '$structureModelPath' for language '$name'; due to:")
             System.err.println(e.message)
             e.printStackTrace(System.err)
         }

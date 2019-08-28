@@ -23,7 +23,8 @@ fun languageMetaDataXmlFromDisk(path: Path): Language {
                 it.attribute("reexport") == "true",
                 it.textContents()
             )
-        }
+        },
+        modelsDir = xmlDoc.xPathAsNodes("//language/models/modelRoot[@type='default']/sourceRoot").map { it.attribute("location") }.firstOrNull() ?: "models"
     )
 }
 

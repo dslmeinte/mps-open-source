@@ -6,6 +6,7 @@ Not meant as an actual roadmap!
 
 ## Capabilities
 
+1. &#10003; Be aware of (alternative) file structures of a module.
 1. ... Export structure of languages, directly from XML to JSON.
 1. ... Generate Kotlin code for deserializing models from XML.
 1. ... Export models, directly from XML to JSON.

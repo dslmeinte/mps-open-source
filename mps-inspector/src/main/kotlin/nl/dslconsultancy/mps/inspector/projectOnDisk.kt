@@ -11,7 +11,6 @@ data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Langua
 
 
 fun mpsProjectFromDisk(mpsProject: Path): MpsProjectOnDisk {
-    Sequence { Files.walk(mpsProject).iterator() }
     val mpsFiles = Files.walk(mpsProject)
         .asList()
         .filter { mpsFileType(it) != MpsFileType.None }

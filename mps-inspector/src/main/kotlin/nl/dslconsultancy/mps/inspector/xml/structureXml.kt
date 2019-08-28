@@ -32,7 +32,7 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
     val iNamedConcept = metaConcepts["INamedConcept"]
 
     fun NodeXml.features() = listOf(
-        this.theseChildNodes(abstractConceptDeclaration.children["propertyDeclaration"]).map { it.fromXml(metaConcepts, memois) as Feature },
+        this.theseChildNodes(abstractConceptDeclaration.children.named("propertyDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature },
         this.theseChildNodes(abstractConceptDeclaration.children.named("linkDeclaration")).map { it.fromXml(metaConcepts, memois) as Feature }
     ).flatten()
 
@@ -49,8 +49,8 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
             memois.of(nodeXml to Concept(
                 name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
                 isInterface = false,
-                rootable = nodeXml.thisPropertySetting(conceptDeclaration.properties["rootable"]).orEmpty() == "true",
-                alias = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties["conceptAlias"]),
+                rootable = nodeXml.thisPropertySetting(conceptDeclaration.properties.named("rootable")).orEmpty() == "true",
+                alias = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties.named("conceptAlias")),
                 shortDescription = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties.named("conceptShortDescription")),
                 deprecated = isDeprecated()
             )).apply {
@@ -63,7 +63,7 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
             name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
             isInterface = true,
             rootable = false,
-            alias = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties["conceptAlias"]),
+            alias = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties.named("conceptAlias")),
             shortDescription = nodeXml.thisPropertySetting(abstractConceptDeclaration.properties.named("conceptShortDescription")),
             deprecated = isDeprecated()
         )).apply {
@@ -72,10 +72,11 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
         }
         "LinkDeclaration" -> {
             val linkDeclaration = metaConcepts["LinkDeclaration"]
+            val metaClass = thisPropertySetting(linkDeclaration.properties["metaClass"])
             memois.of(nodeXml to Link(
                 name = thisPropertySetting(linkDeclaration.properties["role"])!!,
                 deprecated = isDeprecated(),
-                reference = thisPropertySetting(linkDeclaration.properties["metaClass"])!! == "reference",
+                reference = metaClass == null || metaClass.endsWith("reference"),
                 cardinality = thisPropertySetting(linkDeclaration.properties.named("sourceCardinality")) ?: "0..1",
                 targetType = thisReferenceSetting(linkDeclaration.references["target"])!!.resolve!!
             ))
