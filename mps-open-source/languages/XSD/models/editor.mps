@@ -2,7 +2,7 @@
 <model ref="r:546b17e0-99d5-4d3a-99af-c233526188cf(XSD.editor)">
   <persistence version="9" />
   <languages>
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="12" />
+    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="13" />
     <devkit ref="2677cb18-f558-4e33-bc38-a5139cee06dc(jetbrains.mps.devkit.language-design)" />
   </languages>
   <imports>
@@ -246,7 +246,7 @@
               <property role="3F0ifm" value=":" />
             </node>
             <node concept="3F0A7n" id="5Ll95tHJIFx" role="3EZMnx">
-              <ref role="1NtTu8" to="irkh:GIhN6IfFH" resolve="base" />
+              <ref role="1NtTu8" to="irkh:5xFSyvKSMCW" resolve="base" />
             </node>
             <node concept="2iRfu4" id="5Ll95tHJIFb" role="2iSdaV" />
           </node>
@@ -282,7 +282,7 @@
       <node concept="3F0A7n" id="5Ll95tHJIDq" role="3EZMnx">
         <ref role="1NtTu8" to="irkh:5Ll95tHJID1" resolve="value" />
         <node concept="Vb9p2" id="5Ll95tHJZ8W" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
       </node>
       <node concept="2iRfu4" id="5Ll95tHJIDg" role="2iSdaV" />
@@ -324,7 +324,7 @@
           <property role="3F0ifm" value="(" />
         </node>
         <node concept="3F0A7n" id="5Ll95tHOPzV" role="3EZMnx">
-          <ref role="1NtTu8" to="irkh:5Ll95tHON8I" resolve="cardinality" />
+          <ref role="1NtTu8" to="irkh:5xFSyvKSMCY" resolve="cardinality" />
         </node>
         <node concept="3F0ifn" id="5Ll95tHOP$7" role="3EZMnx">
           <property role="3F0ifm" value=")" />
@@ -451,7 +451,7 @@
         <property role="3F0ifm" value="=" />
       </node>
       <node concept="3F0A7n" id="5Ll95tHOVXH" role="3EZMnx">
-        <ref role="1NtTu8" to="irkh:5Ll95tHON8Q" resolve="dataType" />
+        <ref role="1NtTu8" to="irkh:5xFSyvKSMD0" resolve="dataType" />
       </node>
       <node concept="2iRfu4" id="5Ll95tHOVXr" role="2iSdaV" />
     </node>
@@ -778,7 +778,7 @@
           </node>
         </node>
         <node concept="Vb9p2" id="DmPLYxtlac" role="3F10Kt">
-          <property role="Vbekb" value="BOLD" />
+          <property role="Vbekb" value="g1_k_vY/BOLD" />
         </node>
         <node concept="OXEIz" id="DmPLYxtwjs" role="P5bDN">
           <node concept="1oHujT" id="DmPLYxtww3" role="OY2wv">

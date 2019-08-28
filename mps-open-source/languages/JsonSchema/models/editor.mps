@@ -2,7 +2,7 @@
 <model ref="r:8111ce4c-bcdd-4b17-b2b3-2098ed4bc79f(JsonSchema.editor)">
   <persistence version="9" />
   <languages>
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="12" />
+    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="13" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
@@ -274,7 +274,7 @@
             <node concept="3F0ifn" id="6qrN1nFkWk" role="3EZMnx">
               <property role="3F0ifm" value="additionals:" />
               <node concept="Vb9p2" id="6qrN1nFwoO" role="3F10Kt">
-                <property role="Vbekb" value="ITALIC" />
+                <property role="Vbekb" value="g1_kEg4/ITALIC" />
               </node>
             </node>
             <node concept="3F1sOY" id="6qrN1nFkWD" role="3EZMnx">
@@ -344,7 +344,7 @@
       <node concept="3F0ifn" id="2hQb6UNpMRC" role="3EZMnx">
         <property role="3F0ifm" value="required" />
         <node concept="Vb9p2" id="2hQb6UNpMRF" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
         <node concept="pkWqt" id="2hQb6UNpMRH" role="pqm2j">
           <node concept="3clFbS" id="2hQb6UNpMRI" role="2VODD2">
@@ -486,7 +486,7 @@
       <node concept="3F0ifn" id="2hQb6UNqw7T" role="3EZMnx">
         <property role="3F0ifm" value="unique" />
         <node concept="Vb9p2" id="2hQb6UNqw82" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
         <node concept="pkWqt" id="2hQb6UNqw84" role="pqm2j">
           <node concept="3clFbS" id="2hQb6UNqw85" role="2VODD2">
@@ -612,7 +612,7 @@
         <property role="1$x2rV" value="&lt;-∞&gt;" />
         <ref role="1NtTu8" to="64hz:2hQb6UNrK1M" resolve="minimum" />
         <node concept="Vb9p2" id="2hQb6UNv0jL" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
       </node>
       <node concept="3F0ifn" id="2hQb6UNsQUd" role="3EZMnx">
@@ -623,7 +623,7 @@
         <property role="1$x2rV" value="&lt;+∞&gt;" />
         <ref role="1NtTu8" to="64hz:2hQb6UNrK1O" resolve="maximum" />
         <node concept="Vb9p2" id="2hQb6UNv0jS" role="3F10Kt">
-          <property role="Vbekb" value="ITALIC" />
+          <property role="Vbekb" value="g1_kEg4/ITALIC" />
         </node>
       </node>
       <node concept="3F0ifn" id="2hQb6UNrK2C" role="3EZMnx">
@@ -700,28 +700,28 @@
     <node concept="14StLt" id="2hQb6UNw2PB" role="V601i">
       <property role="TrG5h" value="EnumValueLike" />
       <node concept="VechU" id="2hQb6UNw2PD" role="3F10Kt">
-        <property role="Vb096" value="DARK_BLUE" />
+        <property role="Vb096" value="g1_eI4o/darkBlue" />
       </node>
     </node>
     <node concept="14StLt" id="2hQb6UNwAla" role="V601i">
       <property role="TrG5h" value="Reference" />
       <node concept="VechU" id="2hQb6UNwAlg" role="3F10Kt">
-        <property role="Vb096" value="DARK_GREEN" />
+        <property role="Vb096" value="g1_qRwE/darkGreen" />
       </node>
       <node concept="Vb9p2" id="2hQb6UNwAll" role="3F10Kt">
-        <property role="Vbekb" value="ITALIC" />
+        <property role="Vbekb" value="g1_kEg4/ITALIC" />
       </node>
     </node>
     <node concept="14StLt" id="2hQb6UNwKXk" role="V601i">
       <property role="TrG5h" value="Pattern" />
       <node concept="VechU" id="2hQb6UNwKXx" role="3F10Kt">
-        <property role="Vb096" value="orange" />
+        <property role="Vb096" value="fLwANPp/orange" />
       </node>
     </node>
     <node concept="14StLt" id="6$03NoGjSnf" role="V601i">
       <property role="TrG5h" value="ReferableName" />
       <node concept="Vb9p2" id="6$03NoGjSnr" role="3F10Kt">
-        <property role="Vbekb" value="ITALIC" />
+        <property role="Vbekb" value="g1_kEg4/ITALIC" />
       </node>
     </node>
     <node concept="14StLt" id="6$03NoGkgKX" role="V601i">
@@ -734,7 +734,7 @@
     <node concept="14StLt" id="6$03NoGms0I" role="V601i">
       <property role="TrG5h" value="Datatype" />
       <node concept="Vb9p2" id="6$03NoGms0X" role="3F10Kt">
-        <property role="Vbekb" value="BOLD_ITALIC" />
+        <property role="Vbekb" value="g1_tSyq/BOLD_ITALIC" />
       </node>
     </node>
   </node>

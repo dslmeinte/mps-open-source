@@ -2,7 +2,7 @@
 <model ref="r:bb828911-2cca-43bc-815e-afc2721750fc(XmlWithExtension.editor)">
   <persistence version="9" />
   <languages>
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="12" />
+    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="13" />
     <devkit ref="2677cb18-f558-4e33-bc38-a5139cee06dc(jetbrains.mps.devkit.language-design)" />
   </languages>
   <imports>
@@ -65,7 +65,7 @@
         <node concept="3F0ifn" id="zT7KcJFNfH" role="3EZMnx">
           <property role="3F0ifm" value="xml" />
           <node concept="VechU" id="zT7KcJFNfI" role="3F10Kt">
-            <property role="Vb096" value="darkGray" />
+            <property role="Vb096" value="fLJRk5B/darkGray" />
           </node>
         </node>
         <node concept="3F0A7n" id="zT7KcJFNfJ" role="3EZMnx">
@@ -74,7 +74,7 @@
         <node concept="3F0ifn" id="zT7KcJFNfV" role="3EZMnx">
           <property role="3F0ifm" value="with extension" />
           <node concept="VechU" id="zT7KcJFNKL" role="3F10Kt">
-            <property role="Vb096" value="darkGray" />
+            <property role="Vb096" value="fLJRk5B/darkGray" />
           </node>
         </node>
         <node concept="3F0A7n" id="zT7KcJFNg9" role="3EZMnx">
@@ -82,7 +82,7 @@
           <property role="1$x2rV" value="xml" />
           <ref role="1NtTu8" to="d3d5:zT7KcJFIOe" resolve="extension" />
           <node concept="Vb9p2" id="zT7KcJFR5K" role="3F10Kt">
-            <property role="Vbekb" value="ITALIC" />
+            <property role="Vbekb" value="g1_kEg4/ITALIC" />
           </node>
         </node>
         <node concept="2iRfu4" id="zT7KcJFNfr" role="2iSdaV" />
