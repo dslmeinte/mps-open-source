@@ -52,8 +52,8 @@ Somewhat in order of rather shallowly descending importance:
 * Avoid having to use the Inspector for input (e.g., 2 occurrences in the XSD language).
 
 
-## MPS Inspector
+## MPS Analyser
 
-The MPS Inspector is a commandline tool meant for use in conjunction with [JetBrains' MPS](https://www.jetbrains.com/mps/), working directly on MPS project files.
-For further information: [see here](./mps-inspector/README.md).
+The MPS Analyser is a commandline tool meant for use in conjunction with [JetBrains' MPS](https://www.jetbrains.com/mps/), working directly on MPS project files.
+For further information: [see here](./mps-analyser/README.md).
 
