@@ -3,8 +3,6 @@ package nl.dslconsultancy.mps.analyser.xml
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import nl.dslconsultancy.mps.analyser.MpsProject
-import nl.dslconsultancy.mps.analyser.render
 import nl.dslconsultancy.mps.analyser.util.JacksonXmlUtil.writeXml
 import nl.dslconsultancy.mps.analyser.util.JacksonXmlUtil.xmlFromDisk
 import nl.dslconsultancy.mps.analyser.util.div
@@ -12,8 +10,12 @@ import nl.dslconsultancy.mps.analyser.util.isSorted
 import nl.dslconsultancy.mps.analyser.util.lastSection
 import java.nio.file.Path
 
+
+/**
+ * Holds a representation of the modules.xml file located under .mps/ in an MPS project.
+ */
 @JsonRootName("project")
-private data class MpsProjectAsXml(
+data class MpsProjectAsXml(
 
     @JacksonXmlProperty(isAttribute = true)
     val version: Int,
@@ -22,13 +24,13 @@ private data class MpsProjectAsXml(
 
 )
 
-private data class ComponentXml(
+data class ComponentXml(
 
     val projectModules: ProjectModulesXml
 
 )
 
-private data class ProjectModulesXml(
+data class ProjectModulesXml(
 
     @set:JsonProperty("modulePath")
     var projectModules: List<ProjectModule> = emptyList()
@@ -49,30 +51,57 @@ data class ProjectModule(
 // Note: we could use @JsonAlias and such to reduce to 2 data classes (see https://medium.com/@foxjstephen/how-to-actually-parse-xml-in-java-kotlin-221a9309e6e8)
 
 
-fun processModulesXml(mpsProjectPath: Path, sortModules: Boolean): MpsProject {
-    val modulesXmlPath = modulesXmlPath(mpsProjectPath)
-    val modulesXml = xmlFromDisk<MpsProjectAsXml>(modulesXmlPath)
+/**
+ * Cleaner representation of the modules XML file.
+ */
+data class ModulesXml(
+    val name: String,
+    val mpsProjectPath: Path,
+    val version: Int,
+    val modules: List<ProjectModule>,
+    // TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
+    val originalXml: MpsProjectAsXml
+)
 
-    val drillDown = modulesXml.component.projectModules
-    val mpsProject = MpsProject(
+/**
+ * Reads a modules XML file in the MPS project under the given path.
+ * @return a representation of the modules XML file
+ */
+fun readModulesXmlIn(mpsProjectPath: Path): ModulesXml {
+    val modulesXml = xmlFromDisk<MpsProjectAsXml>(modulesXmlPath(mpsProjectPath))
+
+    return ModulesXml(
         mpsProjectPath.lastSection(),
+        mpsProjectPath,
         modulesXml.version,
-        drillDown.projectModules.sortedBy { it.path }
+        modulesXml.component.projectModules.projectModules.sortedBy { it.path },
+        modulesXml
     )
-
-    println(mpsProject.render())
-    if (!drillDown.projectModules.map { it.path }.isSorted()) {
-        if (sortModules) {
-            println("project module entries in modules XML not sorted: sorting them automatically")
-            drillDown.projectModules = drillDown.projectModules.sortedBy { it.path }
-            writeXml(modulesXml, modulesXmlPath)
-        } else {
-            println("project module entries in modules XML not sorted: add '\"sortModules\": true' to configuration JSON to sort them automatically")
-        }
-    }
-
-    return mpsProject
 }
 
+
+/**
+ * @return a short description of the modules XML file.
+ */
+fun ModulesXml.shortDescription(): String = "MPS project '$name' (version=$version) has ${modules.size} modules"
+
+
+/**
+ * Sorts the modules mentioned in the modules XML file in alphabetical order,
+ * and writes the file back.
+ * (This may result in changes to the last newline in the file.)
+ */
+fun ModulesXml.sortModules() {
+    val drilldown = originalXml.component.projectModules
+    if (!drilldown.projectModules.map { it.path }.isSorted()) {
+        println("project module entries in modules XML not sorted: sorting them automatically")
+        drilldown.projectModules = drilldown.projectModules.sortedBy { it.path }
+        writeXml(originalXml, modulesXmlPath(mpsProjectPath))
+    }
+}
+
+/**
+ * @return the location of the modules XML file under the given path for an MPS project.
+ */
 fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath/".mps"/"modules.xml"
 

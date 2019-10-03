@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import nl.dslconsultancy.mps.analyser.util.JacksonJsonUtil.jsonFromString
-import nl.dslconsultancy.mps.analyser.xml.modelXmlWithoutNodesFromDisk
-import nl.dslconsultancy.mps.analyser.xml.modulesXmlPath
-import nl.dslconsultancy.mps.analyser.xml.processModulesXml
+import nl.dslconsultancy.mps.analyser.xml.*
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -37,7 +35,12 @@ fun ConfigurationItem.run() {
     if (!Files.exists(modulesXmlPath(mpsProjectPath))) {
         System.err.println("'$mpsProjectPath' is not a path to an MPS project")
     }
-    processModulesXml(mpsProjectPath, sortModules ?: false)
+
+    val modulesXml = readModulesXmlIn(mpsProjectPath)
+    println(modulesXml.shortDescription())
+    if (sortModules == true) {
+        modulesXml.sortModules()
+    }
 
     val mpsProjectOnDisk = mpsProjectFromDisk(mpsProjectPath)
 
@@ -73,6 +76,9 @@ fun ConfigurationItem.run() {
 }
 
 
+/**
+ * Parse this String which should contain a configuration in JSON format, into configuration objects.
+ */
 fun String.asConfiguration(): List<ConfigurationItem> {
     return try {
         try {

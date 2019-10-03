@@ -6,18 +6,12 @@ import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import nl.dslconsultancy.mps.analyser.util.div
-import nl.dslconsultancy.mps.analyser.xml.ProjectModule
 import nl.dslconsultancy.mps.analyser.xml.asStructure
 import nl.dslconsultancy.mps.analyser.xml.modelXmlFromDisk
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.attribute.BasicFileAttributes
 import java.util.function.BiPredicate
-
-data class MpsProject(val name: String, val version: Int, val modules: List<ProjectModule>)
-// TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
-
-fun MpsProject.render(): String = "MPS project '$name' (version=$version) has ${modules.size} modules"
 
 
 interface Named {
