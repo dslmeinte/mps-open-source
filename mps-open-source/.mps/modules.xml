@@ -2,16 +2,16 @@
 <project version="4">
   <component name="MPSProject">
     <projectModules>
-      <modulePath path="$PROJECT_DIR$/languages/Css/Css.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/Json/Json.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/JsonSchema/JsonSchema.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/Svg/Svg.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/WSDL/WSDL.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/XSD/XSD.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/XmlWithExtension/XmlWithExtension.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/languages/Css/Css.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/languages/Json/Json.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/languages/JsonSchema/JsonSchema.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/languages/Svg/Svg.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/languages/WSDL/WSDL.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/languages/XSD/XSD.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/languages/XmlWithExtension/XmlWithExtension.mpl" folder="web" />
       <modulePath path="$PROJECT_DIR$/solutions/Examples/Examples.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/build/build.msd" folder="" />
-      <modulePath path="$PROJECT_DIR$/solutions/runtime.lib/runtime.lib.msd" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/runtime.lib/runtime.lib.msd" folder="web" />
     </projectModules>
   </component>
 </project>

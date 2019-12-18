@@ -112,7 +112,7 @@
     </language>
   </registry>
   <node concept="1l3spW" id="7_z3uTkhWnB">
-    <property role="TrG5h" value="webLanguages-build" />
+    <property role="TrG5h" value="web-build" />
     <property role="2DA0ip" value="../.." />
     <node concept="10PD9b" id="7_z3uTkhWnC" role="10PD9s" />
     <node concept="3b7kt6" id="7_z3uTkhWnD" role="10PD9s" />
