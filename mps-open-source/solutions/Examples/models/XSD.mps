@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:5f7df440-799f-4e2c-a910-e5999470d51b(Examples.XSD)">
+<model ref="r:5f7df440-799f-4e2c-a910-e5999470d51b(XSD)">
   <persistence version="9" />
   <languages>
     <use id="783994a0-4c08-40b6-83e5-ddb930f19f9d" name="XSD" version="0" />
