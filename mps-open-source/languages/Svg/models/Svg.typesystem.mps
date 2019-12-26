@@ -2,7 +2,7 @@
 <model ref="r:08009ca3-5645-4d30-ae06-f21f40282875(Svg.typesystem)">
   <persistence version="9" />
   <languages>
-    <use id="7a5dda62-9140-4668-ab76-d5ed1746f2b2" name="jetbrains.mps.lang.typesystem" version="4" />
+    <use id="7a5dda62-9140-4668-ab76-d5ed1746f2b2" name="jetbrains.mps.lang.typesystem" version="5" />
     <devkit ref="00000000-0000-4000-0000-1de82b3a4936(jetbrains.mps.devkit.aspect.typesystem)" />
   </languages>
   <imports>
@@ -47,14 +47,14 @@
       <concept id="1227096620180" name="jetbrains.mps.lang.typesystem.structure.ReferenceMessageTarget" flags="ng" index="2OE7Q9">
         <reference id="1227096645744" name="linkDeclaration" index="2OEe5H" />
       </concept>
-      <concept id="1227096774658" name="jetbrains.mps.lang.typesystem.structure.MessageStatement" flags="ng" index="2OEH$v">
-        <child id="1227096802790" name="nodeToReport" index="2OEOjV" />
-        <child id="1227096836496" name="messageTarget" index="2OEWyd" />
-      </concept>
       <concept id="1195213580585" name="jetbrains.mps.lang.typesystem.structure.AbstractCheckingRule" flags="ig" index="18hYwZ">
         <child id="1195213635060" name="body" index="18ibNy" />
       </concept>
       <concept id="1195214364922" name="jetbrains.mps.lang.typesystem.structure.NonTypesystemRule" flags="ig" index="18kY7G" />
+      <concept id="3937244445246642777" name="jetbrains.mps.lang.typesystem.structure.AbstractReportStatement" flags="ng" index="1urrMJ">
+        <child id="3937244445246643443" name="messageTarget" index="1urrC5" />
+        <child id="3937244445246642781" name="nodeToReport" index="1urrMF" />
+      </concept>
       <concept id="1174642788531" name="jetbrains.mps.lang.typesystem.structure.ConceptReference" flags="ig" index="1YaCAy">
         <reference id="1174642800329" name="concept" index="1YaFvo" />
       </concept>
@@ -99,7 +99,7 @@
             <node concept="Xl_RD" id="2TQ3RGSCxs_" role="2MkJ7o">
               <property role="Xl_RC" value="Not a valid file name." />
             </node>
-            <node concept="1YBJjd" id="2TQ3RGSCxsK" role="2OEOjV">
+            <node concept="1YBJjd" id="2TQ3RGSCxsK" role="1urrMF">
               <ref role="1YBMHb" node="2TQ3RGSCx6d" resolve="svgRoot" />
             </node>
           </node>
@@ -118,11 +118,11 @@
         <node concept="Xl_RD" id="45lrTgpLKzK" role="a7wSD">
           <property role="Xl_RC" value="Replace literal XML content with actual SVG constructs (when possible)." />
         </node>
-        <node concept="1YBJjd" id="45lrTgpLK_E" role="2OEOjV">
-          <ref role="1YBMHb" node="45lrTgpLKzq" resolve="literalXmlContent" />
-        </node>
-        <node concept="2OE7Q9" id="45lrTgpLKA8" role="2OEWyd">
+        <node concept="2OE7Q9" id="45lrTgpLKA8" role="1urrC5">
           <ref role="2OEe5H" to="r4xx:3XHwWSLrYWU" resolve="literalXml" />
+        </node>
+        <node concept="1YBJjd" id="45lrTgpLK_E" role="1urrMF">
+          <ref role="1YBMHb" node="45lrTgpLKzq" resolve="literalXmlContent" />
         </node>
       </node>
     </node>
