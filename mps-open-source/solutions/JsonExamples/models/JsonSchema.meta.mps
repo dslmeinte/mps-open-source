@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:2b296c28-6707-41cb-a18c-6d578fccbad9(JsonSchema.meta)">
+<model ref="r:0e92a6ef-6e07-4ec4-99a5-517abee3aa12(JsonSchema.meta)">
   <persistence version="9" />
   <languages>
     <use id="332c9129-fd88-4f4c-a448-1f9b461e11cb" name="JsonSchema" version="0" />

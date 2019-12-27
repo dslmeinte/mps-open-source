@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:f1a3e78d-0501-4cd7-bd93-048bebea3b89(JsonSchema.MPSInspector)">
+<model ref="r:2df2665e-e855-4c81-be13-10272c62823e(JsonSchema.MPSInspector)">
   <persistence version="9" />
   <languages>
     <use id="332c9129-fd88-4f4c-a448-1f9b461e11cb" name="JsonSchema" version="0" />
