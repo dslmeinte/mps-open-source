@@ -121,7 +121,7 @@
       <ref role="PrY4T" node="3XHwWSLqDps" resolve="SvgElement" />
     </node>
     <node concept="PrWs8" id="3XHwWSLt_Tb" role="PzmwI">
-      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="CanHaveClassNames" />
+      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="WithClassNames" />
     </node>
     <node concept="1TJgyj" id="7_z3uTkhmZm" role="1TKVEi">
       <property role="IQ2ns" value="8746850218550849494" />
@@ -161,12 +161,12 @@
       <property role="IQ2ns" value="4570454118467260201" />
       <property role="20kJfa" value="selector" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" to="6ltu:38dU5mNYAa8" resolve="CssSelector" />
+      <ref role="20lvS9" to="6ltu:5MdW_poC92e" resolve="CssClassSelector" />
     </node>
   </node>
   <node concept="PlHQZ" id="3XHwWSLt_T9">
     <property role="EcuMT" value="4570454118467264073" />
-    <property role="TrG5h" value="CanHaveClassNames" />
+    <property role="TrG5h" value="WithClassNames" />
     <node concept="1TJgyj" id="3XHwWSLt$WE" role="1TKVEi">
       <property role="IQ2ns" value="4570454118467260202" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -228,6 +228,9 @@
     <node concept="PrWs8" id="2TQ3RGSHDkE" role="PzmwI">
       <ref role="PrY4T" node="3XHwWSLqDps" resolve="SvgElement" />
     </node>
+    <node concept="PrWs8" id="5MdW_po_RsY" role="PzmwI">
+      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="WithClassNames" />
+    </node>
     <node concept="1TJgyj" id="2TQ3RGSHDkG" role="1TKVEi">
       <property role="IQ2ns" value="3347880394903426348" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -277,7 +280,7 @@
       <ref role="PrY4T" node="3XHwWSLqDps" resolve="SvgElement" />
     </node>
     <node concept="PrWs8" id="45lrTgpGDuG" role="PzmwI">
-      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="CanHaveClassNames" />
+      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="WithClassNames" />
     </node>
     <node concept="1TJgyi" id="45lrTgpGDCY" role="1TKVEl">
       <property role="IQ2nx" value="4707791667362699838" />
@@ -301,7 +304,7 @@
       <ref role="PrY4T" node="3XHwWSLqDps" resolve="SvgElement" />
     </node>
     <node concept="PrWs8" id="45lrTgpGDvM" role="PzmwI">
-      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="CanHaveClassNames" />
+      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="WithClassNames" />
     </node>
     <node concept="1TJgyi" id="45lrTgpGDwk" role="1TKVEl">
       <property role="IQ2nx" value="4707791667362699284" />
@@ -323,7 +326,7 @@
       <ref role="PrY4T" node="3XHwWSLqDps" resolve="SvgElement" />
     </node>
     <node concept="PrWs8" id="45lrTgpGDLg" role="PzmwI">
-      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="CanHaveClassNames" />
+      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="WithClassNames" />
     </node>
     <node concept="1TJgyj" id="45lrTgpJLts" role="1TKVEi">
       <property role="IQ2ns" value="4707791667363518300" />

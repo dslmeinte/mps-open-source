@@ -18,6 +18,7 @@
     <import index="eoo2" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.nio.file(JDK/)" />
     <import index="iuxj" ref="r:64db3a92-5968-4a73-b456-34504a2d97a6(jetbrains.mps.core.xml.structure)" implicit="true" />
     <import index="c17a" ref="8865b7a8-5271-43d3-884c-6fd1d9cfdd34/java:org.jetbrains.mps.openapi.language(MPS.OpenAPI/)" implicit="true" />
+    <import index="6ltu" ref="r:43b8bd50-204c-48e6-b581-998506039531(Css.structure)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
@@ -1507,7 +1508,7 @@
     </node>
   </node>
   <node concept="13h7C7" id="45lrTgpJXtQ">
-    <ref role="13h7C2" to="r4xx:3XHwWSLt_T9" resolve="CanHaveClassNames" />
+    <ref role="13h7C2" to="r4xx:3XHwWSLt_T9" resolve="WithClassNames" />
     <node concept="13hLZK" id="45lrTgpJXtR" role="13h7CW">
       <node concept="3clFbS" id="45lrTgpJXtS" role="2VODD2" />
     </node>
@@ -1520,15 +1521,22 @@
         <node concept="3clFbF" id="45lrTgpJX_S" role="3cqZAp">
           <node concept="2OqwBi" id="45lrTgpJWvQ" role="3clFbG">
             <node concept="2OqwBi" id="45lrTgpJVtI" role="2Oq$k0">
-              <node concept="2OqwBi" id="45lrTgpJOk$" role="2Oq$k0">
-                <node concept="2OqwBi" id="45lrTgpJMzO" role="2Oq$k0">
-                  <node concept="3Tsc0h" id="45lrTgpJMHS" role="2OqNvi">
-                    <ref role="3TtcxE" to="r4xx:3XHwWSLt$WE" resolve="classNames" />
+              <node concept="2OqwBi" id="5MdW_poD9dt" role="2Oq$k0">
+                <node concept="2OqwBi" id="45lrTgpJOk$" role="2Oq$k0">
+                  <node concept="2OqwBi" id="45lrTgpJMzO" role="2Oq$k0">
+                    <node concept="3Tsc0h" id="45lrTgpJMHS" role="2OqNvi">
+                      <ref role="3TtcxE" to="r4xx:3XHwWSLt$WE" resolve="classNames" />
+                    </node>
+                    <node concept="13iPFW" id="45lrTgpJXZ1" role="2Oq$k0" />
                   </node>
-                  <node concept="13iPFW" id="45lrTgpJXZ1" role="2Oq$k0" />
+                  <node concept="13MTOL" id="45lrTgpJRMT" role="2OqNvi">
+                    <ref role="13MTZf" to="r4xx:3XHwWSLt$WD" resolve="selector" />
+                  </node>
                 </node>
-                <node concept="13MTOL" id="45lrTgpJRMT" role="2OqNvi">
-                  <ref role="13MTZf" to="r4xx:3XHwWSLt$WD" resolve="selector" />
+                <node concept="v3k3i" id="5MdW_poD9$4" role="2OqNvi">
+                  <node concept="chp4Y" id="5MdW_poD9GU" role="v3oSu">
+                    <ref role="cht4Q" to="6ltu:5MdW_poC92e" resolve="CssClassSelector" />
+                  </node>
                 </node>
               </node>
               <node concept="3$u5V9" id="45lrTgpJVMn" role="2OqNvi">

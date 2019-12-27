@@ -15,6 +15,7 @@
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
         <child id="1071489727084" name="propertyDeclaration" index="1TKVEl" />
       </concept>
+      <concept id="1169125989551" name="jetbrains.mps.lang.structure.structure.InterfaceConceptDeclaration" flags="ig" index="PlHQZ" />
       <concept id="1169127622168" name="jetbrains.mps.lang.structure.structure.InterfaceConceptReference" flags="ig" index="PrWs8">
         <reference id="1169127628841" name="intfc" index="PrY4T" />
       </concept>
@@ -68,7 +69,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="selectors" />
       <property role="20lbJX" value="fLJekj6/_1__n" />
-      <ref role="20lvS9" node="38dU5mNYAa8" resolve="CssSelector" />
+      <ref role="20lvS9" node="5MdW_poC93A" resolve="CssSelector" />
     </node>
     <node concept="1TJgyj" id="38dU5mNYAdS" role="1TKVEi">
       <property role="IQ2ns" value="3606794331383030648" />
@@ -76,15 +77,6 @@
       <property role="20kJfa" value="properties" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="38dU5mNYAaF" resolve="CssProperty" />
-    </node>
-  </node>
-  <node concept="1TIwiD" id="38dU5mNYAa8">
-    <property role="EcuMT" value="3606794331383030408" />
-    <property role="TrG5h" value="CssSelector" />
-    <property role="34LRSv" value="CSS selector" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="PrWs8" id="38dU5mNYAa9" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
   </node>
   <node concept="1TIwiD" id="38dU5mNYAaF">
@@ -100,6 +92,37 @@
     <node concept="PrWs8" id="38dU5mNZEKL" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
+  </node>
+  <node concept="1TIwiD" id="5MdW_poC92e">
+    <property role="EcuMT" value="6669253075873599630" />
+    <property role="TrG5h" value="CssClassSelector" />
+    <property role="34LRSv" value="CSS class" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="5MdW_poC92f" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="PrWs8" id="5MdW_poC$OO" role="PzmwI">
+      <ref role="PrY4T" node="5MdW_poC93A" resolve="CssSelector" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5MdW_poC931">
+    <property role="EcuMT" value="6669253075873599681" />
+    <property role="TrG5h" value="CssElementSelector" />
+    <property role="34LRSv" value="CSS element" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyi" id="5MdW_poC932" role="1TKVEl">
+      <property role="IQ2nx" value="6669253075873599682" />
+      <property role="TrG5h" value="elementName" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="PrWs8" id="5MdW_poC$OS" role="PzmwI">
+      <ref role="PrY4T" node="5MdW_poC93A" resolve="CssSelector" />
+    </node>
+  </node>
+  <node concept="PlHQZ" id="5MdW_poC93A">
+    <property role="TrG5h" value="CssSelector" />
+    <property role="34LRSv" value="CSS selector" />
+    <property role="EcuMT" value="3606794331383030408" />
   </node>
 </model>
 

@@ -456,6 +456,15 @@
         <node concept="2pNNFK" id="2TQ3RGSHH9n" role="gfFT$">
           <property role="2pNNFO" value="circle" />
           <property role="qg3DV" value="true" />
+          <node concept="2pNUuL" id="5MdW_poAeio" role="2pNNFR">
+            <property role="2pNUuO" value="_" />
+            <node concept="2pMdtt" id="5MdW_poAeip" role="2pMdts">
+              <property role="2pMdty" value="_" />
+            </node>
+            <node concept="5jKBG" id="5MdW_poAeiq" role="lGtFl">
+              <ref role="v9R2y" node="45lrTgpKoXe" resolve="classNames" />
+            </node>
+          </node>
           <node concept="2pNUuL" id="2TQ3RGSHH9r" role="2pNNFR">
             <property role="2pNUuO" value="cx" />
             <node concept="2pMdtt" id="2TQ3RGSHH9s" role="2pMdts">
@@ -962,9 +971,9 @@
   </node>
   <node concept="13MO4I" id="45lrTgpKoXe">
     <property role="TrG5h" value="classNames" />
-    <ref role="3gUMe" to="r4xx:3XHwWSLt_T9" resolve="CanHaveClassNames" />
+    <ref role="3gUMe" to="r4xx:3XHwWSLt_T9" resolve="WithClassNames" />
     <node concept="2pNUuL" id="45lrTgpKoYI" role="13RCb5">
-      <property role="2pNUuO" value="classNames" />
+      <property role="2pNUuO" value="class" />
       <node concept="2pMdtt" id="45lrTgpKoYJ" role="2pMdts">
         <property role="2pMdty" value="_classNames_" />
         <node concept="17Uvod" id="45lrTgpKoYK" role="lGtFl">
