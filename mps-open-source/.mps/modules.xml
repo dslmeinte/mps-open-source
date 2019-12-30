@@ -2,9 +2,11 @@
 <project version="4">
   <component name="MPSProject">
     <projectModules>
+      <modulePath path="$PROJECT_DIR$/languages/ConcernDiagrams/ConcernDiagrams.mpl" folder="meta" />
       <modulePath path="$PROJECT_DIR$/languages/Css/Css.mpl" folder="web" />
       <modulePath path="$PROJECT_DIR$/languages/Json/Json.mpl" folder="web" />
       <modulePath path="$PROJECT_DIR$/languages/JsonSchema/JsonSchema.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/languages/MetaCore/MetaCore.mpl" folder="meta" />
       <modulePath path="$PROJECT_DIR$/languages/Svg/Svg.mpl" folder="web" />
       <modulePath path="$PROJECT_DIR$/languages/WSDL/WSDL.mpl" folder="web" />
       <modulePath path="$PROJECT_DIR$/languages/XSD/XSD.mpl" folder="web" />
