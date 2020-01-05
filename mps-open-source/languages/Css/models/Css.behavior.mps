@@ -165,7 +165,7 @@
                                         <ref role="3cqZAo" node="kYxf1acKJF" resolve="it" />
                                       </node>
                                       <node concept="2qgKlT" id="5MdW_poCowb" role="2OqNvi">
-                                        <ref role="37wK5l" node="5MdW_poCj3i" resolve="asText" />
+                                        <ref role="37wK5l" node="5MdW_poCj3i" resolve="asString" />
                                       </node>
                                     </node>
                                   </node>
@@ -351,7 +351,7 @@
     </node>
     <node concept="13i0hz" id="5MdW_poCj3i" role="13h7CS">
       <property role="13i0it" value="true" />
-      <property role="TrG5h" value="asText" />
+      <property role="TrG5h" value="asString" />
       <node concept="3Tm1VV" id="5MdW_poCj3j" role="1B3o_S" />
       <node concept="17QB3L" id="5MdW_poCj3y" role="3clF45" />
       <node concept="3clFbS" id="5MdW_poCj3l" role="3clF47">
@@ -370,7 +370,7 @@
                   </node>
                 </node>
                 <node concept="Xl_RD" id="5MdW_poCkin" role="3uHU7B">
-                  <property role="Xl_RC" value="#asText() not implemented in sub concept of CssSelector: " />
+                  <property role="Xl_RC" value="#asString() not implemented in sub concept of CssSelector: " />
                 </node>
               </node>
             </node>
@@ -385,8 +385,8 @@
       <node concept="3clFbS" id="5MdW_poC_oZ" role="2VODD2" />
     </node>
     <node concept="13i0hz" id="5MdW_poC_p8" role="13h7CS">
-      <property role="TrG5h" value="asText" />
-      <ref role="13i0hy" node="5MdW_poCj3i" resolve="asText" />
+      <property role="TrG5h" value="asString" />
+      <ref role="13i0hy" node="5MdW_poCj3i" resolve="asString" />
       <node concept="3Tm1VV" id="5MdW_poC_p9" role="1B3o_S" />
       <node concept="3clFbS" id="5MdW_poC_pm" role="3clF47">
         <node concept="3clFbF" id="5MdW_poC_xL" role="3cqZAp">
@@ -407,8 +407,8 @@
       <node concept="3clFbS" id="5MdW_poC_Tg" role="2VODD2" />
     </node>
     <node concept="13i0hz" id="5MdW_poC_Tp" role="13h7CS">
-      <property role="TrG5h" value="asText" />
-      <ref role="13i0hy" node="5MdW_poCj3i" resolve="asText" />
+      <property role="TrG5h" value="asString" />
+      <ref role="13i0hy" node="5MdW_poCj3i" resolve="asString" />
       <node concept="3Tm1VV" id="5MdW_poC_Tq" role="1B3o_S" />
       <node concept="3clFbS" id="5MdW_poC_TB" role="3clF47">
         <node concept="3clFbF" id="5MdW_poC_XN" role="3cqZAp">
@@ -434,8 +434,8 @@
       <node concept="3clFbS" id="5MdW_poSfPC" role="2VODD2" />
     </node>
     <node concept="13i0hz" id="5MdW_poSfPW" role="13h7CS">
-      <property role="TrG5h" value="asText" />
-      <ref role="13i0hy" node="5MdW_poCj3i" resolve="asText" />
+      <property role="TrG5h" value="asString" />
+      <ref role="13i0hy" node="5MdW_poCj3i" resolve="asString" />
       <node concept="3Tm1VV" id="5MdW_poSfPX" role="1B3o_S" />
       <node concept="3clFbS" id="5MdW_poSfQa" role="3clF47">
         <node concept="3clFbF" id="5MdW_poSfYL" role="3cqZAp">
@@ -448,7 +448,7 @@
                 </node>
               </node>
               <node concept="2qgKlT" id="5MdW_poSi1y" role="2OqNvi">
-                <ref role="37wK5l" node="5MdW_poCj3i" resolve="asText" />
+                <ref role="37wK5l" node="5MdW_poCj3i" resolve="asString" />
               </node>
             </node>
             <node concept="3cpWs3" id="5MdW_poSgSZ" role="3uHU7B">
@@ -460,7 +460,7 @@
                   </node>
                 </node>
                 <node concept="2qgKlT" id="5MdW_poSgzt" role="2OqNvi">
-                  <ref role="37wK5l" node="5MdW_poCj3i" resolve="asText" />
+                  <ref role="37wK5l" node="5MdW_poCj3i" resolve="asString" />
                 </node>
               </node>
               <node concept="Xl_RD" id="5MdW_poSgT2" role="3uHU7w">
@@ -471,6 +471,46 @@
         </node>
       </node>
       <node concept="17QB3L" id="5MdW_poSfQb" role="3clF45" />
+    </node>
+  </node>
+  <node concept="13h7C7" id="4$egv0eHCNq">
+    <ref role="13h7C2" to="6ltu:4$egv0eHCeU" resolve="CssDirectCombinator" />
+    <node concept="13hLZK" id="4$egv0eHCNr" role="13h7CW">
+      <node concept="3clFbS" id="4$egv0eHCNs" role="2VODD2" />
+    </node>
+    <node concept="13i0hz" id="4$egv0eHNRn" role="13h7CS">
+      <property role="TrG5h" value="asString" />
+      <ref role="13i0hy" node="5MdW_poCj3i" resolve="asString" />
+      <node concept="3Tm1VV" id="4$egv0eHNRo" role="1B3o_S" />
+      <node concept="3clFbS" id="4$egv0eHNR_" role="3clF47">
+        <node concept="3clFbF" id="4$egv0eHNZW" role="3cqZAp">
+          <node concept="3cpWs3" id="4$egv0eHOS7" role="3clFbG">
+            <node concept="2OqwBi" id="4$egv0eHPv2" role="3uHU7w">
+              <node concept="2OqwBi" id="4$egv0eHP4M" role="2Oq$k0">
+                <node concept="13iPFW" id="4$egv0eHOSm" role="2Oq$k0" />
+                <node concept="3TrEf2" id="4$egv0eHPiM" role="2OqNvi">
+                  <ref role="3Tt5mk" to="6ltu:4$egv0eHCeX" resolve="right" />
+                </node>
+              </node>
+              <node concept="2qgKlT" id="4$egv0eHPC0" role="2OqNvi">
+                <ref role="37wK5l" node="5MdW_poCj3i" resolve="asString" />
+              </node>
+            </node>
+            <node concept="2OqwBi" id="4$egv0eHOo2" role="3uHU7B">
+              <node concept="2OqwBi" id="4$egv0eHO8g" role="2Oq$k0">
+                <node concept="13iPFW" id="4$egv0eHO0o" role="2Oq$k0" />
+                <node concept="3TrEf2" id="4$egv0eHOgx" role="2OqNvi">
+                  <ref role="3Tt5mk" to="6ltu:4$egv0eHCeV" resolve="left" />
+                </node>
+              </node>
+              <node concept="2qgKlT" id="4$egv0eHOyF" role="2OqNvi">
+                <ref role="37wK5l" node="5MdW_poCj3i" resolve="asString" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node concept="17QB3L" id="4$egv0eHNRA" role="3clF45" />
     </node>
   </node>
 </model>

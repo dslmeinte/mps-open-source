@@ -21,6 +21,9 @@
         <reference id="1075010451642646892" name="defaultMember" index="1H5jkz" />
         <child id="3348158742936976577" name="members" index="25R1y" />
       </concept>
+      <concept id="7862711839422615209" name="jetbrains.mps.lang.structure.structure.DocumentedNodeAnnotation" flags="ng" index="t5JxF">
+        <property id="7862711839422615217" name="text" index="t5JxN" />
+      </concept>
       <concept id="1082978164218" name="jetbrains.mps.lang.structure.structure.DataTypeDeclaration" flags="ng" index="AxPO6">
         <property id="7791109065626895363" name="datatypeId" index="3F6X1D" />
       </concept>
@@ -54,6 +57,7 @@
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
         <property id="1193676396447" name="virtualPackage" index="3GE5qa" />
+        <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
       </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
@@ -71,7 +75,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="dimension" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="3XHwWSLqD22" resolve="Vector" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
     </node>
     <node concept="1TJgyj" id="45lrTgp$Cka" role="1TKVEi">
       <property role="IQ2ns" value="4707791667360597258" />
@@ -98,8 +102,9 @@
   </node>
   <node concept="1TIwiD" id="3XHwWSLqD22">
     <property role="EcuMT" value="4570454118466490498" />
-    <property role="TrG5h" value="Vector" />
-    <property role="34LRSv" value="xy" />
+    <property role="TrG5h" value="IntVector" />
+    <property role="34LRSv" value="xy-int" />
+    <property role="3GE5qa" value="vector" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyi" id="3XHwWSLqDlH" role="1TKVEl">
       <property role="IQ2nx" value="4570454118466491757" />
@@ -110,6 +115,12 @@
       <property role="IQ2nx" value="4570454118466491758" />
       <property role="TrG5h" value="y" />
       <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+    <node concept="t5JxF" id="2Z5X9nYaczM" role="lGtFl">
+      <property role="t5JxN" value="An integer-valued vector." />
+    </node>
+    <node concept="PrWs8" id="2Z5X9nYmng4" role="PzmwI">
+      <ref role="PrY4T" node="2Z5X9nYmk5m" resolve="Vector" />
     </node>
   </node>
   <node concept="PlHQZ" id="3XHwWSLqDps">
@@ -167,6 +178,9 @@
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" to="6ltu:5MdW_poC92e" resolve="CssClassSelector" />
     </node>
+    <node concept="PrWs8" id="2Z5X9nYQuvc" role="PzmwI">
+      <ref role="PrY4T" node="2Z5X9nYQuvb" resolve="CssClass" />
+    </node>
   </node>
   <node concept="PlHQZ" id="3XHwWSLt_T9">
     <property role="EcuMT" value="4570454118467264073" />
@@ -176,7 +190,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="classes" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="3XHwWSLt$WC" resolve="CssClassReference" />
+      <ref role="20lvS9" node="2Z5X9nYQuvb" resolve="CssClass" />
     </node>
   </node>
   <node concept="25R3W" id="5xFSyvKUzDU">
@@ -240,7 +254,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="center" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="3XHwWSLqD22" resolve="Vector" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
     </node>
     <node concept="1TJgyi" id="2TQ3RGSHDkI" role="1TKVEl">
       <property role="IQ2nx" value="3347880394903426350" />
@@ -295,13 +309,20 @@
       <property role="IQ2ns" value="4707791667362699840" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="topLeft" />
-      <ref role="20lvS9" node="3XHwWSLqD22" resolve="Vector" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
     </node>
     <node concept="1TJgyj" id="5MdW_pp1MbT" role="1TKVEi">
       <property role="IQ2ns" value="6669253075880321785" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="transform" />
       <ref role="20lvS9" node="5MdW_pp1E_K" resolve="TransformAttribute" />
+    </node>
+    <node concept="1TJgyj" id="6DcOmRzljo" role="1TKVEi">
+      <property role="IQ2ns" value="119683239627281624" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="tspans" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="6DcOmRyyqx" resolve="SvgTextSpan" />
     </node>
   </node>
   <node concept="1TIwiD" id="45lrTgpGDve">
@@ -341,15 +362,14 @@
       <property role="IQ2ns" value="4707791667363518300" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="topLeft" />
-      <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="3XHwWSLqD22" resolve="Vector" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
     </node>
     <node concept="1TJgyj" id="45lrTgpNSoo" role="1TKVEi">
       <property role="IQ2ns" value="4707791667364595224" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="dimensions" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="3XHwWSLqD22" resolve="Vector" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
     </node>
   </node>
   <node concept="1TIwiD" id="5MdW_poZSMX">
@@ -366,7 +386,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="vector" />
       <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="3XHwWSLqD22" resolve="Vector" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
     </node>
   </node>
   <node concept="PlHQZ" id="5MdW_poZSMY">
@@ -400,6 +420,124 @@
       <property role="IQ2nx" value="6669253075880321699" />
       <property role="TrG5h" value="radians" />
       <ref role="AX2Wp" to="tpee:gc$lTUB" resolve="_FPNumber_String" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6DcOmRyyqx">
+    <property role="EcuMT" value="119683239627073185" />
+    <property role="TrG5h" value="SvgTextSpan" />
+    <property role="34LRSv" value="tspan" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="6DcOmRyyqy" role="PzmwI">
+      <ref role="PrY4T" node="3XHwWSLqDps" resolve="SvgElement" />
+    </node>
+    <node concept="PrWs8" id="6DcOmREv3o" role="PzmwI">
+      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="WithClasses" />
+    </node>
+    <node concept="1TJgyi" id="6DcOmRyyqC" role="1TKVEl">
+      <property role="IQ2nx" value="119683239627073192" />
+      <property role="TrG5h" value="text" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="6DcOmRyyr5" role="1TKVEl">
+      <property role="IQ2nx" value="119683239627073221" />
+      <property role="TrG5h" value="dy" />
+      <ref role="AX2Wp" to="tpee:gc$lTUB" resolve="_FPNumber_String" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6DcOmREG$m">
+    <property role="EcuMT" value="119683239629211926" />
+    <property role="TrG5h" value="WrappedString" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyi" id="6DcOmREG$n" role="1TKVEl">
+      <property role="IQ2nx" value="119683239629211927" />
+      <property role="TrG5h" value="text" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="t5JxF" id="6DcOmREGFC" role="lGtFl">
+      <property role="t5JxN" value="Only used to be able to split strings for multi-line purposes." />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6DcOmRO$cf">
+    <property role="EcuMT" value="119683239631799055" />
+    <property role="TrG5h" value="SvgEllipse" />
+    <property role="34LRSv" value="ellipse" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="6DcOmRO$cp" role="1TKVEi">
+      <property role="IQ2ns" value="119683239631799065" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="center" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
+    </node>
+    <node concept="1TJgyj" id="6DcOmRO$ct" role="1TKVEi">
+      <property role="IQ2ns" value="119683239631799069" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="radii" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="2Z5X9nYmk5m" resolve="Vector" />
+    </node>
+    <node concept="PrWs8" id="6DcOmRO$cg" role="PzmwI">
+      <ref role="PrY4T" node="3XHwWSLqDps" resolve="SvgElement" />
+    </node>
+    <node concept="PrWs8" id="6DcOmRO$cl" role="PzmwI">
+      <ref role="PrY4T" node="3XHwWSLt_T9" resolve="WithClasses" />
+    </node>
+  </node>
+  <node concept="PlHQZ" id="2Z5X9nYmk5m">
+    <property role="EcuMT" value="3442426415249178966" />
+    <property role="TrG5h" value="Vector" />
+    <property role="3GE5qa" value="vector" />
+  </node>
+  <node concept="1TIwiD" id="2Z5X9nYr6JL">
+    <property role="EcuMT" value="3442426415250435057" />
+    <property role="TrG5h" value="DoubleVector" />
+    <property role="34LRSv" value="xy-double" />
+    <property role="3GE5qa" value="vector" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="2Z5X9nYr6JM" role="PzmwI">
+      <ref role="PrY4T" node="2Z5X9nYmk5m" resolve="Vector" />
+    </node>
+    <node concept="1TJgyi" id="2Z5X9nYr6JP" role="1TKVEl">
+      <property role="IQ2nx" value="3442426415250435061" />
+      <property role="TrG5h" value="x" />
+      <ref role="AX2Wp" to="tpee:gc$lTUB" resolve="_FPNumber_String" />
+    </node>
+    <node concept="1TJgyi" id="2Z5X9nYr6JS" role="1TKVEl">
+      <property role="IQ2nx" value="3442426415250435064" />
+      <property role="TrG5h" value="y" />
+      <ref role="AX2Wp" to="tpee:gc$lTUB" resolve="_FPNumber_String" />
+    </node>
+    <node concept="t5JxF" id="2Z5X9nYrzxX" role="lGtFl">
+      <property role="t5JxN" value="&quot;Nodification&quot; of InternalVector, mainly to be able to use those in generation." />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="2Z5X9nYNelA">
+    <property role="EcuMT" value="3442426415256757606" />
+    <property role="3GE5qa" value="vector" />
+    <property role="TrG5h" value="DummyVector" />
+    <property role="34LRSv" value="xy-dummy" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="2Z5X9nYNelB" role="PzmwI">
+      <ref role="PrY4T" node="2Z5X9nYmk5m" resolve="Vector" />
+    </node>
+  </node>
+  <node concept="PlHQZ" id="2Z5X9nYQuvb">
+    <property role="EcuMT" value="3442426415257610187" />
+    <property role="TrG5h" value="CssClass" />
+  </node>
+  <node concept="1TIwiD" id="2Z5X9nYQvpc">
+    <property role="EcuMT" value="3442426415257613900" />
+    <property role="TrG5h" value="CssLiteralClass" />
+    <property role="34LRSv" value="literal CSS class" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="2Z5X9nYS$U_" role="PzmwI">
+      <ref role="PrY4T" node="2Z5X9nYQuvb" resolve="CssClass" />
+    </node>
+    <node concept="PrWs8" id="2Z5X9nYQvpN" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="t5JxF" id="2Z5X9nYQvpj" role="lGtFl">
+      <property role="t5JxN" value="Literal CSS class without referencing a user-defined CSS class." />
     </node>
   </node>
 </model>

@@ -147,5 +147,28 @@
       <ref role="PrY4T" node="5MdW_poC93A" resolve="CssSelector" />
     </node>
   </node>
+  <node concept="1TIwiD" id="4$egv0eHCeU">
+    <property role="EcuMT" value="5264217513737487290" />
+    <property role="TrG5h" value="CssDirectCombinator" />
+    <property role="34LRSv" value="direct combinator" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="4$egv0eHCeV" role="1TKVEi">
+      <property role="IQ2ns" value="5264217513737487291" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="left" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="5MdW_poC93A" resolve="CssSelector" />
+    </node>
+    <node concept="1TJgyj" id="4$egv0eHCeX" role="1TKVEi">
+      <property role="IQ2ns" value="5264217513737487293" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="right" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="5MdW_poC93A" resolve="CssSelector" />
+    </node>
+    <node concept="PrWs8" id="4$egv0eHCN_" role="PzmwI">
+      <ref role="PrY4T" node="5MdW_poC93A" resolve="CssSelector" />
+    </node>
+  </node>
 </model>
 

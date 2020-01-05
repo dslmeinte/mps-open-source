@@ -214,5 +214,17 @@
       <node concept="2iRfu4" id="5MdW_poSfOA" role="2iSdaV" />
     </node>
   </node>
+  <node concept="24kQdi" id="4$egv0eHPDh">
+    <ref role="1XX52x" to="6ltu:4$egv0eHCeU" resolve="CssDirectCombinator" />
+    <node concept="3EZMnI" id="4$egv0eHPDj" role="2wV5jI">
+      <node concept="3F1sOY" id="4$egv0eHPDq" role="3EZMnx">
+        <ref role="1NtTu8" to="6ltu:4$egv0eHCeV" resolve="left" />
+      </node>
+      <node concept="3F1sOY" id="4$egv0eHPDw" role="3EZMnx">
+        <ref role="1NtTu8" to="6ltu:4$egv0eHCeX" resolve="right" />
+      </node>
+      <node concept="2iRfu4" id="4$egv0eHPDm" role="2iSdaV" />
+    </node>
+  </node>
 </model>
 
