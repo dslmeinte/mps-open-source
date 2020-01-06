@@ -119,7 +119,7 @@
       <concept id="6669253075880290672" name="Svg.structure.TransformAttribute" flags="ng" index="5yPGA">
         <child id="6669253075880290673" name="transformations" index="5yPGB" />
       </concept>
-      <concept id="4570454118466490498" name="Svg.structure.Vector" flags="ng" index="e1Ldc">
+      <concept id="4570454118466490498" name="Svg.structure.IntVector" flags="ng" index="e1Ldc">
         <property id="4570454118466491758" name="y" index="e1Lqw" />
         <property id="4570454118466491757" name="x" index="e1Lqz" />
       </concept>
@@ -437,7 +437,7 @@
                           <node concept="liA8E" id="MRZty8518E" role="2OqNvi">
                             <ref role="37wK5l" to="8gcs:4iz6u7xxvUJ" resolve="plus" />
                             <node concept="2ry78W" id="MRZty86g1L" role="37wK5m">
-                              <ref role="2ryb1Q" to="8gcs:4iz6u7xxdgk" resolve="Vector" />
+                              <ref role="2ryb1Q" to="8gcs:4iz6u7xxdgk" resolve="InternalVector" />
                               <node concept="2r$n1x" id="MRZty86g4Y" role="2r_Bvh">
                                 <ref role="2r$qp6" to="8gcs:4iz6u7xxdgF" resolve="x" />
                                 <node concept="3b6qkQ" id="MRZty86g55" role="2r_lH1">
@@ -453,8 +453,8 @@
                             </node>
                           </node>
                         </node>
-                        <node concept="liA8E" id="MRZty84Xo0" role="2OqNvi">
-                          <ref role="37wK5l" to="8gcs:5MdW_poXeZk" resolve="asIntVector" />
+                        <node concept="liA8E" id="5mWgwgEFpGI" role="2OqNvi">
+                          <ref role="37wK5l" to="8gcs:2Z5X9nYrsfv" resolve="asDoubleVector" />
                         </node>
                       </node>
                     </node>
