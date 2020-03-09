@@ -2,9 +2,10 @@
 
 This repository contains open source "stuff" (languages, mainly) made with/in/for [JetBrains MPS](https://www.jetbrains.com/mps/) (=Meta-Programming System).
 
-Open the directory `mps-open-source` in MPS as a project.
+Open the directory `mps-open-source` _inside_ this repository in MPS as a project.
+You have to define a path variable called `mps-open-source` in the Preferences, which points to this (inner) `mps-open-source` directory.
 
-Development currently takes place with MPS version 2019.1.3 (#MPS-191.1525).
+Development currently takes place with MPS version 2019.3.3 (#MPS-193.1331).
 
 
 ## Languages

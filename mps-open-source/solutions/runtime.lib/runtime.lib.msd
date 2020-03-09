@@ -4,7 +4,7 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
-    <modelRoot contentPath="/Users/meinte/Documents/Git/mps-open-source/mps-open-source/libs" type="java_classes">
+    <modelRoot contentPath="${mps-open-source}/libs" type="java_classes">
       <sourceRoot location="." />
     </modelRoot>
   </models>
@@ -14,8 +14,8 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="/Users/meinte/Documents/Git/mps-open-source/mps-open-source/libs/jackson-core-2.9.7.jar" />
-    <stubModelEntry path="/Users/meinte/Documents/Git/mps-open-source/mps-open-source/libs/jackson-databind-2.9.7.jar" />
+    <stubModelEntry path="${mps-open-source}/libs/jackson-core-2.9.7.jar" />
+    <stubModelEntry path="${mps-open-source}/libs/jackson-databind-2.9.7.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>
