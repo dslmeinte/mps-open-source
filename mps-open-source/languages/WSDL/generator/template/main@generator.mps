@@ -20,7 +20,6 @@
         <reference id="423824699159837515" name="schema" index="25_c4q" />
       </concept>
       <concept id="423824699160170478" name="XSD.structure.XsdSchemaBody" flags="ng" index="25ANmZ">
-        <property id="8067085376084677688" name="targetJavaPackage" index="3DGDXg" />
         <property id="8067085376084677689" name="emitLengths" index="3DGDXh" />
         <property id="8067085376084677687" name="targetFileName" index="3DGDXv" />
         <property id="1073201763858529699" name="namespaceUri" index="1XYfFM" />
@@ -222,7 +221,6 @@
     <node concept="25ANmZ" id="kI7FWjBcSQ" role="25ANmy">
       <property role="1XYfFM" value="_namespaceUri_" />
       <property role="3DGDXv" value="_targetFileName_" />
-      <property role="3DGDXg" value="_targetJavaPackage_" />
       <property role="3DGDXh" value="false" />
       <node concept="Lxw54" id="kI7FWjB_QY" role="25ANmx">
         <property role="TrG5h" value="_operationRequestMessage_" />
@@ -518,7 +516,7 @@
       </node>
       <node concept="25_c4l" id="kI7FWjBkFk" role="25ANmY">
         <property role="1TbFO6" value="dummy" />
-        <ref role="25_c4q" node="zT7KcIY2Nv" resolve="dummy" />
+        <ref role="25_c4q" node="zT7KcIY2Nv" resolve="dummyForTransformingImports" />
         <node concept="2b32R4" id="kI7FWjBle9" role="lGtFl">
           <node concept="3JmXsc" id="kI7FWjBleb" role="2P8S$">
             <node concept="3clFbS" id="kI7FWjBled" role="2VODD2">
@@ -554,27 +552,6 @@
                 </node>
                 <node concept="3TrcHB" id="5$pgRcAlLcK" role="2OqNvi">
                   <ref role="3TsBF5" to="irkh:6ZO2Qy6hDgR" resolve="targetFileName" />
-                </node>
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="17Uvod" id="5$pgRcAlOWk" role="lGtFl">
-        <property role="P4ACc" value="783994a0-4c08-40b6-83e5-ddb930f19f9d/423824699160170478/8067085376084677688" />
-        <property role="2qtEX9" value="targetJavaPackage" />
-        <node concept="3zFVjK" id="5$pgRcAlOWl" role="3zH0cK">
-          <node concept="3clFbS" id="5$pgRcAlOWm" role="2VODD2">
-            <node concept="3clFbF" id="5$pgRcAlPEy" role="3cqZAp">
-              <node concept="2OqwBi" id="5$pgRcAlR6Z" role="3clFbG">
-                <node concept="2OqwBi" id="5$pgRcAlPTb" role="2Oq$k0">
-                  <node concept="30H73N" id="5$pgRcAlPEx" role="2Oq$k0" />
-                  <node concept="3TrEf2" id="5$pgRcAlQJv" role="2OqNvi">
-                    <ref role="3Tt5mk" to="iczy:nxI_60tVQ9" resolve="schemaBody" />
-                  </node>
-                </node>
-                <node concept="3TrcHB" id="5$pgRcAlRQF" role="2OqNvi">
-                  <ref role="3TsBF5" to="irkh:6ZO2Qy6hDgS" resolve="targetJavaPackage" />
                 </node>
               </node>
             </node>
@@ -1595,11 +1572,10 @@
     </node>
   </node>
   <node concept="36_ej0" id="zT7KcIY2Nv">
-    <property role="TrG5h" value="dummy" />
+    <property role="TrG5h" value="dummyForTransformingImports" />
     <node concept="25ANmZ" id="zT7KcIY2Nw" role="25ANmy">
       <property role="1XYfFM" value="dummy" />
       <property role="3DGDXv" value="dummy" />
-      <property role="3DGDXg" value="dummy" />
       <property role="3DGDXh" value="false" />
     </node>
   </node>

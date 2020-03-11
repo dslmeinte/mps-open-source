@@ -655,21 +655,6 @@
         </node>
         <node concept="2iRfu4" id="6ZO2Qy6hUsU" role="2iSdaV" />
       </node>
-      <node concept="3EZMnI" id="6ZO2Qy6hUsV" role="3EZMnx">
-        <node concept="VPM3Z" id="6ZO2Qy6hUsW" role="3F10Kt">
-          <property role="VOm3f" value="false" />
-        </node>
-        <node concept="3F0ifn" id="6ZO2Qy6hUsX" role="3EZMnx">
-          <property role="3F0ifm" value="Java package" />
-        </node>
-        <node concept="3F0ifn" id="6ZO2Qy6hUsY" role="3EZMnx">
-          <property role="3F0ifm" value=":" />
-        </node>
-        <node concept="3F0A7n" id="6ZO2Qy6hUsZ" role="3EZMnx">
-          <ref role="1NtTu8" to="irkh:6ZO2Qy6hDgS" resolve="targetJavaPackage" />
-        </node>
-        <node concept="2iRfu4" id="6ZO2Qy6hUt0" role="2iSdaV" />
-      </node>
       <node concept="3F0ifn" id="V$LP5N73Ry" role="3EZMnx" />
       <node concept="VPM3Z" id="nxI_60uGop" role="3F10Kt">
         <property role="VOm3f" value="false" />

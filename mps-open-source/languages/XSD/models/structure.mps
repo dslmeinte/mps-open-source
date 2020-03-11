@@ -395,11 +395,6 @@
       <property role="TrG5h" value="targetFileName" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
-    <node concept="1TJgyi" id="6ZO2Qy6hDgS" role="1TKVEl">
-      <property role="IQ2nx" value="8067085376084677688" />
-      <property role="TrG5h" value="targetJavaPackage" />
-      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
-    </node>
     <node concept="1TJgyi" id="6ZO2Qy6hDgT" role="1TKVEl">
       <property role="IQ2nx" value="8067085376084677689" />
       <property role="TrG5h" value="emitLengths" />

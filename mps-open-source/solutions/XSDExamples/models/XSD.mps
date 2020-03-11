@@ -8,7 +8,6 @@
   <registry>
     <language id="783994a0-4c08-40b6-83e5-ddb930f19f9d" name="XSD">
       <concept id="423824699160170478" name="XSD.structure.XsdSchemaBody" flags="ng" index="25ANmZ">
-        <property id="8067085376084677688" name="targetJavaPackage" index="3DGDXg" />
         <property id="8067085376084677687" name="targetFileName" index="3DGDXv" />
         <property id="1073201763858529699" name="namespaceUri" index="1XYfFM" />
         <child id="423824699160170480" name="declarations" index="25ANmx" />
@@ -38,7 +37,6 @@
     <node concept="25ANmZ" id="DmPLYxpcsT" role="25ANmy">
       <property role="1XYfFM" value="http://www.dslconsultancy.com/" />
       <property role="3DGDXv" value="foo" />
-      <property role="3DGDXg" value="com.dslconsultancy.xsd" />
       <node concept="Lxw54" id="DmPLYxpcsU" role="25ANmx">
         <property role="TrG5h" value="positiveLong" />
         <node concept="36_1Sa" id="DmPLYxpcsY" role="Lxxpz">

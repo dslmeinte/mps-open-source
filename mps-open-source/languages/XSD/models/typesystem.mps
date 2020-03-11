@@ -318,29 +318,6 @@
           <node concept="17RlXB" id="3UUH6AJZOPG" role="2OqNvi" />
         </node>
       </node>
-      <node concept="3clFbJ" id="3UUH6AJY5HO" role="3cqZAp">
-        <node concept="2OqwBi" id="3UUH6AJY6B_" role="3clFbw">
-          <node concept="2OqwBi" id="3UUH6AJY5Rx" role="2Oq$k0">
-            <node concept="1YBJjd" id="3UUH6AJY5I0" role="2Oq$k0">
-              <ref role="1YBMHb" node="3UUH6AJY5HF" resolve="body" />
-            </node>
-            <node concept="3TrcHB" id="6ZO2Qy6j2U$" role="2OqNvi">
-              <ref role="3TsBF5" to="irkh:6ZO2Qy6hDgS" resolve="targetJavaPackage" />
-            </node>
-          </node>
-          <node concept="17RlXB" id="3UUH6AJY779" role="2OqNvi" />
-        </node>
-        <node concept="3clFbS" id="3UUH6AJY5HQ" role="3clFbx">
-          <node concept="2MkqsV" id="3UUH6AJY77n" role="3cqZAp">
-            <node concept="Xl_RD" id="3UUH6AJY77z" role="2MkJ7o">
-              <property role="Xl_RC" value="An XSD schema must have a target Java package specified." />
-            </node>
-            <node concept="1YBJjd" id="3UUH6AJY792" role="1urrMF">
-              <ref role="1YBMHb" node="3UUH6AJY5HF" resolve="body" />
-            </node>
-          </node>
-        </node>
-      </node>
     </node>
     <node concept="1YaCAy" id="3UUH6AJY5HF" role="1YuTPh">
       <property role="TrG5h" value="body" />
