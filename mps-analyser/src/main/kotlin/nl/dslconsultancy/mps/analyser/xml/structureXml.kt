@@ -13,6 +13,20 @@ fun ModelXml.asStructure(): Structure {
     )
 }
 
+private fun readableSourceCardinality(cardinalityEncoding: String?): String {
+    if (cardinalityEncoding === null) {
+        return "0..1"
+    }
+    val decodedEnum = cardinalityEncoding.substring(cardinalityEncoding.lastIndexOf('/') + 1)
+    return when (decodedEnum) {
+        "_0__1" -> "0..1"
+        "_1" -> "1"
+        "_0__n" -> "0..n"
+        "_1__n" -> "1..n"
+        else -> "??? - cardinality enum literal not understood: '$decodedEnum'"
+    }
+}
+
 private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<String, Any>): Any {
     val nodeXml = this
 
@@ -77,7 +91,7 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
                 name = thisPropertySetting(linkDeclaration.properties["role"])!!,
                 deprecated = isDeprecated(),
                 reference = metaClass == null || metaClass.endsWith("reference"),
-                cardinality = thisPropertySetting(linkDeclaration.properties.named("sourceCardinality")) ?: "0..1",
+                cardinality = thisPropertySetting(linkDeclaration.properties.named("sourceCardinality")).run { readableSourceCardinality(this) },
                 targetType = thisReferenceSetting(linkDeclaration.references["target"])!!.resolve!!
             ))
         }

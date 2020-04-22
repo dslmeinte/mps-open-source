@@ -5,7 +5,7 @@ import java.nio.file.Paths
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
-    println("MPS Analyser v0.2.3")
+    println("MPS Analyser v0.2.4")
     if (args.isEmpty() || args[0].isEmpty()) {
         System.err.println("must provide 1 arg: the relative path to a JSON file with the configuration, or '-' in which case you have to provide the JSON configuration on stdin")
         exitProcess(1)

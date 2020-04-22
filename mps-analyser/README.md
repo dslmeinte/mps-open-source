@@ -10,7 +10,7 @@ It works on an MPS project, and can perform various maintenance functions on MPS
 The tool takes the form of a Java JAR file that can be downloaded from the releases section, and can be run from the commandline as follows:
 
 ```
-java -jar mps-analyser-0.2.3.jar <path_to_configuration.json or '-'>
+java -jar mps-analyser-0.2.4.jar <path_to_configuration.json or '-'>
 ```
 
 (Obviously, this presumes that Java is installed.
@@ -34,8 +34,8 @@ A configuration item is an object with properties with the following names, type
 * `languageVersions`: an object that triggers some language version analyses.
 * `languageVersions.reportPath`: a string with the path (relative to the cwd) to which an overview of all languages in this project (again: regardless whether they'd actually be loaded by MPS as part of the project!) including their version number, is written as a comma-separated file.
 * `languageVersions.checkMinus1sInModels`: `true`/`false`, triggers checking all models for occurrences of -1 for the version of languages depended on.
-    MPS sometimes looses track of correct language versions, and such, while merging/rebasing.
-    The root cause for this should be addressed by [this ticket registered with JetBrains](https://youtrack.jetbrains.com/issue/MPS-29937).
+    MPS sometimes lost track of correct language versions, and such, while merging/rebasing.
+    The root cause for this seems to have been [this ticket registered with JetBrains](https://youtrack.jetbrains.com/issue/MPS-29937) - fixed since a while.
 * `generations`: an array of generation items - this is still a very experimental feature, hence goes undocumented here for now.
 
 

@@ -39,7 +39,7 @@ data class Dependency(
 fun Language.structure(): Structure {
     if (cachedStructure == null) {
         val structureModelPath = Files
-            .find(path.parent/modelsDir, 42, BiPredicate { f: Path, _: BasicFileAttributes -> f.fileName.toString() == "structure.mps" })
+            .find(path.parent/modelsDir, 42, BiPredicate { f: Path, _: BasicFileAttributes -> f.fileName.toString().endsWith("structure.mps") })
             .findFirst()
             .get()
         try {
@@ -88,10 +88,8 @@ data class Concept(
     val alias: String?,
     val shortDescription: String?,
     override val deprecated: Boolean,
-    @JsonIgnore
-    var extends: Concept? = null,
-    @JsonIgnore
-    var implements: Iterable<Concept> = emptyList(),
+    @JsonIgnore var extends: Concept? = null,
+    @JsonIgnore var implements: Iterable<Concept> = emptyList(),
     override var features: Iterable<Feature> = emptyList()
 ) : StructuralElement() {
 
@@ -136,6 +134,7 @@ sealed class Feature(
 data class Property(
     override val name: String,
     override val deprecated: Boolean
+// TODO  decode dataType : DataTypeDeclaration
 ) : Feature(name, deprecated)
 
 data class Link(

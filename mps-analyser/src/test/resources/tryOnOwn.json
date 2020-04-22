@@ -8,6 +8,14 @@
   },
   "generations": [
     {
+      "languageName": "ConcernDiagrams",
+      "generationPath": "src/generated"
+    },
+    {
+      "languageName": "Css",
+      "generationPath": "src/generated"
+    },
+    {
       "languageName": "Json",
       "generationPath": "src/generated"
     },
@@ -16,15 +24,23 @@
       "generationPath": "src/generated"
     },
     {
+      "languageName": "MetaCore",
+      "generationPath": "src/generated"
+    },
+    {
+      "languageName": "Svg",
+      "generationPath": "src/generated"
+    },
+    {
       "languageName": "WSDL",
       "generationPath": "src/generated"
     },
     {
-      "languageName": "XSD",
+      "languageName": "XmlWithExtension",
       "generationPath": "src/generated"
     },
     {
-      "languageName": "XmlWithExtension",
+      "languageName": "XSD",
       "generationPath": "src/generated"
     }
   ]
