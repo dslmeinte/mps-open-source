@@ -4,4 +4,4 @@ source_gen/
 source_gen.caches/
 /build/artifacts/
 /build/tmp/
-/build.xml
+/build*.xml
