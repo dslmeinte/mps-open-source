@@ -6,7 +6,6 @@
     <devkit ref="78434eb8-b0e5-444b-850d-e7c4ad2da9ab(jetbrains.mps.devkit.aspect.structure)" />
   </languages>
   <imports>
-    <import index="1292" ref="r:85e6c920-f9a2-49eb-b9cd-5d4f39c5a122(MetaCore.structure)" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" />
     <import index="r4xx" ref="r:25991841-12a0-400d-8d65-d016aab8719f(Svg.structure)" />
   </imports>
@@ -65,6 +64,14 @@
       <property role="TrG5h" value="edgeLabel" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
+    <node concept="1TJgyi" id="6DcOmREdWc" role="1TKVEl">
+      <property role="IQ2nx" value="119683239629086476" />
+      <property role="TrG5h" value="noRotate" />
+      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
+    </node>
+    <node concept="PrWs8" id="6DcOmRxr61" role="PzmwI">
+      <ref role="PrY4T" to="tpck:3fifI_xCcJN" resolve="ScopeProvider" />
+    </node>
   </node>
   <node concept="1TIwiD" id="7_z3uTkqCzI">
     <property role="EcuMT" value="8746850218553280750" />
@@ -103,9 +110,6 @@
     </node>
     <node concept="PrWs8" id="7_z3uTkm7Ti" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
-    <node concept="PrWs8" id="7_z3uTkq$nu" role="PzmwI">
-      <ref role="PrY4T" to="1292:7_z3uTkq$nh" resolve="IDescriptive" />
     </node>
   </node>
 </model>

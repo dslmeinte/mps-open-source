@@ -42,7 +42,7 @@
     </node>
     <node concept="21XSFi" id="5MdW_poA5RW" role="21XSIT">
       <node concept="4bmbo" id="5MdW_poC_o7" role="21XSH6">
-        <property role="TrG5h" value="concern-circle" />
+        <property role="TrG5h" value="concern-shape" />
       </node>
       <node concept="21XSFY" id="5MdW_poA5S3" role="21XSGH">
         <property role="TrG5h" value="fill" />

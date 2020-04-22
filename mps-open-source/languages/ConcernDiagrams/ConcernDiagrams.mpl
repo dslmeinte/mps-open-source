@@ -45,7 +45,6 @@
         <module reference="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" version="0" />
         <module reference="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)" version="0" />
         <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
-        <module reference="6bddcac0-8923-4b31-8631-cab5d93c0b72(MetaCore)" version="0" />
         <module reference="603daafe-2a66-4fb4-b473-5f80d274b3b9(Svg)" version="0" />
         <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
         <module reference="9e98f4e2-decf-4e97-bf80-9109e8b759aa(jetbrains.mps.lang.feedback.context)" version="0" />
@@ -56,6 +55,8 @@
   <sourcePath />
   <dependencies>
     <dependency reexport="false">603daafe-2a66-4fb4-b473-5f80d274b3b9(Svg)</dependency>
+    <dependency reexport="false">6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)</dependency>
+    <dependency reexport="false">2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)</dependency>
   </dependencies>
   <languageVersions>
     <language slang="l:4b29a406-d945-4891-9369-166d00decad5:Css" version="0" />
@@ -98,14 +99,12 @@
     <module reference="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" version="0" />
     <module reference="6ed54515-acc8-4d1e-a16c-9fd6cfe951ea(MPS.Core)" version="0" />
     <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
-    <module reference="6bddcac0-8923-4b31-8631-cab5d93c0b72(MetaCore)" version="0" />
     <module reference="603daafe-2a66-4fb4-b473-5f80d274b3b9(Svg)" version="0" />
+    <module reference="2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)" version="0" />
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
     <module reference="a9e4c532-c5f5-4bb7-99ef-42abb73bbb70(jetbrains.mps.lang.descriptor.aspects)" version="0" />
     <module reference="9e98f4e2-decf-4e97-bf80-9109e8b759aa(jetbrains.mps.lang.feedback.context)" version="0" />
   </dependencyVersions>
-  <extendedLanguages>
-    <extendedLanguage>6bddcac0-8923-4b31-8631-cab5d93c0b72(MetaCore)</extendedLanguage>
-  </extendedLanguages>
+  <extendedLanguages />
 </language>
 

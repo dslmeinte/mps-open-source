@@ -7,7 +7,7 @@
   <imports />
   <registry>
     <language id="603daafe-2a66-4fb4-b473-5f80d274b3b9" name="Svg">
-      <concept id="4570454118466490498" name="Svg.structure.Vector" flags="ng" index="e1Ldc">
+      <concept id="4570454118466490498" name="Svg.structure.IntVector" flags="ng" index="e1Ldc">
         <property id="4570454118466491758" name="y" index="e1Lqw" />
         <property id="4570454118466491757" name="x" index="e1Lqz" />
       </concept>
@@ -26,11 +26,6 @@
         <reference id="8746850218552099664" name="destination" index="HeSUY" />
       </concept>
     </language>
-    <language id="6bddcac0-8923-4b31-8631-cab5d93c0b72" name="MetaCore">
-      <concept id="8746850218553263569" name="MetaCore.structure.IDescriptive" flags="ng" index="H2kwZ">
-        <property id="8746850218553263570" name="description" index="H2kwW" />
-      </concept>
-    </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
@@ -41,7 +36,6 @@
     <property role="TrG5h" value="example concern diagram" />
     <node concept="HeReZ" id="5MdW_poIXbh" role="1yBhVu">
       <property role="TrG5h" value="concern1" />
-      <property role="H2kwW" value="The 1st concern." />
       <node concept="e1Ldc" id="5MdW_poIXbi" role="1yBhVy">
         <property role="e1Lqz" value="200" />
         <property role="e1Lqw" value="200" />
@@ -49,7 +43,6 @@
     </node>
     <node concept="HeReZ" id="5MdW_poIXbl" role="1yBhVu">
       <property role="TrG5h" value="concern2" />
-      <property role="H2kwW" value="The 2nd concern." />
       <node concept="e1Ldc" id="5MdW_poIXbm" role="1yBhVy">
         <property role="e1Lqz" value="500" />
         <property role="e1Lqw" value="500" />

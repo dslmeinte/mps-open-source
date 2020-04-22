@@ -11,7 +11,6 @@
   <sourcePath />
   <languageVersions>
     <language slang="l:6cb87c60-98d4-4c56-bf5b-436b79f1a174:ConcernDiagrams" version="0" />
-    <language slang="l:6bddcac0-8923-4b31-8631-cab5d93c0b72:MetaCore" version="0" />
     <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="2" />
   </languageVersions>
   <dependencyVersions>
