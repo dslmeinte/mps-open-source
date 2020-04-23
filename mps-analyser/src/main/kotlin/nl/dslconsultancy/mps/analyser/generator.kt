@@ -6,7 +6,7 @@ import nl.dslconsultancy.mps.analyser.util.div
 import java.nio.file.Files
 import java.nio.file.Paths
 
-fun generateKotlinFor(structure: Structure): Iterable<String> = structure.elements.flatMap { it.generateKotlinFor() }
+fun generateKotlinFor(structure: Structure): Iterable<String> = structure.concepts().flatMap { it.generateKotlinFor() }
 
 private fun StructuralElement.generateKotlinFor(): Iterable<String> =
     when (this) {
@@ -30,7 +30,7 @@ private fun Concept.superTypes(): List<Concept> =
     (if (extends == null) emptyList() else listOf(extends!!)) + implements
 
 
-fun generateCsvFor(structure: Structure): Iterable<String> = structure.elements.flatMap { it.generateCsvFor() }
+fun generateCsvFor(structure: Structure): Iterable<String> = structure.concepts().flatMap { it.generateCsvFor() }
 
 private fun StructuralElement.generateCsvFor(): Iterable<String> =
     when (this) {

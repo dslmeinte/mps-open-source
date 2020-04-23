@@ -21,10 +21,9 @@ fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap<String> {
     val namesOwnImportedLanguages = mpsProjectOnDisk.languages.map { it.name }.intersect(namesAllImportedLanguages)
     val ownImportedLanguages = namesOwnImportedLanguages.flatMap { n -> mpsProjectOnDisk.languages.filter { l -> l.name == n } }
     val allStructureOfOwnImportedLanguages = ownImportedLanguages.flatMap { l ->
-        val elements = l.structure().elements
-        elements.flatMap { e ->
-            val fqPrefix = "${l.name}.${e.name}"
-            (e.features.map { f -> "$fqPrefix#${f.name}" }) + fqPrefix
+        l.structure().concepts().flatMap { concept ->
+            val fqPrefix = "${l.name}.${concept.name}"
+            (concept.features.map { f -> "$fqPrefix#${f.name}" }) + fqPrefix
         }
     }.map { it to 0 }.toMap()
 
@@ -76,7 +75,7 @@ private fun Map.Entry<String, Int>.asRow(languages: List<Language>): Iterable<St
     val elementName = parts[0].substring(index + 1)
     val elements = languages
         .filter { l -> l.name == languageName }
-        .flatMap { l -> l.structure().elements.filter { e -> e.name == elementName } }
+        .flatMap { l -> l.structure().concepts().filter { e -> e.name == elementName } }
     if (elements.isEmpty()) {
         return listOf(key, value.toString(), "?")
     }

@@ -64,7 +64,9 @@ interface MetaModelElement : Named {
     property = "metaType"
 )
 @JsonSubTypes(
-    Type(Concept::class)
+    Type(Concept::class),
+    Type(ConstrainedString::class),
+    Type(Enumeration::class)
 )
 sealed class StructuralElement : MetaModelElement {
     abstract val features: Iterable<Feature>
@@ -78,8 +80,10 @@ sealed class StructuralElement : MetaModelElement {
  */
 
 data class Structure(
-    val elements: Iterable<StructuralElement> = emptyList()
-)
+    val elements: Iterable<MetaModelElement> = emptyList()
+) {
+    fun concepts() = elements.filterIsInstance<Concept>()
+}
 
 data class Concept(
     override val name: String,
@@ -135,7 +139,6 @@ data class Property(
     override val name: String,
     override val deprecated: Boolean,
     val targetType: String
-// TODO  decode dataType : DataTypeDeclaration
 ) : Feature(name, deprecated)
 
 data class Link(
@@ -145,4 +148,24 @@ data class Link(
     val cardinality: String,
     val targetType: String  // TODO  make reference to a Concept/Interface
 ) : Feature(name, deprecated)
+
+
+data class ConstrainedString(
+    override val name: String,
+    override val deprecated: Boolean,
+    val constrainingRegexp: String
+) : MetaModelElement
+
+
+data class Enumeration(
+    override val name: String,
+    override val deprecated: Boolean,
+    val members: Iterable<EnumerationMember> = emptyList(),
+    val defaultMember: String
+) : MetaModelElement
+
+data class EnumerationMember(
+    override val name: String,
+    val presentation: String
+) : Named
 

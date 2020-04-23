@@ -7,9 +7,9 @@ fun ModelXml.asStructure(): Structure {
     val metaConcepts = metaConcepts()
     val memois = hashMapOf<String, Any>()
     val modelXml = this
-    val supported = listOf("ConceptDeclaration", "InterfaceConceptDeclaration").mapNotNull { metaConcepts.named(it) }.map { it.index }
+    val supported = listOf("ConceptDeclaration", "ConstrainedDataTypeDeclaration", "EnumerationDeclaration", "InterfaceConceptDeclaration").mapNotNull { metaConcepts.named(it) }.map { it.index }
     return Structure(
-        elements = modelXml.nodes.filter { supported.contains(it.concept) }.map { it.fromXml(metaConcepts, memois) as StructuralElement }
+        elements = modelXml.nodes.filter { supported.contains(it.concept) }.map { it.fromXml(metaConcepts, memois) as MetaModelElement }
     )
 }
 
@@ -73,6 +73,30 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
                 features = nodeXml.features()
             }
         }
+        "ConstrainedDataTypeDeclaration" -> {
+            val constrainedDataTypeDeclaration = metaConcepts["ConstrainedDataTypeDeclaration"]
+            memois.of(nodeXml to ConstrainedString(
+                name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
+                deprecated = isDeprecated(),
+                constrainingRegexp = nodeXml.thisPropertySetting(constrainedDataTypeDeclaration.properties["constraint"])!!
+            ))
+        }
+        "EnumerationDeclaration" -> {
+            val enumerationDeclaration = metaConcepts["EnumerationDeclaration"]
+            memois.of(nodeXml to Enumeration(
+                name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
+                deprecated = isDeprecated(),
+                members = nodeXml.theseChildNodes(enumerationDeclaration.children.named("members")).map { it.fromXml(metaConcepts, memois) as EnumerationMember },
+                defaultMember = nodeXml.thisReferenceSetting(enumerationDeclaration.references.named("defaultMember"))!!.resolve!!
+            ))
+        }
+        "EnumerationMemberDeclaration" -> {
+            val enumerationMemberDeclaration = metaConcepts["EnumerationMemberDeclaration"]
+            memois.of(nodeXml to EnumerationMember(
+                name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
+                presentation = nodeXml.thisPropertySetting(enumerationMemberDeclaration.properties["presentation"]) ?: "???"
+            ))
+        }
         "InterfaceConceptDeclaration" -> memois.of(nodeXml to Concept(
             name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
             isInterface = true,
@@ -91,7 +115,7 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
                 name = thisPropertySetting(linkDeclaration.properties["role"])!!,
                 deprecated = isDeprecated(),
                 reference = metaClass == null || metaClass.endsWith("reference"),
-                cardinality = thisPropertySetting(linkDeclaration.properties.named("sourceCardinality")).run { readableSourceCardinality(this) },
+                cardinality = readableSourceCardinality(thisPropertySetting(linkDeclaration.properties.named("sourceCardinality"))),
                 targetType = thisReferenceSetting(linkDeclaration.references["target"])!!.resolve!!
             ))
         }
