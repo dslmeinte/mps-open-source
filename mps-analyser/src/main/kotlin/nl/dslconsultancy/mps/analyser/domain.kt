@@ -133,7 +133,8 @@ sealed class Feature(
 
 data class Property(
     override val name: String,
-    override val deprecated: Boolean
+    override val deprecated: Boolean,
+    val targetType: String
 // TODO  decode dataType : DataTypeDeclaration
 ) : Feature(name, deprecated)
 

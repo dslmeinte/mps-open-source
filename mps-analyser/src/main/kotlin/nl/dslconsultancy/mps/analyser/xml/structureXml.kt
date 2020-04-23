@@ -95,10 +95,14 @@ private fun NodeXml.fromXml(metaConcepts: List<MetaConceptXml>, memois: Map<Stri
                 targetType = thisReferenceSetting(linkDeclaration.references["target"])!!.resolve!!
             ))
         }
-        "PropertyDeclaration" -> memois.of(nodeXml to Property(
-            name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
-            deprecated = isDeprecated()
-        ))
+        "PropertyDeclaration" -> {
+            val propertyDeclaration = metaConcepts["PropertyDeclaration"]
+            memois.of(nodeXml to Property(
+                name = nodeXml.thisPropertySetting(iNamedConcept.properties["name"])!!,
+                targetType = thisReferenceSetting(propertyDeclaration.references["dataType"])!!.resolve!!,
+                deprecated = isDeprecated()
+            ))
+        }
         else -> throw Error("no Kotlin class for concept ${metaConcept.name}")
     }
 }
