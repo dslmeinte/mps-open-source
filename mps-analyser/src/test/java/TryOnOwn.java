@@ -1,3 +1,4 @@
+import nl.dslconsultancy.mps.analyser.GeneratorKt;
 import nl.dslconsultancy.mps.analyser.MpsAnalyser;
 import nl.dslconsultancy.mps.analyser.MpsProjectOnDisk;
 
@@ -27,6 +28,11 @@ public class TryOnOwn {
         final String usageAnalysisPath = "target/usage.csv";
         Files.write(Paths.get(usageAnalysisPath), mpsProjectOnDisk.usageAsCsvLines());
         System.out.format("wrote usage analysis to '%s'\n", usageAnalysisPath);
+
+        final Path generationPath = Paths.get("src/generated");
+        mpsProjectOnDisk.getLanguages().forEach(language -> {
+            GeneratorKt.generateAllFor(language, generationPath);
+        });
     }
 
 }

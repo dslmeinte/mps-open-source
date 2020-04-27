@@ -8,7 +8,6 @@ import nl.dslconsultancy.mps.analyser.util.JacksonXmlUtil.xmlFromDisk
 import nl.dslconsultancy.mps.analyser.util.div
 import nl.dslconsultancy.mps.analyser.util.isSorted
 import nl.dslconsultancy.mps.analyser.util.lastSection
-import java.lang.IllegalArgumentException
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -70,6 +69,20 @@ data class ModulesXml(
      */
     fun shortDescription() = "MPS project '$name' (version=$version) has ${modules.size} modules"
 
+    /**
+     * Sorts the modules mentioned in the modules XML file in alphabetical order,
+     * and writes the file back.
+     * (This may result in changes to the last newline in the file.)
+     */
+    fun sortModules() {
+        val drilldown = originalXml.component.projectModules
+        if (!drilldown.projectModules.map { it.path }.isSorted()) {
+            println("project module entries in modules XML not sorted: sorting them automatically")
+            drilldown.projectModules = drilldown.projectModules.sortedBy { it.path }
+            writeXml(originalXml, modulesXmlPath(mpsProjectPath))
+        }
+    }
+
 }
 
 
@@ -91,23 +104,9 @@ fun modulesXmlIn(mpsProjectPath: Path): ModulesXml {
 
 
 /**
- * Sorts the modules mentioned in the modules XML file in alphabetical order,
- * and writes the file back.
- * (This may result in changes to the last newline in the file.)
- */
-fun ModulesXml.sortModules() {
-    val drilldown = originalXml.component.projectModules
-    if (!drilldown.projectModules.map { it.path }.isSorted()) {
-        println("project module entries in modules XML not sorted: sorting them automatically")
-        drilldown.projectModules = drilldown.projectModules.sortedBy { it.path }
-        writeXml(originalXml, modulesXmlPath(mpsProjectPath))
-    }
-}
-
-/**
  * @return the location of the modules XML file under the given path for an MPS project.
  */
-fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath/".mps"/"modules.xml"
+private fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath/".mps"/"modules.xml"
 
 
 fun checkMpsProjectPath(mpsProjectPath: Path) {

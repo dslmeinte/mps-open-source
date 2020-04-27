@@ -37,22 +37,10 @@ See also [this blog](http://beust.com/weblog/2015/10/30/exploring-the-kotlin-sta
 
 TODO:
 
-1. Expose functionality of MPS Analyser through an actual (Kotlin) API instead of providing _some_ configurability.
-2. Deprecate JSON configuration. (Generate script from a configuration, in a separate module?)
+1. &#10003; Expose functionality of MPS Analyser through an actual (Kotlin) API instead of providing _some_ configurability.
+2. &#10003; Deprecate JSON configuration. (Generate script from a configuration, in a separate module?)
 3. Expose some convenience in the form of a "forward continuation operator"/"pipe", so you can write: `mpsProjectPath |> Paths::get |> processModulesXml |> println`.
     (This can also already be done with `.let { }`.) 
-
-E.g., run the following program:
-
-```
-import java.nio.file.*
-import nl.dslconsultancy.mps.analyser.xml.*
-
-fun main() {
-    val mpsProjectPath = Paths.get("../mps-open-source")
-    println(readModulesXmlIn(mpsProjectPath))
-}
-```
 
 
 ### Use Java "scripts"
