@@ -3,11 +3,27 @@ package nl.dslconsultancy.mps.analyser
 import nl.dslconsultancy.mps.analyser.util.asList
 import nl.dslconsultancy.mps.analyser.util.csvRowOf
 import nl.dslconsultancy.mps.analyser.xml.languageMetaDataXmlFromDisk
+import nl.dslconsultancy.mps.analyser.xml.modelXmlWithoutNodesFromDisk
 import java.nio.file.Files
 import java.nio.file.Path
 
 
-data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Language>)
+data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Language>) {
+
+    fun languageReportAsCsvLines() =
+        listOf(csvRowOf("\"language name\"", "version", "uuid")) + languages.sortedBy { it.name }.map { csvRowOf(it.name, it.languageVersion, it.uuid) }
+
+    fun modelsWithMinus1sVersions() =
+        this.mpsFiles
+            .filter { mpsFileType(it) == MpsFileType.Model }
+            .filter {
+                val modelXml = modelXmlWithoutNodesFromDisk(it)
+                modelXml.dependencies != null && modelXml.dependencies!!.importedLanguages.any { il -> il.version == -1 }
+            }
+
+    fun usageAsCsvLines() = usage(this).asCsvLines(this)
+
+}
 
 
 fun mpsProjectFromDisk(mpsProject: Path): MpsProjectOnDisk {
@@ -44,8 +60,4 @@ private fun isNotAModelFile(path: Path) =
 
 fun isStructureModel(path: Path) =
         mpsFileType(path) == MpsFileType.Model && path.toList().takeLast(2) == listOf("models", "structure")
-
-
-fun MpsProjectOnDisk.languageReportAsCsvLines() =
-    listOf(csvRowOf("\"language name\"", "version", "uuid")) + languages.sortedBy { it.name }.map { csvRowOf(it.name, it.languageVersion, it.uuid) }
 

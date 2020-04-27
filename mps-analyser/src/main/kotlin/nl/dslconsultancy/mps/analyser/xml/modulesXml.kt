@@ -8,6 +8,8 @@ import nl.dslconsultancy.mps.analyser.util.JacksonXmlUtil.xmlFromDisk
 import nl.dslconsultancy.mps.analyser.util.div
 import nl.dslconsultancy.mps.analyser.util.isSorted
 import nl.dslconsultancy.mps.analyser.util.lastSection
+import java.lang.IllegalArgumentException
+import java.nio.file.Files
 import java.nio.file.Path
 
 
@@ -61,13 +63,21 @@ data class ModulesXml(
     val modules: List<ProjectModule>,
     // TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
     val originalXml: MpsProjectAsXml
-)
+) {
+
+    /**
+     * @return a short description of the modules XML file.
+     */
+    fun shortDescription() = "MPS project '$name' (version=$version) has ${modules.size} modules"
+
+}
+
 
 /**
  * Reads a modules XML file in the MPS project under the given path.
  * @return a representation of the modules XML file
  */
-fun readModulesXmlIn(mpsProjectPath: Path): ModulesXml {
+fun modulesXmlIn(mpsProjectPath: Path): ModulesXml {
     val modulesXml = xmlFromDisk<MpsProjectAsXml>(modulesXmlPath(mpsProjectPath))
 
     return ModulesXml(
@@ -78,12 +88,6 @@ fun readModulesXmlIn(mpsProjectPath: Path): ModulesXml {
         modulesXml
     )
 }
-
-
-/**
- * @return a short description of the modules XML file.
- */
-fun ModulesXml.shortDescription(): String = "MPS project '$name' (version=$version) has ${modules.size} modules"
 
 
 /**
@@ -104,4 +108,11 @@ fun ModulesXml.sortModules() {
  * @return the location of the modules XML file under the given path for an MPS project.
  */
 fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath/".mps"/"modules.xml"
+
+
+fun checkMpsProjectPath(mpsProjectPath: Path) {
+    if (!Files.exists(modulesXmlPath(mpsProjectPath))) {
+        throw IllegalArgumentException("'$mpsProjectPath' is not a path to an MPS project")
+    }
+}
 

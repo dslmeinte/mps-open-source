@@ -4,6 +4,7 @@ import nl.dslconsultancy.mps.analyser.util.JacksonJsonUtil.writeJson
 import nl.dslconsultancy.mps.analyser.util.csvRowOf
 import nl.dslconsultancy.mps.analyser.util.div
 import java.nio.file.Files
+import java.nio.file.Path
 import java.nio.file.Paths
 
 fun generateKotlinFor(structure: Structure): Iterable<String> = structure.concepts().flatMap { it.generateKotlinFor() }
@@ -30,12 +31,22 @@ private fun Concept.superTypes(): List<Concept> =
     (if (extends == null) emptyList() else listOf(extends!!)) + implements
 
 
-fun generateCsvFor(structure: Structure): Iterable<String> = structure.concepts().flatMap { it.generateCsvFor() }
+fun generateCsvFor(structure: Structure): Iterable<String> =
+    listOf(csvRowOf("\"concept[#feature]\"", "deprecated")) + structure.concepts().flatMap { it.generateCsvFor() }.sorted()
 
 private fun StructuralElement.generateCsvFor(): Iterable<String> =
     when (this) {
         is Concept -> listOf(csvRowOf(name, deprecated)) + features.map { csvRowOf("${this.name}#${it.name}", it.deprecated) }
     }
+
+
+fun generateAll(language: Language, generationPath: Path) {
+    val structure = language.structure()
+    writeJson(structure, generationPath/"export-${language.name}.json")
+    Files.write(generationPath/"kotlin-${language.name}.kt", generateKotlinFor(structure))
+    Files.write(generationPath/"structure-${language.name}.csv", generateCsvFor(structure))
+    println("wrote \"stuff\" generated for structure of '${language.name}' to '$generationPath'")
+}
 
 
 fun GenerateFromStructure.run(mpsProjectOnDisk: MpsProjectOnDisk) {
@@ -44,14 +55,6 @@ fun GenerateFromStructure.run(mpsProjectOnDisk: MpsProjectOnDisk) {
         System.err.println("no language with name '$languageName' in MPS project")
         return
     }
-    val structure = language.structure()
-    val genPath = Paths.get(generationPath)
-    writeJson(structure, genPath/"export-${language.name}.json")
-    Files.write(genPath/"kotlin-${language.name}.kt", generateKotlinFor(structure))
-    Files.write(
-        genPath/"structure-${language.name}.csv",
-        listOf(csvRowOf("\"concept[#feature]\"", "deprecated")) + generateCsvFor(structure).sorted()
-    )
-    println("wrote \"stuff\" generated for structure of '${language.name}' to '$genPath'")
+    generateAll(language, Paths.get(generationPath))
 }
 

@@ -32,11 +32,9 @@ data class GenerateFromStructure(
 
 fun ConfigurationItem.run() {
     val mpsProjectPath = Paths.get(mpsProjectPath)
-    if (!Files.exists(modulesXmlPath(mpsProjectPath))) {
-        System.err.println("'$mpsProjectPath' is not a path to an MPS project")
-    }
+    checkMpsProjectPath(mpsProjectPath)
 
-    val modulesXml = readModulesXmlIn(mpsProjectPath)
+    val modulesXml = modulesXmlIn(mpsProjectPath)
     println(modulesXml.shortDescription())
     if (sortModules == true) {
         modulesXml.sortModules()
@@ -50,19 +48,11 @@ fun ConfigurationItem.run() {
             println("wrote language version report to '${languageVersions.reportPath}'")
         }
         if (languageVersions.checkMinus1sInModels == true) {
-            var nrFound = 0
-            mpsProjectOnDisk.mpsFiles
-                .filter { mpsFileType(it) == MpsFileType.Model }
-                .forEach {
-                    val modelXml = modelXmlWithoutNodesFromDisk(it)
-                    if (modelXml.dependencies != null) {
-                        if (modelXml.dependencies!!.importedLanguages.any { il -> il.version == -1 }) {
-                            println("'$it' relies on at least one language with version -1")
-                            nrFound++
-                        }
-                    }
-                }
-            println("checked for occurrences of language version -1 in models: found $nrFound")
+            val modelsWithMinus1sVersions = mpsProjectOnDisk.modelsWithMinus1sVersions()
+            modelsWithMinus1sVersions.forEach {
+                println("'$it' relies on at least one language with version -1")
+            }
+            println("checked for occurrences of language version -1 in models: found ${modelsWithMinus1sVersions.size}")
         }
     }
 

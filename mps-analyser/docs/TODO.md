@@ -7,7 +7,7 @@ Not meant as an actual roadmap!
 ## Capabilities
 
 1. &#10003; Be aware of (alternative) file structures of a module.
-1. ... Export structure of languages, directly from XML to JSON.
+1. &#10003; (...) Export structure of languages, directly from XML to JSON.
 1. ... Generate Kotlin code for deserializing models from XML.
 1. ... Export models, directly from XML to JSON.
 1. Track dependencies, and check for incorrect/unmatched language versions, and such.
@@ -18,7 +18,19 @@ Not meant as an actual roadmap!
 ## Notes
 
 * [polling with Java NIO](https://dzone.com/articles/event-driven-architecture-over-polling-architecture), for making things incremental
+
 * [serialize references to JSON, without infinite recursion](https://www.logicbig.com/tutorials/misc/jackson/json-identity-info-annotation.html)
+
+* Differences between use of `<operand>.xxx { f }`:
+
+| function | receiver (`this`) | argument (`it`) | result |
+|---|---|---|---|
+| `let` | containing object | operand | `f(this, it)` |
+| `run` | operand | n/a | `f(this)` |
+| `apply` | operand | n/a | `this` = operand |
+| `also` | containing object | operand | `it` = operand |
+
+See also [this blog](http://beust.com/weblog/2015/10/30/exploring-the-kotlin-standard-library/).
 
 
 ## Programmatic use of the MPS API
@@ -43,15 +55,44 @@ fun main() {
 ```
 
 
+### Use Java "scripts"
+
+CLI command:
+
+```
+$ java -cp mps-analyser.jar MyScript.java
+```
+
+That "script" file would look something like:
+
+```
+import nl.dslconsultancy.mps.analyser.xml.ModulesXmlKt;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class MyScript {
+
+    public static void main(String[] args) {
+        Path mpsProjectPath = Paths.get("../mps-open-source");
+        System.out.println(ModulesXmlKt.readModulesXmlIn(mpsProjectPath));
+    }
+
+}
+```
+
+See also [this blog](https://blog.codefx.org/java/scripting-java-shebang/).
+
+
 ### Use Kotlin "scripts"
 
 CLI command:
 
 ```
-kotlinc -cp mps-analyser.jar -script myScript.kts
+$ kotlinc -cp mps-analyser.jar -script myScript.kts
 ```
 
-The script file would look something like:
+That script file would look something like:
 
 ```
 import java.nio.file.*

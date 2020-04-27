@@ -83,6 +83,8 @@ data class Structure(
     val elements: Iterable<MetaModelElement> = emptyList()
 ) {
     fun concepts() = elements.filterIsInstance<Concept>()
+    fun enumerations() = elements.filterIsInstance<Enumeration>()
+    fun constrainedStrings() = elements.filterIsInstance<ConstrainedString>()
 }
 
 data class Concept(
