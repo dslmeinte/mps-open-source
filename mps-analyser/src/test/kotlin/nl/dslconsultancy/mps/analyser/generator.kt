@@ -3,10 +3,6 @@ package nl.dslconsultancy.mps.analyser
 import nl.dslconsultancy.mps.analyser.util.JacksonJsonUtil.writeJson
 import nl.dslconsultancy.mps.analyser.util.csvRowOf
 import nl.dslconsultancy.mps.analyser.util.div
-import nl.dslconsultancy.mps.analyser.xml.Concept
-import nl.dslconsultancy.mps.analyser.xml.Property
-import nl.dslconsultancy.mps.analyser.xml.StructuralElement
-import nl.dslconsultancy.mps.analyser.xml.Structure
 import java.nio.file.Files
 import java.nio.file.Path
 

@@ -43,27 +43,3 @@ fun mpsProjectFromDisk(mpsProjectPath: Path): MpsProjectOnDisk {
     )
 }
 
-
-enum class MpsFileType {
-    None,
-    Language,
-    Solution,   // can also be a devkit or ?
-    Model
-}
-
-fun mpsFileType(path: Path): MpsFileType {
-    val fileName = path.last().toString()
-    return when {
-        fileName.endsWith(".mpl") -> MpsFileType.Language
-        fileName.endsWith(".msd") -> MpsFileType.Solution
-        fileName.endsWith(".mps") && !isNotAModelFile(path) -> MpsFileType.Model
-        else -> MpsFileType.None
-    }
-}
-
-private fun isNotAModelFile(path: Path) =
-    path.last().toString() == ".mps" || path.any { listOf("classes_gen", "source_gen", "source_gen.caches").contains(it.toString()) }
-
-fun isStructureModel(path: Path) =
-        mpsFileType(path) == MpsFileType.Model && path.toList().takeLast(2) == listOf("models", "structure")
-
