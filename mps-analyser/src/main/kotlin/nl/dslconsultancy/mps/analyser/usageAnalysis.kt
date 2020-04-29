@@ -12,14 +12,14 @@ import nl.dslconsultancy.mps.analyser.xml.*
  * sure that their .id's are always the same for the same FQname.
  */
 
-fun usage(mpsProjectOnDisk: MpsProjectOnDisk): CountingMap<String> {
-    val pathsModelFiles = mpsProjectOnDisk.mpsFiles.filter { mpsFileType(it) == MpsFileType.Model }
+fun usage(mpsProject: MpsProject): CountingMap<String> {
+    val pathsModelFiles = mpsProject.mpsFiles().filter { mpsFileType(it) == MpsFileType.Model }
     val modelFiles = pathsModelFiles.map { modelXmlFromDisk(it) }
 
     // provide 0 counts for all concepts and their features from own, imported languages, not just (non-0 counts for) the used ones:
     val namesAllImportedLanguages = modelFiles.flatMap { mf -> mf.namesImportedLanguages() }.distinct()
-    val namesOwnImportedLanguages = mpsProjectOnDisk.languages.map { it.name }.intersect(namesAllImportedLanguages)
-    val ownImportedLanguages = namesOwnImportedLanguages.flatMap { n -> mpsProjectOnDisk.languages.filter { l -> l.name == n } }
+    val namesOwnImportedLanguages = mpsProject.languages().map { it.name }.intersect(namesAllImportedLanguages)
+    val ownImportedLanguages = namesOwnImportedLanguages.flatMap { n -> mpsProject.languages().filter { l -> l.name == n } }
     val allStructureOfOwnImportedLanguages = ownImportedLanguages.flatMap { l ->
         l.structure().concepts().flatMap { concept ->
             val fqPrefix = "${l.name}.${concept.name}"
@@ -61,11 +61,11 @@ private fun usage(modelXml: ModelXml): CountingMap<String> {
 
 private fun String.withoutStructurePathFragment(): String = this.replace(".structure", "")
 
-fun CountingMap<String>.asCsvLines(mpsProjectOnDisk: MpsProjectOnDisk): Iterable<String> =
+fun CountingMap<String>.asCsvLines(mpsProject: MpsProject): Iterable<String> =
     listOf(csvRowOf("concept(#feature)", "\"number of usages\"")) +
         entries
             .sortedBy { it.key }
-            .map { it.asRow(mpsProjectOnDisk.languages).asCsvRow() }
+            .map { it.asRow(mpsProject.languages()).asCsvRow() }
 
 
 private fun Map.Entry<String, Int>.asRow(languages: List<Language>): Iterable<String> {

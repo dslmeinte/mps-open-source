@@ -22,7 +22,7 @@ data class Language(
     val dependencies: Iterable<Dependency>,
     /** Name of directory containing this language's aspect models (structure, behavior, etc.). */
     val modelsDir: String,
-    var cachedStructure: Structure? = null
+    private var cachedStructure: Structure? = null
 ) {
 
     fun structure(): Structure {

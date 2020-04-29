@@ -1,10 +1,10 @@
 package nl.dslconsultancy.mps.analyser
 
-import nl.dslconsultancy.mps.analyser.util.JacksonXmlUtil
-import nl.dslconsultancy.mps.analyser.util.div
-import nl.dslconsultancy.mps.analyser.util.isSorted
+import nl.dslconsultancy.mps.analyser.util.*
 import nl.dslconsultancy.mps.analyser.xml.ModulesXml
 import nl.dslconsultancy.mps.analyser.xml.ProjectModuleXml
+import nl.dslconsultancy.mps.analyser.xml.languageMetaDataXmlFromDisk
+import nl.dslconsultancy.mps.analyser.xml.modelXmlWithoutNodesFromDisk
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -56,7 +56,9 @@ data class MpsProject(
     val version: Int,
     val modules: List<ProjectModuleXml>,
     // TODO  use projected ProjectModule instances instead of instances of a class intended for XML deserialization
-    val originalModulesXml: ModulesXml
+    val originalModulesXml: ModulesXml,
+    private var cachedMpsFiles: List<Path>? = null,
+    private var cachedLanguages: List<Language>? = null
 ) {
 
     /**
@@ -77,6 +79,42 @@ data class MpsProject(
             JacksonXmlUtil.writeXml(originalModulesXml, modulesXmlPath(mpsProjectPath))
         }
     }
+
+    /**
+     * @return _all_ MPS files under the MPS project path, regardless of whether they are included through the project definition
+     */
+    fun mpsFiles(): List<Path> {
+        if (this.cachedMpsFiles == null) {
+            this.cachedMpsFiles = Files.walk(mpsProjectPath)
+                .asList()
+                .filter { mpsFileType(it) != MpsFileType.None }
+                .sorted()
+        }
+        return this.cachedMpsFiles!!
+    }
+
+    /**
+     * @return all languages that can be found under the MPS project path, regardless of whether they are included through the project definition
+     */
+    fun languages(): List<Language> {
+        if (this.cachedLanguages == null) {
+            this.cachedLanguages = mpsFiles().filter { mpsFileType(it) == MpsFileType.Language }.map { languageMetaDataXmlFromDisk(it) }
+        }
+        return this.cachedLanguages!!
+    }
+
+    fun modelsWithMinus1sVersions() =
+        this.mpsFiles()
+            .filter { mpsFileType(it) == MpsFileType.Model }
+            .filter {
+                val modelXml = modelXmlWithoutNodesFromDisk(it)
+                modelXml.dependencies != null && modelXml.dependencies!!.importedLanguages.any { il -> il.version == -1 }
+            }
+
+    fun languageReportAsCsvLines() =
+        listOf(csvRowOf("\"language name\"", "version", "uuid")) + this.languages().sortedBy { it.name }.map { csvRowOf(it.name, it.languageVersion, it.uuid) }
+
+    fun usageAsCsvLines() = usage(this).asCsvLines(this)
 
 }
 
