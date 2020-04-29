@@ -19,6 +19,10 @@ public class TryOnOwn {
         Files.write(Paths.get(languageVersionReportPath), mpsProject.languageReportAsCsvLines());
         System.out.format("wrote language version report to '%s'\n", languageVersionReportPath);
 
+        if (mpsProject.sortModules()) {
+            System.out.println("module entries in project's modules XML were not sorted, but they are now");
+        }
+
         final List<Path> modelsWithMinus1sVersions = mpsProject.modelsWithMinus1sVersions();
         modelsWithMinus1sVersions.forEach(path -> {
             System.out.format("'%s' relies on at least one language with version -1\n", path);

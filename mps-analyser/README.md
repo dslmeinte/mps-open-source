@@ -9,7 +9,7 @@ It works on an MPS project, and can perform various maintenance functions on MPS
 
 The tool takes the form of a Java JAR file that can be downloaded from the releases section.
 
-**to re-do**
+**TO re-DO, using `jshell`**
 
 
 ### Usage analysis

@@ -64,19 +64,20 @@ data class MpsProject(
     /**
      * @return a short description of the modules XML file.
      */
-    fun shortDescription() = "MPS project '$name' (version=$version) has ${modules.size} modules"
+    fun shortDescription(): String = "MPS project '$name' (version=$version) has ${modules.size} modules"
 
     /**
      * Sorts the modules mentioned in the modules XML file in alphabetical order,
      * and writes the file back.
      * (This may result in changes to the last newline in the file.)
+     * @return `true` iff the modules XML file was altered by this operation
      */
-    fun sortModules() {
+    fun sortModules(): Boolean {
         val drilldown = originalModulesXml.component.projectModules
-        if (!drilldown.projectModules.map { it.path }.isSorted()) {
-            println("project module entries in modules XML not sorted: sorting them automatically")
+        return if (drilldown.projectModules.map { it.path }.isSorted()) false else {
             drilldown.projectModules = drilldown.projectModules.sortedBy { it.path }
             JacksonXmlUtil.writeXml(originalModulesXml, modulesXmlPath(mpsProjectPath))
+            true
         }
     }
 

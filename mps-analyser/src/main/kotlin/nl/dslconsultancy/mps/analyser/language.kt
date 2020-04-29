@@ -91,6 +91,7 @@ data class Concept(
     val alias: String?,
     val shortDescription: String?,
     override val deprecated: Boolean,
+    // TODO  Q: it's not necessary to explicitlt serialize the next two using .map { it.name }?:
     @JsonIgnore var extends: Concept? = null,
     @JsonIgnore var implements: Iterable<Concept> = emptyList(),
     override var features: Iterable<Feature> = emptyList()

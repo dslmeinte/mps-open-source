@@ -45,9 +45,8 @@ data class ProjectModuleXml(
     val folder: String
 
 )
-// TODO  project to a proper domain data class instead of a non-elegant (de-)serialization class
 
-// Note: we could use @JsonAlias and such to reduce to 2 data classes (see https://medium.com/@foxjstephen/how-to-actually-parse-xml-in-java-kotlin-221a9309e6e8)
+// Note: it should be possible to use @JsonAlias and such to reduce to 2 data classes (see https://medium.com/@foxjstephen/how-to-actually-parse-xml-in-java-kotlin-221a9309e6e8)
 
 
 /**

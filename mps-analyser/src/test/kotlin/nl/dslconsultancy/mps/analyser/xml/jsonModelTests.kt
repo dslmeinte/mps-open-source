@@ -7,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-private fun NodeXml.fromXml(concepts: List<MetaConceptXml>, memois: Map<String, Any>): Any {
+private fun NodeXml.fromXml(concepts: List<MetaConceptXml>, memois: MutableMap<String, Any>): Any {
     val nodeXml = this
     val precomputed = memois[nodeXml.id]
     if (precomputed != null) {
