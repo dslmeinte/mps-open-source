@@ -41,6 +41,21 @@ TODO:
 2. &#10003; Deprecate JSON configuration. (Generate script from a configuration, in a separate module?)
 3. Expose some convenience in the form of a "forward continuation operator"/"pipe", so you can write: `mpsProjectPath |> Paths::get |> processModulesXml |> println`.
     (This can also already be done with `.let { }`.) 
+4. ... Separate representations for XML files from "clean" representations into separate Kotlin files, at least for the "top-level" data structures (MPS project, modules XML).
+5. Give modules their own "identity", so they can be read in separately from an MPS project, or modules XML representation.
+
+
+### Use Java shell
+
+CLI command:
+
+```
+$ jshell --class-path target/mps-analyser.jar
+jshell> import nl.dslconsultancy.mps.analyser.*
+jshell> import java.nio.file.*
+jshell> MpsAnalyser.modulesXmlIn(Paths.get("../mps-open-source"))
+$3 ==> ModulesXml(name=mps-open-source, mpsProjectPath=../mps-open-source, version=4, modules=[ProjectModule(path=$PROJECT_DIR$/languages/ConcernDiagrams/ConcernDiagrams.mpl, folder=meta), ProjectModule(path=$PROJECT_DIR$/languages/Css/Css.mpl, folder=web), ProjectModule(path=$PROJECT_DIR$/languages/Json/Json.mpl, folder=web), ProjectModule(path=$PROJECT_DIR$/languages/JsonSchema/JsonSchema.mpl, folder=web), ProjectModule(path=$PROJECT_DIR$/languages/MetaCore/MetaCore.mpl, folder=meta), ProjectModule(path=$PROJECT_DIR$/languages/Svg/Svg.mpl, folder=web), ProjectModule(path=$PROJECT_DIR$/languages/WSDL/WSDL.mpl, folder=web), ProjectModule(path=$PROJECT_DIR$/lang ...  ProjectModule(path=$PROJECT_DIR$/solutions/MetaUtil/MetaUtil.msd, folder=meta), ProjectModule(path=$PROJECT_DIR$/solutions/XSDExamples/XSDExamples.msd, folder=web.examples), ProjectModule(path=$PROJECT_DIR$/solutions/build/build.msd, folder=), ProjectModule(path=$PROJECT_DIR$/solutions/runtime.lib/runtime.lib.msd, folder=web)]))))
+```
 
 
 ### Use Java "scripts"

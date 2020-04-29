@@ -8,6 +8,12 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 
+/**
+ * Representation of an MPS project, as read "verbatim" from disk.
+ * It doesn't take the modules XML file (`.mps/modules.xml`) into account.
+ * Instead, it just lists the entire directory tree of an MPS project,
+ * and, next to it, the [languages][Language] in there.
+ */
 data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Language>) {
 
     fun languageReportAsCsvLines() =
@@ -26,8 +32,8 @@ data class MpsProjectOnDisk(val mpsFiles: List<Path>, val languages: List<Langua
 }
 
 
-fun mpsProjectFromDisk(mpsProject: Path): MpsProjectOnDisk {
-    val mpsFiles = Files.walk(mpsProject)
+fun mpsProjectFromDisk(mpsProjectPath: Path): MpsProjectOnDisk {
+    val mpsFiles = Files.walk(mpsProjectPath)
         .asList()
         .filter { mpsFileType(it) != MpsFileType.None }
         .sorted()

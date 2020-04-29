@@ -6,7 +6,7 @@ import nl.dslconsultancy.mps.analyser.util.lastSection
 
 /*
  * Subsequent 3 data class having names of the form "Meta<X>Xml"
- * to indicate they correspond to the meta-part of a model XML file.
+ * to indicate they correspond to the meta-part of a model's XML file.
  */
 
 /**

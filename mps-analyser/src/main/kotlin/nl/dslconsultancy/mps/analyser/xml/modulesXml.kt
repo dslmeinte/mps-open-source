@@ -13,7 +13,7 @@ import java.nio.file.Path
 
 
 /**
- * Holds a representation of the modules.xml file located under .mps/ in an MPS project.
+ * Holds a representation of the `modules.xml` file located under `.mps/` in an MPS project.
  */
 @JsonRootName("project")
 data class MpsProjectAsXml(
@@ -53,7 +53,8 @@ data class ProjectModule(
 
 
 /**
- * Cleaner representation of the modules XML file.
+ * Representation of the modules XML file (`.mps/modules.xml`) of an MPS project.
+ * It just lists the modules defined in the project, without loading them in some way.
  */
 data class ModulesXml(
     val name: String,
@@ -88,7 +89,7 @@ data class ModulesXml(
 
 /**
  * Reads a modules XML file in the MPS project under the given path.
- * @return a representation of the modules XML file
+ * @return a [representation of the modules XML file][ModulesXml]
  */
 fun modulesXmlIn(mpsProjectPath: Path): ModulesXml {
     val modulesXml = xmlFromDisk<MpsProjectAsXml>(modulesXmlPath(mpsProjectPath))
@@ -109,6 +110,10 @@ fun modulesXmlIn(mpsProjectPath: Path): ModulesXml {
 private fun modulesXmlPath(mpsProjectPath: Path): Path = mpsProjectPath/".mps"/"modules.xml"
 
 
+/**
+ * Checks whether the given [path][Path] is (/could be) the path to an MPS project.
+ * @throws IllegalArgumentException if the given path does not point to an MPS project
+ */
 fun checkMpsProjectPath(mpsProjectPath: Path) {
     if (!Files.exists(modulesXmlPath(mpsProjectPath))) {
         throw IllegalArgumentException("'$mpsProjectPath' is not a path to an MPS project")

@@ -1,7 +1,124 @@
 package nl.dslconsultancy.mps.analyser.xml
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import nl.dslconsultancy.mps.analyser.*
 import nl.dslconsultancy.mps.analyser.util.lastSection
+
+
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "metaType"
+)
+@JsonSubTypes(
+    JsonSubTypes.Type(Concept::class),
+    JsonSubTypes.Type(ConstrainedString::class),
+    JsonSubTypes.Type(Enumeration::class)
+)
+sealed class StructuralElement : StructureElement {
+    abstract val features: Iterable<Feature>
+}
+
+
+/*
+ * Because of recursive creation, all properties that (can) contain references to other objects must be vars initialized to empty.
+ */
+
+data class Structure(
+    val elements: Iterable<StructureElement> = emptyList()
+) {
+    fun concepts() = elements.filterIsInstance<Concept>()
+    fun enumerations() = elements.filterIsInstance<Enumeration>()
+    fun constrainedStrings() = elements.filterIsInstance<ConstrainedString>()
+}
+
+data class Concept(
+    override val name: String,
+    val isInterface: Boolean,
+    val rootable: Boolean,
+    val alias: String?,
+    val shortDescription: String?,
+    override val deprecated: Boolean,
+    @JsonIgnore var extends: Concept? = null,
+    @JsonIgnore var implements: Iterable<Concept> = emptyList(),
+    override var features: Iterable<Feature> = emptyList()
+) : StructuralElement() {
+
+    @JsonProperty("extends")
+    fun extendsForJson() = extends?.name
+
+    @JsonProperty("implements")
+    fun implementsForJson() = implements.map { it.name }
+}
+
+/*
+ * The main differences between a concept and an interface concept is:
+ *  1) an interface *extends* an arbitrary number of (other) interfaces
+ *  2) a concept *extends* at most one concept, and *implements* an arbitrary number of interfaces.
+ *
+ * If we say that an interface also *implements* (instead of *extends*) interfaces,
+ * and impose the following additional constraint,
+ * then we can justify simply adding a boolean flag to Concept saying whether it's an interface (true), or a concept (false):
+ *
+ *  1) an interface does not *extend* anything,
+ *  2) rootable = false.
+ *
+ * This doesn't seem to be too contrary to "MPS World", and makes plenty of sense outside of it.
+ * Now, we have "real" and interface concepts distinguished by the isInterface flag.
+ */
+
+
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "metaType"
+)
+@JsonSubTypes(
+    JsonSubTypes.Type(Property::class),
+    JsonSubTypes.Type(Link::class)
+)
+sealed class Feature(
+    override val name: String,
+    override val deprecated: Boolean
+) : StructureElement
+
+data class Property(
+    override val name: String,
+    override val deprecated: Boolean,
+    val targetType: String
+) : Feature(name, deprecated)
+
+data class Link(
+    override val name: String,
+    override val deprecated: Boolean,
+    val reference: Boolean,
+    val cardinality: String,
+    val targetType: String  // TODO  make reference to a Concept/Interface
+) : Feature(name, deprecated)
+
+
+data class ConstrainedString(
+    override val name: String,
+    override val deprecated: Boolean,
+    val constrainingRegexp: String
+) : StructureElement
+
+
+data class Enumeration(
+    override val name: String,
+    override val deprecated: Boolean,
+    val members: Iterable<EnumerationMember> = emptyList(),
+    val defaultMember: String
+) : StructureElement
+
+data class EnumerationMember(
+    val name: String,
+    val presentation: String
+)
+
 
 fun ModelXml.asStructure(): Structure {
     val metaConcepts = metaConcepts()
@@ -9,7 +126,7 @@ fun ModelXml.asStructure(): Structure {
     val modelXml = this
     val supported = listOf("ConceptDeclaration", "ConstrainedDataTypeDeclaration", "EnumerationDeclaration", "InterfaceConceptDeclaration").mapNotNull { metaConcepts.named(it) }.map { it.index }
     return Structure(
-        elements = modelXml.nodes.filter { supported.contains(it.concept) }.map { it.fromXml(metaConcepts, memois) as MetaModelElement }
+        elements = modelXml.nodes.filter { supported.contains(it.concept) }.map { it.fromXml(metaConcepts, memois) as StructureElement }
     )
 }
 
