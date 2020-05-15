@@ -102,6 +102,9 @@
         <property id="5253498789149547713" name="reexport" index="3bR36h" />
         <reference id="5253498789149547705" name="module" index="3bR37D" />
       </concept>
+      <concept id="763829979718664966" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleResources" flags="ng" index="3rtmxn">
+        <child id="763829979718664967" name="files" index="3rtmxm" />
+      </concept>
       <concept id="5507251971038816436" name="jetbrains.mps.build.mps.structure.BuildMps_Generator" flags="ng" index="1yeLz9" />
       <concept id="4278635856200817744" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleModelRoot" flags="ng" index="1BupzO">
         <property id="8137134783396907368" name="convert2binary" index="1Hdu6h" />
@@ -299,6 +302,21 @@
             </node>
           </node>
         </node>
+        <node concept="3rtmxn" id="5wO1A4DzIgx" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIgy" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIgz" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIg$" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIg_" role="2Ry0An">
+                  <property role="2Ry0Am" value="Css" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIgB" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
+            </node>
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="7_z3uTkipk9" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -338,6 +356,21 @@
             </node>
             <node concept="3qWCbU" id="MRZty8cNwk" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+            </node>
+          </node>
+        </node>
+        <node concept="3rtmxn" id="5wO1A4DzIfS" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIfT" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIfU" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIfV" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIfW" role="2Ry0An">
+                  <property role="2Ry0Am" value="Json" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIfY" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
             </node>
           </node>
         </node>
@@ -413,6 +446,21 @@
               <node concept="3qWCbU" id="4$egv0eGJtr" role="3LXTna">
                 <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
               </node>
+            </node>
+          </node>
+        </node>
+        <node concept="3rtmxn" id="5wO1A4DzIff" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIfg" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIfh" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIfi" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIfj" role="2Ry0An">
+                  <property role="2Ry0Am" value="JsonSchema" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIfl" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
             </node>
           </node>
         </node>
@@ -506,6 +554,21 @@
             </node>
           </node>
         </node>
+        <node concept="3rtmxn" id="5wO1A4DzIeA" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIeB" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIeC" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIeD" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIeE" role="2Ry0An">
+                  <property role="2Ry0Am" value="Svg" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIeG" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
+            </node>
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="7_z3uTki6Jx" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -592,6 +655,21 @@
             </node>
           </node>
         </node>
+        <node concept="3rtmxn" id="5wO1A4DzIha" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIhb" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIhc" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIhd" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIhe" role="2Ry0An">
+                  <property role="2Ry0Am" value="WSDL" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIhg" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
+            </node>
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="7_z3uTki6M$" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -672,6 +750,21 @@
             </node>
           </node>
         </node>
+        <node concept="3rtmxn" id="5wO1A4DzIhN" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIhO" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIhP" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIhQ" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIhR" role="2Ry0An">
+                  <property role="2Ry0Am" value="XSD" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIhT" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
+            </node>
+          </node>
+        </node>
       </node>
       <node concept="1E1JtD" id="7_z3uTkhWnO" role="2G$12L">
         <property role="BnDLt" value="true" />
@@ -716,6 +809,21 @@
             </node>
             <node concept="3qWCbU" id="MRZty8cNvy" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+            </node>
+          </node>
+        </node>
+        <node concept="3rtmxn" id="5wO1A4DzIis" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIit" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIiu" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIiv" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIiw" role="2Ry0An">
+                  <property role="2Ry0Am" value="XmlWithExtension" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIiy" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
             </node>
           </node>
         </node>
@@ -919,6 +1027,21 @@
             </node>
             <node concept="3qWCbU" id="5oL_nVw7pws" role="3LXTna">
               <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+            </node>
+          </node>
+        </node>
+        <node concept="3rtmxn" id="5wO1A4DzIjh" role="3bR31x">
+          <node concept="3LXTmp" id="5wO1A4DzIji" role="3rtmxm">
+            <node concept="55IIr" id="5wO1A4DzIjj" role="3LXTmr">
+              <node concept="2Ry0Ak" id="5wO1A4DzIjk" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="5wO1A4DzIjl" role="2Ry0An">
+                  <property role="2Ry0Am" value="Json" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="5wO1A4DzIjn" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
             </node>
           </node>
         </node>
