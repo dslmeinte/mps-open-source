@@ -18,6 +18,7 @@
       <modulePath path="$PROJECT_DIR$/solutions/XSDExamples/XSDExamples.msd" folder="web.examples" />
       <modulePath path="$PROJECT_DIR$/solutions/build/build.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/runtime.lib/runtime.lib.msd" folder="web" />
+      <modulePath path="$PROJECT_DIR$/solutions/usage/usage.msd" folder="ALEF" />
     </projectModules>
   </component>
 </project>
