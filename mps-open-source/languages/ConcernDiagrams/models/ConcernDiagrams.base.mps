@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:65297a7f-ecb5-487c-9af7-05cce43a7f73(ConcernDiagrams.base)" doNotGenerate="true">
+<model ref="r:65297a7f-ecb5-487c-9af7-05cce43a7f73(ConcernDiagrams.base)">
   <persistence version="9" />
+  <attribute name="doNotGenerate" value="true" />
   <languages>
     <use id="4b29a406-d945-4891-9369-166d00decad5" name="Css" version="0" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
