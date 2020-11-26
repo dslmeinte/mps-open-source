@@ -20,7 +20,7 @@ public class PathMacrosUpdater {
             System.out.println("\t- macro-name is name of the macro");
             System.out.println("\t- macro-value is value of the macro, or '-' to delete the macro");
             System.out.println("This creates a new macro or updates an existing one with the given macro name.");
-            System.out.println("Its value is set to the given value, or the entire macro is deleted it the given value equals '-'.");
+            System.out.println("Its value is set to the given value, or the entire macro is deleted if the given value equals '-'.");
             System.exit(2);
         }
         File pathMacrosXmlFile = new File(args[0]);
@@ -94,6 +94,8 @@ public class PathMacrosUpdater {
                     }
                     component.removeChild(targetMacro);
                 } else {
+                    // print old value:
+                    System.out.println(valueAttribute.getNodeValue());
                     valueAttribute.setNodeValue(macroValue);
                 }
                 return true;
