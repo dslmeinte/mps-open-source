@@ -12,7 +12,7 @@
       </concept>
     </language>
     <language id="8382542b-a045-4f73-951b-02d75ee252bf" name="Json">
-      <concept id="4445988724943966484" name="Json.structure.JsonNumber" flags="ng" index="2W7w8$">
+      <concept id="4445988724943966484" name="Json.structure.JsonInteger" flags="ng" index="2W7w8$">
         <property id="4445988724943966581" name="value" index="2W7w95" />
       </concept>
       <concept id="4445988724943966485" name="Json.structure.JsonString" flags="ng" index="2W7w8_">
@@ -47,7 +47,7 @@
               </node>
               <node concept="2W7w9f" id="3QNkN21FLN9" role="2W7w7V">
                 <property role="TrG5h" value="anInt" />
-                <node concept="2W7w8$" id="3QNkN21FS6k" role="2W7waM">
+                <node concept="2W7w8$" id="2oHwIWH4TdN" role="2W7waM">
                   <property role="2W7w95" value="37" />
                 </node>
               </node>
@@ -59,7 +59,7 @@
               </node>
             </node>
           </node>
-          <node concept="2W7w8$" id="3QNkN21FBki" role="2W7w9d">
+          <node concept="2W7w8$" id="2oHwIWH4Te8" role="2W7w9d">
             <property role="2W7w95" value="42" />
           </node>
         </node>

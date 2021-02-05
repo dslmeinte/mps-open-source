@@ -162,7 +162,7 @@
     </node>
   </node>
   <node concept="24kQdi" id="3QNkN21Flad">
-    <ref role="1XX52x" to="tay9:3QNkN21Fl4k" resolve="JsonNumber" />
+    <ref role="1XX52x" to="tay9:3QNkN21Fl4k" resolve="JsonInteger" />
     <node concept="3F0A7n" id="3QNkN21Flaf" role="2wV5jI">
       <ref role="1NtTu8" to="tay9:3QNkN21Fl5P" resolve="value" />
     </node>

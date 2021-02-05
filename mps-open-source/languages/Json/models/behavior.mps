@@ -358,14 +358,14 @@
     <node concept="2YIFZL" id="4$rLBnupB74" role="jymVt">
       <property role="TrG5h" value="integer" />
       <node concept="3Tqbb2" id="4$rLBnupBaN" role="3clF45">
-        <ref role="ehGHo" to="tay9:3QNkN21Fl4k" resolve="JsonNumber" />
+        <ref role="ehGHo" to="tay9:3QNkN21Fl4k" resolve="JsonInteger" />
       </node>
       <node concept="3Tm1VV" id="4$rLBnupB77" role="1B3o_S" />
       <node concept="3clFbS" id="4$rLBnupB78" role="3clF47">
         <node concept="3clFbF" id="4$rLBnupBfW" role="3cqZAp">
           <node concept="2pJPEk" id="4$rLBnupBfU" role="3clFbG">
             <node concept="2pJPED" id="4$rLBnupBjc" role="2pJPEn">
-              <ref role="2pJxaS" to="tay9:3QNkN21Fl4k" resolve="JsonNumber" />
+              <ref role="2pJxaS" to="tay9:3QNkN21Fl4k" resolve="JsonInteger" />
               <node concept="2pJxcG" id="4$rLBnupBlc" role="2pJxcM">
                 <ref role="2pJxcJ" to="tay9:3QNkN21Fl5P" resolve="value" />
                 <node concept="WxPPo" id="5wO1A4Dvvma" role="28ntcv">
@@ -810,23 +810,23 @@
           </node>
         </node>
         <node concept="Jncv_" id="4CcqqpgFzjV" role="3cqZAp">
-          <ref role="JncvD" to="tay9:3QNkN21Fl4k" resolve="JsonNumber" />
+          <ref role="JncvD" to="tay9:3QNkN21Fl4k" resolve="JsonInteger" />
           <node concept="37vLTw" id="4CcqqpgFzSP" role="JncvB">
             <ref role="3cqZAo" node="4CcqqpgE$Rm" resolve="value" />
           </node>
           <node concept="3clFbS" id="4CcqqpgFzjZ" role="Jncv$">
             <node concept="3cpWs6" id="4CcqqpgFH3e" role="3cqZAp">
               <node concept="2YIFZM" id="4CcqqpgFAau" role="3cqZAk">
-                <ref role="1Pybhc" to="lhlt:~DoubleNode" resolve="DoubleNode" />
-                <ref role="37wK5l" to="lhlt:~DoubleNode.valueOf(double)" resolve="valueOf" />
-                <node concept="2YIFZM" id="4CcqqpgFDg0" role="37wK5m">
-                  <ref role="1Pybhc" to="wyt6:~Double" resolve="Double" />
-                  <ref role="37wK5l" to="wyt6:~Double.parseDouble(java.lang.String)" resolve="parseDouble" />
-                  <node concept="2OqwBi" id="4CcqqpgFEqv" role="37wK5m">
-                    <node concept="Jnkvi" id="4CcqqpgFDOU" role="2Oq$k0">
+                <ref role="1Pybhc" to="lhlt:~IntNode" resolve="IntNode" />
+                <ref role="37wK5l" to="lhlt:~IntNode.valueOf(int)" resolve="valueOf" />
+                <node concept="2YIFZM" id="2oHwIWH4wJ8" role="37wK5m">
+                  <ref role="37wK5l" to="wyt6:~Integer.parseInt(java.lang.String)" resolve="parseInt" />
+                  <ref role="1Pybhc" to="wyt6:~Integer" resolve="Integer" />
+                  <node concept="2OqwBi" id="2oHwIWH4wJ9" role="37wK5m">
+                    <node concept="Jnkvi" id="2oHwIWH4wJa" role="2Oq$k0">
                       <ref role="1M0zk5" node="4CcqqpgFzk1" resolve="jsonNumber" />
                     </node>
-                    <node concept="3TrcHB" id="4CcqqpgFFnJ" role="2OqNvi">
+                    <node concept="3TrcHB" id="2oHwIWH4wJb" role="2OqNvi">
                       <ref role="3TsBF5" to="tay9:3QNkN21Fl5P" resolve="value" />
                     </node>
                   </node>

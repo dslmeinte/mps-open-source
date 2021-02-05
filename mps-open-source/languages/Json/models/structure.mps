@@ -109,7 +109,7 @@
   </node>
   <node concept="1TIwiD" id="3QNkN21Fl4k">
     <property role="EcuMT" value="4445988724943966484" />
-    <property role="TrG5h" value="JsonNumber" />
+    <property role="TrG5h" value="JsonInteger" />
     <property role="34LRSv" value="0" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="3QNkN21Fl4n" role="PzmwI">
@@ -118,7 +118,7 @@
     <node concept="1TJgyi" id="3QNkN21Fl5P" role="1TKVEl">
       <property role="IQ2nx" value="4445988724943966581" />
       <property role="TrG5h" value="value" />
-      <ref role="AX2Wp" node="3QNkN21Fl5R" resolve="JsonNumberFormat" />
+      <ref role="AX2Wp" node="3QNkN21Fl5R" resolve="JsonIntegerFormat" />
     </node>
   </node>
   <node concept="1TIwiD" id="3QNkN21Fl4l">
@@ -145,7 +145,7 @@
     </node>
   </node>
   <node concept="Az7Fb" id="3QNkN21Fl5R">
-    <property role="TrG5h" value="JsonNumberFormat" />
+    <property role="TrG5h" value="JsonIntegerFormat" />
     <property role="FLfZY" value="[0-9]+" />
     <property role="3F6X1D" value="4445988724943966583" />
   </node>
