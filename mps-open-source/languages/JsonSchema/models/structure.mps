@@ -429,5 +429,17 @@
       <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
+  <node concept="1TIwiD" id="6HQdUrgVIYx">
+    <property role="EcuMT" value="7743437798919565217" />
+    <property role="TrG5h" value="JsonNoneType" />
+    <property role="34LRSv" value="none" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="6HQdUrgVIYy" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+    <node concept="t5JxF" id="6HQdUrgYkrf" role="lGtFl">
+      <property role="t5JxN" value="Signifies a type without any value." />
+    </node>
+  </node>
 </model>
 
