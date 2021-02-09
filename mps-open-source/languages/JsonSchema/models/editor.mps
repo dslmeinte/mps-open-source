@@ -44,6 +44,8 @@
       <concept id="1186415722038" name="jetbrains.mps.lang.editor.structure.FontSizeStyleClassItem" flags="ln" index="VSNWy">
         <property id="1221209241505" name="value" index="1lJzqX" />
       </concept>
+      <concept id="1233758997495" name="jetbrains.mps.lang.editor.structure.PunctuationLeftStyleClassItem" flags="ln" index="11L4FC" />
+      <concept id="1233759184865" name="jetbrains.mps.lang.editor.structure.PunctuationRightStyleClassItem" flags="ln" index="11LMrY" />
       <concept id="3383245079137382180" name="jetbrains.mps.lang.editor.structure.StyleClass" flags="ig" index="14StLt" />
       <concept id="1088013125922" name="jetbrains.mps.lang.editor.structure.CellModel_RefCell" flags="sg" stub="730538219795941030" index="1iCGBv">
         <child id="1088186146602" name="editorComponent" index="1sWHZn" />
@@ -55,6 +57,10 @@
         <property id="7228435049763093186" name="family" index="1rj3mz" />
       </concept>
       <concept id="1088185857835" name="jetbrains.mps.lang.editor.structure.InlineEditorComponent" flags="ig" index="1sVBvm" />
+      <concept id="1215007762405" name="jetbrains.mps.lang.editor.structure.FloatStyleClassItem" flags="ln" index="3$6MrZ">
+        <property id="1215007802031" name="value" index="3$6WeP" />
+      </concept>
+      <concept id="1215007897487" name="jetbrains.mps.lang.editor.structure.PaddingRightStyleClassItem" flags="ln" index="3$7jql" />
       <concept id="1139848536355" name="jetbrains.mps.lang.editor.structure.CellModel_WithRole" flags="ng" index="1$h60E">
         <property id="1139852716018" name="noTargetText" index="1$x2rV" />
         <property id="1140017977771" name="readOnly" index="1Intyy" />
@@ -278,7 +284,7 @@
               </node>
             </node>
             <node concept="3F1sOY" id="6qrN1nFkWD" role="3EZMnx">
-              <property role="1$x2rV" value="&lt;none&gt;" />
+              <property role="1$x2rV" value="&lt;true (default)&gt;" />
               <ref role="1NtTu8" to="64hz:6qrN1nFkMB" resolve="additionalPropertiesType" />
             </node>
             <node concept="2iRfu4" id="6qrN1nFkWl" role="2iSdaV" />
@@ -504,6 +510,9 @@
       <node concept="3F0ifn" id="2hQb6UNqxrm" role="3EZMnx">
         <property role="3F0ifm" value="items of type" />
         <node concept="Vb9p2" id="2hQb6UNqx$O" role="3F10Kt" />
+        <node concept="3$7jql" id="z0cIsL6nI9" role="3F10Kt">
+          <property role="3$6WeP" value="1" />
+        </node>
       </node>
       <node concept="3F1sOY" id="2hQb6UNqxIl" role="3EZMnx">
         <ref role="1NtTu8" to="64hz:2hQb6UNqw6I" resolve="itemsType" />
@@ -890,6 +899,27 @@
     <ref role="1XX52x" to="64hz:6HQdUrgVIYx" resolve="JsonNoneType" />
     <node concept="3F0ifn" id="6HQdUrgVIZ0" role="2wV5jI">
       <property role="3F0ifm" value="none" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="KZZITVYgUS">
+    <ref role="1XX52x" to="64hz:KZZITVYgUp" resolve="JsonConst" />
+    <node concept="3EZMnI" id="KZZITVYgUU" role="2wV5jI">
+      <node concept="3F0ifn" id="KZZITVYgV1" role="3EZMnx">
+        <property role="3F0ifm" value="const&lt;" />
+        <node concept="11LMrY" id="KZZITVYk1o" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F1sOY" id="KZZITVYgV7" role="3EZMnx">
+        <ref role="1NtTu8" to="64hz:KZZITVYgUs" resolve="value" />
+      </node>
+      <node concept="3F0ifn" id="KZZITVYgVf" role="3EZMnx">
+        <property role="3F0ifm" value="&gt;" />
+        <node concept="11L4FC" id="KZZITVYk1q" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="2iRfu4" id="KZZITVYgUX" role="2iSdaV" />
     </node>
   </node>
 </model>

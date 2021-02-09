@@ -7,6 +7,7 @@
   </languages>
   <imports>
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
+    <import index="tay9" ref="r:4b82c70e-45f8-4502-a857-34e943edc354(Json.structure)" implicit="true" />
   </imports>
   <registry>
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
@@ -439,6 +440,22 @@
     </node>
     <node concept="t5JxF" id="6HQdUrgYkrf" role="lGtFl">
       <property role="t5JxN" value="Signifies a type without any value." />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="KZZITVYgUp">
+    <property role="EcuMT" value="882704352223497881" />
+    <property role="TrG5h" value="JsonConst" />
+    <property role="34LRSv" value="const" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="KZZITVYgUq" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+    <node concept="1TJgyj" id="KZZITVYgUs" role="1TKVEi">
+      <property role="IQ2ns" value="882704352223497884" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="value" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" to="tay9:3QNkN21Fl49" resolve="IJsonValue" />
     </node>
   </node>
 </model>
