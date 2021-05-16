@@ -31,7 +31,6 @@
       <languageVersions>
         <language slang="l:783994a0-4c08-40b6-83e5-ddb930f19f9d:XSD" version="0" />
         <language slang="l:626375ad-0250-40d5-9caf-bd6ccacbb87c:XmlWithExtension" version="0" />
-        <language slang="l:b5c0bb04-c583-4b2a-a66e-1eab92d33c68:com.mbeddr.mpsutil.json" version="0" />
         <language slang="l:f3061a53-9226-4cc5-a443-f952ceaf5816:jetbrains.mps.baseLanguage" version="11" />
         <language slang="l:fd392034-7849-419d-9071-12563d152375:jetbrains.mps.baseLanguage.closures" version="0" />
         <language slang="l:83888646-71ce-4f1c-9c53-c54016f6ad4f:jetbrains.mps.baseLanguage.collections" version="1" />
@@ -58,7 +57,6 @@
         <module reference="a2adafa0-f1cb-4eaf-b2a2-3d77f2785641(WSDL)" version="0" />
         <module reference="59739410-fa13-4c92-bdc2-4072d59c9386(WSDL#3718049542662878567)" version="0" />
         <module reference="783994a0-4c08-40b6-83e5-ddb930f19f9d(XSD)" version="0" />
-        <module reference="b5c0bb04-c583-4b2a-a66e-1eab92d33c68(com.mbeddr.mpsutil.json)" version="0" />
         <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
         <module reference="9e98f4e2-decf-4e97-bf80-9109e8b759aa(jetbrains.mps.lang.feedback.context)" version="0" />
       </dependencyVersions>
@@ -122,7 +120,6 @@
     <module reference="8865b7a8-5271-43d3-884c-6fd1d9cfdd34(MPS.OpenAPI)" version="0" />
     <module reference="a2adafa0-f1cb-4eaf-b2a2-3d77f2785641(WSDL)" version="0" />
     <module reference="783994a0-4c08-40b6-83e5-ddb930f19f9d(XSD)" version="0" />
-    <module reference="b5c0bb04-c583-4b2a-a66e-1eab92d33c68(com.mbeddr.mpsutil.json)" version="0" />
     <module reference="2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)" version="0" />
     <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
     <module reference="a9e4c532-c5f5-4bb7-99ef-42abb73bbb70(jetbrains.mps.lang.descriptor.aspects)" version="0" />

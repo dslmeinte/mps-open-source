@@ -9,6 +9,7 @@
       <modulePath path="$PROJECT_DIR$/languages/WSDL/WSDL.mpl" folder="web" />
       <modulePath path="$PROJECT_DIR$/languages/XSD/XSD.mpl" folder="web" />
       <modulePath path="$PROJECT_DIR$/languages/XmlWithExtension/XmlWithExtension.mpl" folder="web" />
+      <modulePath path="$PROJECT_DIR$/solutions/Export/Export.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/JsonExamples/JsonExamples.msd" folder="web.examples" />
       <modulePath path="$PROJECT_DIR$/solutions/MetaUtil/MetaUtil.msd" folder="meta" />
       <modulePath path="$PROJECT_DIR$/solutions/XSDExamples/XSDExamples.msd" folder="web.examples" />

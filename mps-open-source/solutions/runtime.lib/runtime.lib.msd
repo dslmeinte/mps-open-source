@@ -14,8 +14,8 @@
     </facet>
   </facets>
   <stubModelEntries>
-    <stubModelEntry path="${mps-open-source}/libs/jackson-core-2.9.7.jar" />
-    <stubModelEntry path="${mps-open-source}/libs/jackson-databind-2.9.7.jar" />
+    <stubModelEntry path="${mps-open-source}/libs/jackson-core-2.11.0.jar" />
+    <stubModelEntry path="${mps-open-source}/libs/jackson-databind-2.11.0.jar" />
   </stubModelEntries>
   <sourcePath />
   <dependencies>
