@@ -54,15 +54,15 @@ class JsonModelTests {
         assertEquals(
             JsonFile(name = "example").apply {
                 contents = JsonObject().apply {
-                    pairs = listOf(JsonPair(name ="anArray").apply {
+                    pairs = listOf(JsonPair(name = "anArray").apply {
                         value = JsonArray().apply {
                             items = listOf(
                             JsonArray().apply {
                                 items = listOf(JsonObject().apply {
                                     pairs = listOf(
                                         JsonPair(name ="null").apply { value = IJsonValue.JsonNull },
-                                        JsonPair(name ="anInt").apply { value = JsonNumber(value ="37") },
-                                        JsonPair(name ="aString").apply { value = JsonString(value ="bar") }
+                                        JsonPair(name ="anInt").apply { value = JsonNumber(value = "37") },
+                                        JsonPair(name ="aString").apply { value = JsonString(value = "bar") }
                                     )
                                 })
                             },
