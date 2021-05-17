@@ -2,7 +2,7 @@
 <model ref="r:f17dd165-07ce-4f62-b30b-639a9216e55e(toJson)">
   <persistence version="9" />
   <languages>
-    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="17" />
+    <use id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel" version="18" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="1" />
     <use id="3a13115c-633c-4c5c-bbcc-75c4219e9555" name="jetbrains.mps.lang.quotation" version="5" />
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="11" />
@@ -2488,7 +2488,7 @@
                     </node>
                     <node concept="2pJPEk" id="7pDq5Jwd0_P" role="3K4GZi">
                       <node concept="2pJPED" id="7pDq5Jwd0MY" role="2pJPEn">
-                        <ref role="2pJxaS" to="tay9:3QNkN21Fl4k" resolve="JsonNumber" />
+                        <ref role="2pJxaS" to="tay9:3QNkN21Fl4k" resolve="JsonInteger" />
                         <node concept="2pJxcG" id="7pDq5Jwd0Px" role="2pJxcM">
                           <ref role="2pJxcJ" to="tay9:3QNkN21Fl5P" resolve="value" />
                           <node concept="WxPPo" id="5wO1A4Dvvmk" role="28ntcv">
