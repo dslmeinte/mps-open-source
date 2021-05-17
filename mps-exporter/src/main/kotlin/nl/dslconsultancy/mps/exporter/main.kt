@@ -4,7 +4,6 @@ import nl.dslconsultancy.mps.exporter.util.JacksonJsonUtil.writeJson
 import nl.dslconsultancy.mps.exporter.xml.modelXmlFromDisk
 import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.Paths
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
@@ -31,7 +30,7 @@ fun main(args: Array<String>) {
 
     var outputPath: Path? = null
     if (outputArg != null) {
-        outputPath = Paths.get(outputArg!!)
+        outputPath = Path.of(outputArg!!)
         if (!Files.isDirectory(outputPath!!)) {
             System.err.println("'$outputPath' is not the path to a directory")
             exitProcess(1)
@@ -40,7 +39,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    fileArgs.map { Paths.get(it) }.forEach { exportOne(it, outputPath) }
+    fileArgs.map { Path.of(it) }.forEach { exportOne(it, outputPath) }
 }
 
 private fun exportOne(modelFilePath: Path, outputPath: Path?) {
@@ -48,7 +47,7 @@ private fun exportOne(modelFilePath: Path, outputPath: Path?) {
         System.err.println("'$modelFilePath' is not the path to a file - skipping...")
         return
     }
-    val jsonFilePath = (outputPath ?: modelFilePath.parent).resolve(modelFilePath.fileName.toString() + ".json")
+    val jsonFilePath = (outputPath ?: modelFilePath.parent ?: Path.of("./")).resolve(modelFilePath.fileName.toString() + ".json")
     writeJson(
         exportToJson(
             modelXmlFromDisk(modelFilePath)
