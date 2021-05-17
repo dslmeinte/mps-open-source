@@ -102,7 +102,7 @@
                             <archive>
                                 <manifest>
                                     <addClasspath>true</addClasspath>
-                                    <mainClass>nl.dslconsultancy.mps.analyser.MainKt</mainClass>
+                                    <mainClass>nl.dslconsultancy.mps.exporter.MainKt</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

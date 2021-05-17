@@ -15,7 +15,7 @@ fun exportToJson(modelXml: ModelXml): ArrayNode {
 private fun asJson(nodeXml: NodeXml, metaConcepts: List<MetaConceptXml>): ObjectNode {
     return newJsonObject().also { jsonObject ->
         jsonObject.put("\$id", nodeXml.id)
-        jsonObject.put("\$metaType", metaConcepts.byIndex(nodeXml.concept).name)
+        jsonObject.put("\$metaType", withoutStructureSubPackage(metaConcepts.byIndex(nodeXml.concept).name))
         nodeXml.propertySettings.forEach { jsonObject.put(metaConcepts.featureByIndex(it.role).first.name, it.value) }
         nodeXml.childNodes
             .groupBy { it.role }
@@ -38,5 +38,11 @@ private fun asJson(nodeXml: NodeXml, metaConcepts: List<MetaConceptXml>): Object
             )
         }
     }
+}
+
+val structureTerm = "structure."
+private fun withoutStructureSubPackage(fqName: String): String {
+    val structureIndex = fqName.lastIndexOf(structureTerm)
+    return if (structureIndex == -1) fqName else fqName.substring(0, structureIndex) + fqName.substring(structureIndex + structureTerm.length)
 }
 

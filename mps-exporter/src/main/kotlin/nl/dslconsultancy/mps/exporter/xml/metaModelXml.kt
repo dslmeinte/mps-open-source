@@ -2,7 +2,6 @@ package nl.dslconsultancy.mps.exporter.xml
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import nl.dslconsultancy.mps.exporter.util.lastSection
 
 /*
  * Subsequent 3 data class having names of the form "Meta<X>Xml"
@@ -61,13 +60,7 @@ data class MetaFeatureXml(
 )
 
 
-fun Iterable<MetaConceptXml>.named(name: String): MetaConceptXml? = firstOrNull { it.name.lastSection() == name }
-operator fun Iterable<MetaConceptXml>.get(name: String): MetaConceptXml = this.named(name)!!
-
 fun Iterable<MetaConceptXml>.byIndex(index: String): MetaConceptXml = single { it.index == index }
-
-fun Iterable<MetaFeatureXml>.named(name: String): MetaFeatureXml? = firstOrNull { it.name == name }
-operator fun Iterable<MetaFeatureXml>.get(name: String): MetaFeatureXml = this.named(name)!!
 
 
 private fun MetaConceptXml.featureByIndex(index: String): MetaFeatureXml? =
