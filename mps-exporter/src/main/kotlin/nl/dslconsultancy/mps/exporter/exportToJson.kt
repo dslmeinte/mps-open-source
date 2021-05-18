@@ -37,7 +37,7 @@ private fun asJson(nodeXml: NodeXml, metaConcepts: List<MetaConceptXml>): Object
     }
 }
 
-val structureTerm = "structure."
+const val structureTerm = "structure."
 private fun withoutStructureSubPackage(fqName: String): String {
     val structureIndex = fqName.lastIndexOf(structureTerm)
     return if (structureIndex == -1) fqName else fqName.substring(0, structureIndex) + fqName.substring(structureIndex + structureTerm.length)

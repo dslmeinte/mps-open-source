@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
 
     var outputPath: Path? = null
     if (outputArg != null) {
-        outputPath = Path.of(outputArg!!)
+        outputPath = Path.of(outputArg)
         if (!Files.isDirectory(outputPath!!)) {
             System.err.println("'$outputPath' is not the path to a directory")
             exitProcess(1)
@@ -30,7 +30,7 @@ fun main(args: Array<String>) {
 }
 
 
-private data class CliArguments(val outputArg: String?, val fileArgs: List<String> = ArrayList<String>())
+private data class CliArguments(val outputArg: String?, val fileArgs: List<String> = ArrayList())
 
 private fun parseArgs(args: Array<String>): CliArguments {
     var outputArg: String? = null
