@@ -21,11 +21,8 @@ private fun asJson(nodeXml: NodeXml, metaConcepts: List<MetaConceptXml>): Object
             .groupBy { it.role }
             .forEach { (role, values) ->
                 jsonObject.set<JsonNode>(
-                    metaConcepts.featureByIndex(role!!).first.name,
-                    if (values.size > 1)
-                        newJsonArray().also { array -> array.addAll(values.map { asJson(it, metaConcepts) }) }
-                    else
-                        asJson(values.first(), metaConcepts)
+                    metaConcepts.featureByIndex(role!!).first.name, // TODO  deconflict from "$id", "$metaType", and "$ref{Id|Name}" (whenever necessary)
+                    newJsonArray().also { array -> array.addAll(values.map { asJson(it, metaConcepts) }) }
                 )
             }
         nodeXml.referenceSettings.forEach {
