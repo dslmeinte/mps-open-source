@@ -11,8 +11,18 @@
   </imports>
   <registry>
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
+      <concept id="3348158742936976480" name="jetbrains.mps.lang.structure.structure.EnumerationMemberDeclaration" flags="ng" index="25R33">
+        <property id="1421157252384165432" name="memberId" index="3tVfz5" />
+      </concept>
+      <concept id="3348158742936976479" name="jetbrains.mps.lang.structure.structure.EnumerationDeclaration" flags="ng" index="25R3W">
+        <reference id="1075010451642646892" name="defaultMember" index="1H5jkz" />
+        <child id="3348158742936976577" name="members" index="25R1y" />
+      </concept>
       <concept id="7862711839422615209" name="jetbrains.mps.lang.structure.structure.DocumentedNodeAnnotation" flags="ng" index="t5JxF">
         <property id="7862711839422615217" name="text" index="t5JxN" />
+      </concept>
+      <concept id="1082978164218" name="jetbrains.mps.lang.structure.structure.DataTypeDeclaration" flags="ng" index="AxPO6">
+        <property id="7791109065626895363" name="datatypeId" index="3F6X1D" />
       </concept>
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
         <property id="6714410169261853888" name="conceptId" index="EcuMT" />
@@ -196,6 +206,11 @@
     <node concept="1TJgyi" id="2hQb6UNqw6G" role="1TKVEl">
       <property role="IQ2nx" value="2627336286585356716" />
       <property role="TrG5h" value="minItems" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+    <node concept="1TJgyi" id="55O0TMOqIG9" role="1TKVEl">
+      <property role="IQ2nx" value="5869320185947286281" />
+      <property role="TrG5h" value="maxItems" />
       <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
     <node concept="1TJgyi" id="2hQb6UNqw6K" role="1TKVEl">
@@ -456,6 +471,58 @@
       <property role="20kJfa" value="value" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" to="tay9:3QNkN21Fl49" resolve="IJsonValue" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6ItNp1olbGl">
+    <property role="EcuMT" value="7754580153242794773" />
+    <property role="TrG5h" value="JsonVoidType" />
+    <property role="34LRSv" value="void" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="6ItNp1olbGm" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+    <node concept="1TJgyi" id="6ItNp1olbGt" role="1TKVEl">
+      <property role="IQ2nx" value="7754580153242794781" />
+      <property role="TrG5h" value="void" />
+      <ref role="AX2Wp" node="6ItNp1olbGo" resolve="JsonVoid" />
+    </node>
+  </node>
+  <node concept="25R3W" id="6ItNp1olbGo">
+    <property role="3F6X1D" value="7754580153242794776" />
+    <property role="TrG5h" value="JsonVoid" />
+    <ref role="1H5jkz" node="6ItNp1olbGp" resolve="undefined" />
+    <node concept="25R33" id="6ItNp1olbGp" role="25R1y">
+      <property role="3tVfz5" value="7754580153242794777" />
+      <property role="TrG5h" value="undefined" />
+    </node>
+    <node concept="25R33" id="6ItNp1olbGq" role="25R1y">
+      <property role="3tVfz5" value="7754580153242794778" />
+      <property role="TrG5h" value="null" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="55O0TMOo1TN">
+    <property role="EcuMT" value="5869320185946578547" />
+    <property role="TrG5h" value="JsonAny" />
+    <property role="34LRSv" value="any" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="55O0TMOo1TO" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="55O0TMOxL3R">
+    <property role="EcuMT" value="5869320185949130999" />
+    <property role="TrG5h" value="JsonTupleDef" />
+    <property role="34LRSv" value="tuple" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="55O0TMOxL3S" role="PzmwI">
+      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
+    </node>
+    <node concept="1TJgyj" id="55O0TMOxL3U" role="1TKVEi">
+      <property role="IQ2ns" value="5869320185949131002" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="itemTypes" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
 </model>
