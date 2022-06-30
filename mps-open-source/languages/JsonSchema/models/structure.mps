@@ -509,21 +509,5 @@
       <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
     </node>
   </node>
-  <node concept="1TIwiD" id="55O0TMOxL3R">
-    <property role="EcuMT" value="5869320185949130999" />
-    <property role="TrG5h" value="JsonTupleDef" />
-    <property role="34LRSv" value="tuple" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="PrWs8" id="55O0TMOxL3S" role="PzmwI">
-      <ref role="PrY4T" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
-    </node>
-    <node concept="1TJgyj" id="55O0TMOxL3U" role="1TKVEi">
-      <property role="IQ2ns" value="5869320185949131002" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="itemTypes" />
-      <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="2hQb6UNqiS8" resolve="JsonTypeLiteral" />
-    </node>
-  </node>
 </model>
 

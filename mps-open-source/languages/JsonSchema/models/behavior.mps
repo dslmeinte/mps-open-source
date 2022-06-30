@@ -15,7 +15,6 @@
   </imports>
   <registry>
     <language id="af65afd8-f0dd-4942-87d9-63a55f2a9db1" name="jetbrains.mps.lang.behavior">
-      <concept id="6496299201655527393" name="jetbrains.mps.lang.behavior.structure.LocalBehaviorMethodCall" flags="nn" index="BsUDl" />
       <concept id="1225194240794" name="jetbrains.mps.lang.behavior.structure.ConceptBehavior" flags="ng" index="13h7C7">
         <reference id="1225194240799" name="concept" index="13h7C2" />
         <child id="1225194240805" name="method" index="13h7CS" />
@@ -56,7 +55,6 @@
       <concept id="1068498886296" name="jetbrains.mps.baseLanguage.structure.VariableReference" flags="nn" index="37vLTw">
         <reference id="1068581517664" name="variableDeclaration" index="3cqZAo" />
       </concept>
-      <concept id="1068498886292" name="jetbrains.mps.baseLanguage.structure.ParameterDeclaration" flags="ir" index="37vLTG" />
       <concept id="1068498886294" name="jetbrains.mps.baseLanguage.structure.AssignmentExpression" flags="nn" index="37vLTI" />
       <concept id="1225271177708" name="jetbrains.mps.baseLanguage.structure.StringType" flags="in" index="17QB3L" />
       <concept id="1225271283259" name="jetbrains.mps.baseLanguage.structure.NPEEqualsExpression" flags="nn" index="17R0WA" />
@@ -66,7 +64,6 @@
       </concept>
       <concept id="1068580123132" name="jetbrains.mps.baseLanguage.structure.BaseMethodDeclaration" flags="ng" index="3clF44">
         <child id="1068580123133" name="returnType" index="3clF45" />
-        <child id="1068580123134" name="parameter" index="3clF46" />
         <child id="1068580123135" name="body" index="3clF47" />
       </concept>
       <concept id="1068580123152" name="jetbrains.mps.baseLanguage.structure.EqualsExpression" flags="nn" index="3clFbC" />
@@ -1166,34 +1163,6 @@
       </node>
     </node>
   </node>
-  <node concept="13h7C7" id="4$rLBnulepp">
-    <ref role="13h7C2" to="64hz:2hQb6UNpvOR" resolve="JsonOneOf" />
-    <node concept="13hLZK" id="4$rLBnulepq" role="13h7CW">
-      <node concept="3clFbS" id="4$rLBnulepr" role="2VODD2" />
-    </node>
-    <node concept="13i0hz" id="6z3ZIK8K0Z4" role="13h7CS">
-      <property role="13i0iv" value="false" />
-      <property role="13i0it" value="false" />
-      <property role="TrG5h" value="asPairs" />
-      <ref role="13i0hy" node="6z3ZIK8JXLy" resolve="asPairs" />
-      <node concept="3Tm1VV" id="6z3ZIK8K0Z5" role="1B3o_S" />
-      <node concept="3clFbS" id="6z3ZIK8K0Zo" role="3clF47">
-        <node concept="3clFbF" id="5uyaFvvEHqC" role="3cqZAp">
-          <node concept="BsUDl" id="5uyaFvvEIk3" role="3clFbG">
-            <ref role="37wK5l" node="5uyaFvvEGbA" resolve="asPairs" />
-            <node concept="Xl_RD" id="5uyaFvvEIkD" role="37wK5m">
-              <property role="Xl_RC" value="oneOf" />
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="A3Dl8" id="6z3ZIK8K0Zp" role="3clF45">
-        <node concept="3Tqbb2" id="6z3ZIK8K0Zq" role="A3Ik2">
-          <ref role="ehGHo" to="tay9:3QNkN21Fl5Z" resolve="JsonPair" />
-        </node>
-      </node>
-    </node>
-  </node>
   <node concept="13h7C7" id="4$rLBnulvaT">
     <ref role="13h7C2" to="64hz:2hQb6UNpvy8" resolve="JsonEnumerationDef" />
     <node concept="13hLZK" id="4$rLBnulvaU" role="13h7CW">
@@ -2033,66 +2002,6 @@
               </node>
             </node>
           </node>
-        </node>
-      </node>
-      <node concept="37vLTG" id="5uyaFvvEGf4" role="3clF46">
-        <property role="TrG5h" value="metaType" />
-        <node concept="17QB3L" id="5uyaFvvEGf3" role="1tU5fm" />
-      </node>
-    </node>
-  </node>
-  <node concept="13h7C7" id="5uyaFvvEItv">
-    <ref role="13h7C2" to="64hz:5uyaFvvEF_p" resolve="JsonAnyOf" />
-    <node concept="13hLZK" id="5uyaFvvEItw" role="13h7CW">
-      <node concept="3clFbS" id="5uyaFvvEItx" role="2VODD2" />
-    </node>
-    <node concept="13i0hz" id="5uyaFvvEItE" role="13h7CS">
-      <property role="13i0iv" value="false" />
-      <property role="13i0it" value="false" />
-      <property role="TrG5h" value="asPairs" />
-      <ref role="13i0hy" node="6z3ZIK8JXLy" resolve="asPairs" />
-      <node concept="3Tm1VV" id="5uyaFvvEItF" role="1B3o_S" />
-      <node concept="3clFbS" id="5uyaFvvEItY" role="3clF47">
-        <node concept="3clFbF" id="5uyaFvvEIMP" role="3cqZAp">
-          <node concept="BsUDl" id="5uyaFvvEIMO" role="3clFbG">
-            <ref role="37wK5l" node="5uyaFvvEGbA" resolve="asPairs" />
-            <node concept="Xl_RD" id="5uyaFvvEINs" role="37wK5m">
-              <property role="Xl_RC" value="anyOf" />
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="A3Dl8" id="5uyaFvvEItZ" role="3clF45">
-        <node concept="3Tqbb2" id="5uyaFvvEIu0" role="A3Ik2">
-          <ref role="ehGHo" to="tay9:3QNkN21Fl5Z" resolve="JsonPair" />
-        </node>
-      </node>
-    </node>
-  </node>
-  <node concept="13h7C7" id="5uyaFvvGvvT">
-    <ref role="13h7C2" to="64hz:5uyaFvvGuLw" resolve="JsonAllOf" />
-    <node concept="13hLZK" id="5uyaFvvGvvU" role="13h7CW">
-      <node concept="3clFbS" id="5uyaFvvGvvV" role="2VODD2" />
-    </node>
-    <node concept="13i0hz" id="5uyaFvvGvw4" role="13h7CS">
-      <property role="13i0iv" value="false" />
-      <property role="13i0it" value="false" />
-      <property role="TrG5h" value="asPairs" />
-      <ref role="13i0hy" node="6z3ZIK8JXLy" resolve="asPairs" />
-      <node concept="3Tm1VV" id="5uyaFvvGvw5" role="1B3o_S" />
-      <node concept="3clFbS" id="5uyaFvvGvwo" role="3clF47">
-        <node concept="3clFbF" id="5uyaFvvGv$P" role="3cqZAp">
-          <node concept="BsUDl" id="5uyaFvvGv$O" role="3clFbG">
-            <ref role="37wK5l" node="5uyaFvvEGbA" resolve="asPairs" />
-            <node concept="Xl_RD" id="5uyaFvvGv_s" role="37wK5m">
-              <property role="Xl_RC" value="allOf" />
-            </node>
-          </node>
-        </node>
-      </node>
-      <node concept="A3Dl8" id="5uyaFvvGvwp" role="3clF45">
-        <node concept="3Tqbb2" id="5uyaFvvGvwq" role="A3Ik2">
-          <ref role="ehGHo" to="tay9:3QNkN21Fl5Z" resolve="JsonPair" />
         </node>
       </node>
     </node>
