@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product set",
+  "description": "A product from Acme's catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "title": "Product",
+    "properties": {
+      "id": {
+        "description": "The unique identifier for a product",
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      },
+      "price": {
+        "type": "number"
+      },
+      "tags": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "dimensions": {
+        "type": "object",
+        "properties": {
+          "length": {
+            "type": "number"
+          },
+          "width": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "length",
+          "width",
+          "height"
+        ]
+      },
+      "warehouseLocation": {
+        "description": "Coordinates of the warehouse with the product",
+        "$ref": "http://json-schema.org/geo"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "price"
+    ]
+  }
+}
