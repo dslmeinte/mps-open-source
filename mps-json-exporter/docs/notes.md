@@ -79,6 +79,8 @@ It's unnecessary in the sense that it would require specialized type definitions
 * &hellip; Interpret `InterfaceConceptDeclaration`.`extends` and `ConceptDeclaration`.{`extends`, `implements`} more carefully.
 * Implement a proper API. (?)
 * Implement CLI functionality (using a JSON configuration?).
-* &hellip; Write proper documentation, including good diagrams.
+* &#10003; Write proper documentation, including good diagrams.
 * Think about how to resolve references when loading _multiple_ XML model files.
+* Publish as a Deno module - see [here](https://deno.land/add_module).
+* Mixture of type definitions and interfaces in [`src/generic.ts`](./src/generic.ts) - do we want that?
 

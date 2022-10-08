@@ -19,7 +19,43 @@ One thing that I haven't implemented at all yet is loading multiple models at on
 Something else that I didn't get around to, is to properly document the API (insofar it is one), and implementing a CLI.
 
 
-### Pointers
+## API
+
+This module's API is exposed through [`src/index.ts`](./src/index.ts).
+The following things are exposed:
+
+* `Node`: an interface for nodes in a deserialized MPS model
+* `Reference`: a type definition for reference objects, encoding references in a deserialized MPS model
+* `Named`: a type definition for named nodes in a deserialized MPS model
+* `loadModel`, `loadModelSync`: functions (asynchronous, resp., synchronous) that load an MPS model file, and deserialize it into types
+* `Declaration`: a type definition for roots in an MPS structure model
+* `generateTypes`: a function that generates the contents of a TypeScript source file from a loaded MPS structure model file of an MPS language.
+  This source file then contains type definitions that can be used to deserialize MPS model files that conform to that language.
+
+
+## Usage
+
+To load MPS models written with an MPS language, perform the following steps:
+
+1. Load the structure (aspect) model of the language:
+```typescript
+import {Declaration, loadModel} from ".../src/index.ts"
+const decls = await loadModel<Declaration>(`...path to.../${languageName}/models/structure.mps`, `${languageName}-structure`)
+```
+Here, `${languageName}` is the name of the language.
+2. Generate type definitions from that:
+```typescript
+import {generateTypes} from ".../src/index.ts"
+Deno.writeTextFileSync(`.../src-gen/type-defs/${languageName}-types.ts`, generateTypes(roots, ${languageName}))
+```
+This generates (among others) a type `AnyRootable${languageName}Concept` that is the sum of all rootable concepts of the language.
+3. Load an MPS model:
+```typescript
+import {AnyRootable${languageName}Concept} from ".../src-gen/type-defs/${languageName}-types.ts"
+const roots = await loadModel<AnyRootable${languageName}Concept>(`...path to MPS XML model file...`)
+```
+
+
 ## Building
 
 The [`build.sh`](./build.sh) bundles the non-test TypeScript source files to a [standalone executable](./dist/mps-json-exporter.bundle.js).
