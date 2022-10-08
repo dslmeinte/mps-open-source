@@ -1,5 +1,5 @@
 ORIGINALS_PATH=examples/jsonSchema-examples
-GENERATION_PATH=gen/jsonSchema-examples
+GENERATION_PATH=src-gen/jsonSchema-examples
 
 diff $ORIGINALS_PATH/entry.json $GENERATION_PATH/entry.json
 diff $ORIGINALS_PATH/mainEntry.json $GENERATION_PATH/mainEntry.json

@@ -1,10 +1,10 @@
-import {Node} from "./generic.ts"
+import {Node} from "../src/generic.ts"
 import {parse} from "https://deno.land/x/xml/mod.ts"
-import {ModelXml} from "./model-xml-types.ts"
-import {asPrettyString} from "./utils.ts"
+import {ModelXml} from "../src/model-xml-types.ts"
+import {asPrettyString} from "../src/utils.ts"
 import {ensureDirSync} from "https://deno.land/std/fs/mod.ts"
-import {indicesfrom} from "./indexer.ts"
-import {deserializeXml} from "./deserializer.ts"
+import {indicesfrom} from "../src/indexer.ts"
+import {deserializeXml} from "../src/deserializer.ts"
 
 
 /**
@@ -17,7 +17,7 @@ export const loadModel = <T extends Node>(modelPath: string, genOutputPathFragme
     const xml = parse(data, {emptyToNull: false, reviveNumbers: false})
     const modelXml = xml.model as unknown as ModelXml
 
-    const basePath = `./gen/${genOutputPathFragment}/`
+    const basePath = `./src-gen/${genOutputPathFragment}/`
     ensureDirSync(basePath)
 
     // write the parse result to file for debugging &c.:

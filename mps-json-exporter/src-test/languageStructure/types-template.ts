@@ -9,12 +9,16 @@ import {
     LinkDeclaration,
     PropertyDeclaration
 } from "./structure-types.ts"
-import {asArray, filterType, Reference} from "../generic.ts"
-import {indent, NestedString} from "../generator-utils.ts"
-import {deconflicted, sortBy} from "../utils.ts"
+import {asArray, filterType, Reference} from "../../src/generic.ts"
+import {asString, indent, NestedString} from "../../src/generator-utils.ts"
+import {deconflicted, sortBy} from "../../src/utils.ts"
 
 
-export const generateTypes = (decls: Declaration[], languageName: string): NestedString => {
+export const generateTypes = (decls: Declaration[], languageName: string): string =>
+    asString(generateTypes_(decls, languageName))
+
+
+const generateTypes_ = (decls: Declaration[], languageName: string): NestedString => {
     const sortedNamesFrom = (decl: Declaration[]): string[] => decl
         .map((decl) => decl.name)
         .sort()

@@ -16,14 +16,14 @@ import {
     JsonStringFormats,
     JsonStringPattern,
     JsonStringType
-} from "../../gen/type-defs/JsonSchema-types.ts"
+} from "../../src-gen/type-defs/JsonSchema-types.ts"
 import {
     asArray,
     asShorthandArray,
     filterType,
     findType
-} from "../generic.ts"
-import {applyTo} from "../utils.ts"
+} from "../../src/generic.ts"
+import {applyTo} from "../../src/utils.ts"
 
 
 /**

@@ -6,6 +6,11 @@ This part of the [`mps-open-source`](https://github.com/dslmeinte/mps-open-sourc
 2. Load MPS model files in its standard XML format, and deserialize it into an in-memory model in JS space conforming to type definitions generated with item (1).
    (This includes resolution of references - currently only intra-model references, though.)
 
+This could be useful to process models made with MPS, without having to rely completely and explicitly on MPS itself for either generating from, or exporting the model.
+
+
+### Status
+
 This is a Work-In-Progress, and definitely not feature-complete.
 I haven't tested it thoroughly, e.g. against many languages and models.
 One thing that I haven't implemented at all yet is loading multiple models at once, and resolving inter-model references.
@@ -13,19 +18,22 @@ One thing that I haven't implemented at all yet is loading multiple models at on
 
 Something else that I didn't get around to, is to properly document the API (insofar it is one), and implementing a CLI.
 
+
+### Pointers
+
 Current entrypoints to look at are:
 
 * [A description of the MPS XML model file format](./docs/MPS-model-XMLs.adoc)
-* [A CLI-callable Deno program to generate type definitions from the JsonSchema language](./src/languageStructure/generator.ts)
-* [A CLI-callable Deno program to load a model using the JsonSchema language, and generating actual JSON Schemas from those](./src/jsonSchema/test.ts)
-  [This companion shell script](./src/jsonSchema/diff-jsonSchemas-examples.sh) also checks whether those generated JSON Schemas are matching expectations.
+* [A CLI-callable Deno program to generate type definitions from the JsonSchema language](./src-test/languageStructure/generator.ts)
+* [A CLI-callable Deno program to load a model using the JsonSchema language, and generating actual JSON Schemas from those](./src-test/jsonSchema/test.ts)
+  [This companion shell script](./src-test/jsonSchema/diff-jsonSchemas-examples.sh) also checks whether those generated JSON Schemas are matching expectations.
 
-Output for the latter two ends up in the [`gen/`](./gen) directory.
+Output for the latter two ends up in the [`src-gen/`](./src-gen) directory.
 Please have a look in that directory to get an idea what's going on.
 Both programs rely on the [Deno JS/TS runtime](https://deno.land).
 Instructions on how to run them is included at the top of their source files.
 
-Run the [`build.sh`](./build.sh) shell script to
+Run the [`run-test-generations.sh`](./run-test-generations.sh) shell script to
 
 1. Generate type definitions from the Json and JsonSchema languages.
 2. Load a JsonSchema model.
