@@ -9,7 +9,7 @@ This part of the [`mps-open-source`](https://github.com/dslmeinte/mps-open-sourc
 This could be useful to process models made with MPS, without having to rely completely and explicitly on MPS itself for either generating from, or exporting the model.
 
 
-### Status
+## Status
 
 This is a Work-In-Progress, and definitely not feature-complete.
 I haven't tested it thoroughly, e.g. against many languages and models.
@@ -20,6 +20,12 @@ Something else that I didn't get around to, is to properly document the API (ins
 
 
 ### Pointers
+## Building
+
+The [`build.sh`](./build.sh) bundles the non-test TypeScript source files to a [standalone executable](./dist/mps-json-exporter.bundle.js).
+
+
+## Pointers
 
 Current entrypoints to look at are:
 

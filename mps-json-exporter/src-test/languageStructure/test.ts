@@ -1,7 +1,6 @@
-import {ensureDirSync} from "https://deno.land/std/fs/mod.ts"
+import {ensureDir} from "https://deno.land/std/fs/mod.ts"
 import {withFirstLower} from "../../src/utils.ts"
-import {generateTypes} from "../../src/languageStructure/types-template.ts"
-import {Declaration} from "../../src/languageStructure/structure-types.ts"
+import {Declaration, generateTypes} from "../../src/index.ts"
 import {devLoadModel} from "../dev-model-loader.ts"
 
 
@@ -11,15 +10,15 @@ import {devLoadModel} from "../dev-model-loader.ts"
  */
 
 
-export const generate = (languageName: string) => {
-    const roots = devLoadModel<Declaration>(`../mps-open-source/languages/${languageName}/models/structure.mps`, `${withFirstLower(languageName)}-structure`)
+export const generate = async (languageName: string) => {
+    const roots = await devLoadModel<Declaration>(`../mps-open-source/languages/${languageName}/models/structure.mps`, `${withFirstLower(languageName)}-structure`)
     const typeDefsPath = `./src-gen/type-defs`
-    ensureDirSync(typeDefsPath)
+    await ensureDir(typeDefsPath)
     Deno.writeTextFileSync(`${typeDefsPath}/${languageName}-types.ts`, generateTypes(roots, languageName))
     console.log(`Generated type definitions for language "${languageName}".`)
 }
 
 
-generate("Json")
-generate("JsonSchema")
+await generate("Json")
+await generate("JsonSchema")
 

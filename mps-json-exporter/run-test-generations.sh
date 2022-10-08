@@ -1,7 +1,7 @@
-GEN_PATH=src-gen
+TMP_PATH=tmp
 
-rm -rf $GEN_PATH
-mkdir $GEN_PATH
+rm -rf $TMP_PATH
+mkdir $TMP_PATH
 
 deno run --allow-read --allow-write src-test/languageStructure/test.ts
 
