@@ -9,9 +9,9 @@ import {
     LinkDeclaration,
     PropertyDeclaration
 } from "./structure-types.ts"
-import {asArray, filterType, Reference} from "../../src/generic.ts"
-import {asString, indent, NestedString} from "../../src/generator-utils.ts"
-import {deconflicted, sortBy} from "../../src/utils.ts"
+import {asArray, filterType, Reference} from "../generic.ts"
+import {asString, indent, NestedString} from "../generator-utils.ts"
+import {deconflicted, sortBy} from "../utils.ts"
 
 
 export const generateTypes = (decls: Declaration[], languageName: string): string =>
@@ -44,7 +44,8 @@ const generateTypes_ = (decls: Declaration[], languageName: string): NestedStrin
  * Type definitions, generated from the structure of the '${languageName}' language.
  */
 
-import {Named, Node${allLinksAreChildren ? "" : ", Reference"}} from "../../src/generic.ts"
+import {Named, Node${allLinksAreChildren ? "" : ", Reference"}} from "../../src/index.ts"
+// TODO  import from a Deno module
 
 `,
         depNames.map((depName) => `import * as ${depName} from "./${depName}-types.ts"`),

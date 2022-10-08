@@ -4,7 +4,7 @@
  */
 
 
-import {Named, Node, Reference} from "../../src/generic.ts"
+import {Named, Node, Reference} from "../generic.ts"
 
 
 export interface EnumerationMemberDeclaration extends Node, Named {

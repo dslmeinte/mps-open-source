@@ -1,40 +1,22 @@
-import {Node} from "../src/generic.ts"
-import {parse} from "https://deno.land/x/xml/mod.ts"
-import {ModelXml} from "../src/model-xml-types.ts"
 import {asPrettyString} from "../src/utils.ts"
 import {ensureDirSync} from "https://deno.land/std/fs/mod.ts"
-import {indicesfrom} from "../src/indexer.ts"
-import {deserializeXml} from "../src/deserializer.ts"
+import {loadModelSync, Node} from "../src/index.ts"
 
 
 /**
  * Reads a model with the given path, and deserializes while saving plenty of debugging info to disk.
  */
-export const loadModel = <T extends Node>(modelPath: string, genOutputPathFragment: string): T[] => {
-
-    // read MPS XML model file, and parse it:
-    const data = Deno.readTextFileSync(modelPath)
-    const xml = parse(data, {emptyToNull: false, reviveNumbers: false})
-    const modelXml = xml.model as unknown as ModelXml
-
+export const devLoadModel = <T extends Node>(modelPath: string, genOutputPathFragment: string): T[] => {
     const basePath = `./src-gen/${genOutputPathFragment}/`
     ensureDirSync(basePath)
-
-    // write the parse result to file for debugging &c.:
-    Deno.writeTextFileSync(basePath + "parsed-xml.json", asPrettyString(modelXml))
-
-    // generate a map index &rarr; name from the MPS model's registry:
-    const index2name = indicesfrom(modelXml)
-    Deno.writeTextFileSync(basePath + "indices.json", asPrettyString(index2name))
-
-    // deserialize the model (but without resolved references):
-    return deserializeXml<T>(modelXml, index2name,
-        (preLinked, id2node, refsToResolve) => {
+    return loadModelSync<T>(modelPath,
+        (parsedModelXml, index2name, preLinked, id2node, refsToResolve) => {
+            Deno.writeTextFileSync(basePath + "parsed-xml.json", asPrettyString(parsedModelXml))
+            Deno.writeTextFileSync(basePath + "indices.json", asPrettyString(index2name))
             Deno.writeTextFileSync(basePath + "preLinked.json", asPrettyString(preLinked))    // references not resolved, $parent & $model not installed => can still serialize as JSON
             Deno.writeTextFileSync(basePath + "id2node.json", asPrettyString(id2node))
             Deno.writeTextFileSync(basePath + "refsToResolve.json", asPrettyString(refsToResolve))
         }
     )
-
 }
 

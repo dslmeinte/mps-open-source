@@ -1,23 +1,37 @@
 import {ModelXml, NodeXml, ReferenceSettingXml} from "./model-xml-types.ts"
 import {asArray, Containment, isNode, Node, Reference} from "./generic.ts"
 import {deconflicted, groupBy} from "./utils.ts"
-import {NamePerIndex} from "./indexer.ts"
+import {indicesfrom, NamePerIndex} from "./indexer.ts"
 
 
 /**
- * Deserializes an MPS model into the given type {@type T},
+ * Defines a function that gets called by {@link #deserializeXml}
+ * before references are resolved (“linking”, hence “preLinked”),
+ * with introspection data that could be useful to debug the deserialization process.
+ */
+export type DeserializationIntrospector<T extends Node> = (
+    parsedModelXml: unknown,
+    index2name: NamePerIndex,
+    preLinked: T[],
+    id2node: { [ id: string ]: T },
+    refsToResolve: Reference<T>[]
+) => void
+
+
+/**
+ * Deserializes an MPS model into the given type `T`,
  *  which is the target type of the root of the deserialized model
  *
  * @param modelXml - an MPS model (as an XML file) parsed as an instance of the {@link ModelXml} type
- * @param index2name - a map from index (ID) &rarr; human-readable name
- * @param debugFunc - a function that's useful for debugging/developing this function.
+ * @param introspector - a function that's useful for debugging this function.
  *  It's called directly before resolving references (“linking”, hence “preLinked”) is started.
  */
 export const deserializeXml = <T extends Node>(
     modelXml: ModelXml,
-    index2name: NamePerIndex,
-    debugFunc?: (preLinked: T[], id2node: { [ id: string ]: T }, refsToResolve: Reference<T>[]) => void
+    introspector?: DeserializationIntrospector<T>
 ): T[] => {
+
+    const index2name = indicesfrom(modelXml)
 
     const id2node: { [ id: string ]: T } = {}
     const node = ($metatype: string, $id: string, settings: object): T => {
@@ -91,8 +105,8 @@ export const deserializeXml = <T extends Node>(
     }
 
     const roots = modelXml.node.map(deserializeNodeXml)
-    if (debugFunc !== undefined) {
-        debugFunc(roots, id2node, refsToResolve)
+    if (introspector !== undefined) {
+        introspector(modelXml, index2name, roots, id2node, refsToResolve)
     }
 
     refsToResolve.forEach((refToResolve) => {
