@@ -9,13 +9,13 @@ import {indicesfrom, NamePerIndex} from "./indexer.ts"
  * before references are resolved (“linking”, hence “preLinked”),
  * with introspection data that could be useful to debug the deserialization process.
  */
-export type DeserializationIntrospector<T extends Node> = (
-    parsedModelXml: unknown,
-    index2name: NamePerIndex,
-    preLinked: T[],
-    id2node: { [ id: string ]: T },
-    refsToResolve: Reference<T>[]
-) => void
+export type DeserializationIntrospector<T extends Node> = Partial<{
+    parsedModelXml: (parsedModelXml: unknown) => void
+    index2name: (namePerIndex: NamePerIndex) => void
+    preLinked: (roots: T[]) => void
+    id2node: (id2node: { [id: string]: T }) => void
+    refsToResolve: (refsToResolve: Reference<T>[]) => void
+}>
 
 
 /**
@@ -106,7 +106,21 @@ export const deserializeXml = <T extends Node>(
 
     const roots = modelXml.node.map(deserializeNodeXml)
     if (introspector !== undefined) {
-        introspector(modelXml, index2name, roots, id2node, refsToResolve)
+        if (introspector.parsedModelXml !== undefined) {
+            introspector.parsedModelXml(modelXml)
+        }
+        if (introspector.index2name !== undefined) {
+            introspector.index2name(index2name)
+        }
+        if (introspector.preLinked !== undefined) {
+            introspector.preLinked(roots)
+        }
+        if (introspector.id2node !== undefined) {
+            introspector.id2node(id2node)
+        }
+        if (introspector.refsToResolve !== undefined) {
+            introspector.refsToResolve (refsToResolve)
+        }
     }
 
     refsToResolve.forEach((refToResolve) => {

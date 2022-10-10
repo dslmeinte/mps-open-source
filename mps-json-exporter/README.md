@@ -40,7 +40,7 @@ To load MPS models written with an MPS language, perform the following steps:
 1. Load the structure (aspect) model of the language:
 ```typescript
 import {Declaration, loadModel} from ".../src/index.ts"
-const decls = await loadModel<Declaration>(`...path to.../${languageName}/models/structure.mps`, `${languageName}-structure`)
+const decls = await loadModel<Declaration>(`...path to.../${languageName}/models/structure.mps`)
 ```
 Here, `${languageName}` is the name of the language.
 2. Generate type definitions from that:
