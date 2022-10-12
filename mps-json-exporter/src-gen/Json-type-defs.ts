@@ -2,7 +2,7 @@
  * Type definitions, generated from the structure of the 'Json' language.
  */
 
-import {Named, Node} from "../../src/index.ts"
+import {Named, Node} from "../src/index.ts"
 // TODO  import from a Deno module
 
 

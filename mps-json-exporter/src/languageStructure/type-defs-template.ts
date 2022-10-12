@@ -8,7 +8,7 @@ import {
     InterfaceConceptReference,
     LinkDeclaration,
     PropertyDeclaration
-} from "./structure-types.ts"
+} from "./structure-type-defs.ts"
 import {asArray, filterType, Reference} from "../generic.ts"
 import {asString, indent, NestedString} from "../generator-utils.ts"
 import {deconflicted, sortBy} from "../utils.ts"
@@ -44,11 +44,11 @@ const generateTypes_ = (decls: Declaration[], languageName: string): NestedStrin
  * Type definitions, generated from the structure of the '${languageName}' language.
  */
 
-import {Named, Node${allLinksAreChildren ? "" : ", Reference"}} from "../../src/index.ts"
+import {Named, Node${allLinksAreChildren ? "" : ", Reference"}} from "../src/index.ts"
 // TODO  import from a Deno module
 
 `,
-        depNames.map((depName) => `import * as ${depName} from "./${depName}-types.ts"`),
+        depNames.map((depName) => `import * as ${depName} from "./${depName}-type-defs.ts"`),
         ``,
         ``,
         sortBy(decls, (decl) => decl.name).map((decl) => {

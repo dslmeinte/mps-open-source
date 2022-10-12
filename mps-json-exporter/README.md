@@ -33,6 +33,20 @@ The following things are exposed:
   This source file then contains type definitions that can be used to deserialize MPS model files that conform to that language.
 
 
+## CLI
+
+The TypeScript program [`src/languageStructure/cli.ts`](./src/languageStructure/cli.ts) generates type definitions and model loaders from an MPS language.
+You can run this program as follows:
+
+     deno run --allow-read --allow-write src/languageStructure/cli.ts <path to an MPS language module> [path for generated code]
+
+If the second path is not given, the current directory is used.
+The language's name is derived as the last fragment/part of the MPS language module path.
+
+_Note_ that the generated code is somewhat brittle: currently, it imports `src/index.ts` but without taking the code generation path into account.
+The **TODO** here is that that import should use a remote module (URL).
+
+
 ## Usage
 
 To load MPS models written with an MPS language, perform the following steps:
@@ -40,18 +54,20 @@ To load MPS models written with an MPS language, perform the following steps:
 1. Load the structure (aspect) model of the language:
 ```typescript
 import {Declaration, loadModel} from ".../src/index.ts"
-const decls = await loadModel<Declaration>(`...path to.../${languageName}/models/structure.mps`)
+const declarations = await loadModel<Declaration>(`...path to.../${languageName}/models/structure.mps`)
 ```
-Here, `${languageName}` is the name of the language.
+Here, `${languageName}` is the name of the language, and `.../` is a placeholder for the correct relative path.
+
 2. Generate type definitions from that:
 ```typescript
 import {generateTypes} from ".../src/index.ts"
-Deno.writeTextFileSync(`.../src-gen/type-defs/${languageName}-types.ts`, generateTypes(roots, ${languageName}))
+Deno.writeTextFileSync(`.../src-gen/${languageName}-type-defs.ts`, generateTypes(declarations, ${languageName}))
 ```
 This generates (among others) a type `AnyRootable${languageName}Concept` that is the sum of all rootable concepts of the language.
+ 
 3. Load an MPS model:
 ```typescript
-import {AnyRootable${languageName}Concept} from ".../src-gen/type-defs/${languageName}-types.ts"
+import {AnyRootable${languageName}Concept} from ".../src-gen/${languageName}-type-defs.ts"
 const roots = await loadModel<AnyRootable${languageName}Concept>(`...path to MPS XML model file...`)
 ```
 

@@ -7,7 +7,7 @@ import {
     JsonInteger,
     JsonObject,
     JsonString
-} from "../../src-gen/type-defs/Json-types.ts"
+} from "../../src-gen/Json-type-defs.ts"
 import {asArray} from "../../src/generic.ts"
 
 

@@ -16,7 +16,7 @@ import {
     JsonStringFormats,
     JsonStringPattern,
     JsonStringType
-} from "../../src-gen/type-defs/JsonSchema-types.ts"
+} from "../../src-gen/JsonSchema-type-defs.ts"
 import {
     asArray,
     asShorthandArray,

@@ -1,5 +1,5 @@
 import {asArray} from "../../src/generic.ts"
-import {JsonSchema} from "../../src-gen/type-defs/JsonSchema-types.ts"
+import {JsonSchema} from "../../src-gen/JsonSchema-type-defs.ts"
 
 
 export type XmlJsonSchemaModel = {

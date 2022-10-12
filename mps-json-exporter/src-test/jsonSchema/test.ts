@@ -1,8 +1,9 @@
+import {ensureDir} from "https://deno.land/std/fs/mod.ts"
+
 import {generate} from "./generator.ts"
 import {asPrettyString} from "../../src/utils.ts"
-import {JsonSchema} from "../../src-gen/type-defs/JsonSchema-types.ts"
+import {JsonSchema} from "../../src-gen/JsonSchema-type-defs.ts"
 import {devLoadModel} from "../dev-model-loader.ts"
-import {ensureDir} from "https://deno.land/std/fs/mod.ts"
 
 
 /*

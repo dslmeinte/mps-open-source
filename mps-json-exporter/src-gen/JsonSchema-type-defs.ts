@@ -2,10 +2,10 @@
  * Type definitions, generated from the structure of the 'JsonSchema' language.
  */
 
-import {Named, Node, Reference} from "../../src/index.ts"
+import {Named, Node, Reference} from "../src/index.ts"
 // TODO  import from a Deno module
 
-import * as Json from "./Json-types.ts"
+import * as Json from "./Json-type-defs.ts"
 
 
 // concept, alias = 'allOf'

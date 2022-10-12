@@ -12,9 +12,9 @@ import {devLoadModel} from "../dev-model-loader.ts"
 
 export const generate = async (languageName: string) => {
     const roots = await devLoadModel<Declaration>(`../mps-open-source/languages/${languageName}/models/structure.mps`, `${withFirstLower(languageName)}-structure`)
-    const typeDefsPath = `./src-gen/type-defs`
+    const typeDefsPath = `./src-gen`
     await ensureDir(typeDefsPath)
-    Deno.writeTextFileSync(`${typeDefsPath}/${languageName}-types.ts`, generateTypes(roots, languageName))
+    Deno.writeTextFileSync(`${typeDefsPath}/${languageName}-type-defs.ts`, generateTypes(roots, languageName))
     console.log(`Generated type definitions for language "${languageName}".`)
 }
 

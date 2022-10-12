@@ -1,10 +1,11 @@
-import {Node} from "./generic.ts"
 import {parse} from "https://deno.land/x/xml/mod.ts"
-import {ModelXml} from "./model-xml-types.ts"
+
 import {
     DeserializationIntrospector,
     deserializeXml
 } from "./deserializer.ts"
+import {Node} from "./generic.ts"
+import {ModelXml} from "./model-xml-types.ts"
 
 
 /**
@@ -35,4 +36,5 @@ export const loadModel = async <T extends Node>(modelPath: string, introspector?
     const modelXml = xml.model as unknown as ModelXml
     return deserializeXml<T>(modelXml, introspector)
 }
+
 
