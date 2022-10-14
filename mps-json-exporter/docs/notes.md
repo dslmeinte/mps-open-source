@@ -73,12 +73,17 @@ It's unnecessary in the sense that it would require specialized type definitions
   E.g., to know that a `string` has to be parsed as a `number`.
 
 
-## TODO
+## TODOs
 
 * &#10003; Get imports from other languages working.
+* &#10003; Write proper documentation, including good diagrams.
+* &#10003; Implement CLI functionality.
 * &hellip; Interpret `InterfaceConceptDeclaration`.`extends` and `ConceptDeclaration`.{`extends`, `implements`} more carefully.
-* Implement a proper API. (?)
-* Implement CLI functionality (using a JSON configuration?).
-* &hellip; Write proper documentation, including good diagrams.
+* Publish as a Deno module - see [here](https://deno.land/add_module).
+  * Move to a separate repo for that?
+  * CLI as sub module?
+* Make compiled executables.
+* Implement a proper API.
 * Think about how to resolve references when loading _multiple_ XML model files.
+* Mixture of type definitions and interfaces in [`src/generic.ts`](./src/generic.ts) - is that acceptable?
 

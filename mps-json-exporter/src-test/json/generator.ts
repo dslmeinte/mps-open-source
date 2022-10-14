@@ -7,8 +7,8 @@ import {
     JsonInteger,
     JsonObject,
     JsonString
-} from "../../gen/type-defs/Json-types.ts"
-import {asArray} from "../generic.ts"
+} from "../../src-gen/Json-type-defs.ts"
+import {asArray} from "../../src/generic.ts"
 
 
 export const generate = (iJsonValue: IJsonValue): unknown => {
